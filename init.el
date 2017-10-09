@@ -1,6 +1,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-(set-default-font "Fantasque Sans Mono 14")
+(set-default-font "Hack 12")
+;;(set-default-font "Fantasque Sans Mono 14")
 (setq delete-old-versions -1 )		; delete excess backup versions silently
 (setq version-control t )		; use version control
 (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
@@ -13,6 +14,8 @@
 (setq coding-system-for-write 'utf-8 )
 (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
 (setq default-fill-column 80)		; toggle wrapping text at the 80th character
+(setq tab-width 4)                    ; tab are 4 spaces large
+
 (setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
 (require 'package)
 (setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
@@ -35,11 +38,80 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (general use-package))))
+ '(package-selected-packages
+   (quote
+    (arjen-grey-theme which-key evil avy general use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(use-package general :ensure t)
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1)
+  ;; More configuration goes here
+  )
+(use-package arjen-grey-theme
+  :ensure t
+  :config
+   (load-theme 'arjen-grey t))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode 1)
+  (setq which-key-idle-delay 1)
+  )
+
+(use-package general :ensure t
+  :config
+  (general-define-key
+   :states '(normal visual insert emacs)
+   :prefix "SPC"
+   :non-normal-prefix "C-SPC"
+
+   ;; simple command
+   "'"   '(iterm-focus :which-key "iterm")
+   "?"   '(iterm-goto-filedir-or-home :which-key "iterm - goto dir")
+   "/"   'counsel-ag
+   "TAB" '(switch-to-other-buffer :which-key "prev buffer")
+   "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
+   "C-'" 'avy-goto-word-1
+   "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
+	   
+   ;; Applications
+   "a" '(:ignore t :which-key "Applications")
+   "ar" 'ranger
+   "ad" 'dired
+
+   ;; Buffer
+   "b" '(:ignore t :which-key "Buffer")
+   "bb" '(ivy-switch-buffer :which-key "Change buffer")
+
+   ;; Files
+   "f" '(:ignore t :which-key "Files")
+   "ff" '(counsel-find-file :which-key "find file")
+   "fr"	'(counsel-recentf   :which-key "recent files")
+   "fs" '(save-buffer :which-key "save file")
+
+   ;; Projects
+   "p" '(:ignore t :which-key "Projects")
+   "pf"  '(counsel-git :which-key: "Find file in git project")
+   ))
+
+(use-package avy :ensure t
+  :commands (avy-goto-word-1))
+
+(use-package ivy
+  :commands (ivy-switch-buffer
+	     ivy-switch-buffer-other-window)
+  :config
+  (ivy-mode 1))
+
+(use-package counsel :ensure t
+  :config
+  ;;  (setq counsel-find-file-at-point t)
+  ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
+  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
