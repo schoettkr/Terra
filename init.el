@@ -99,20 +99,20 @@
 
    ;; Projects
    "p" '(:ignore t :which-key "Projects")
-   "pf"  '(counsel-git :which-key: "Find file in git project")
+   "pf" '(counsel-git :which-key "Find file in git project")
 
    ;; Windows
    "w" '(:ignore t :which-key "Windows")
-   "wd"  '(evil-window-delete :which-key: "close window")
-   "ww"  '(evil-window-next :which-far-key: "next window")
-   "wh"  '(evil-window-left :which-key: "left")
-   "wH"  '(evil-window-move-far-left :which-key: "left")
-   "wj"  '(evil-window-down :which-key: "down")
-   "wJ"  '(evil-window-move-very-bottom :which-key: "down")
-   "wk"  '(evil-window-up :which-key: "up")
-   "wK"  '(evil-window-move-very-top :which-key: "up")
-   "wl"  '(evil-window-right :which-key: "right")
-   "wL"  '(evil-window-move-far-right :which-key: "move right")
+   "wd" '(evil-window-delete :which-key "close window")
+   "ww" '(evil-window-next :which-far-key "next window")
+   "wh" '(evil-window-left :which-key "left")
+   "wH" '(evil-window-move-far-left :which-key "move left")
+   "wj" '(evil-window-down :which-key "down")
+   "wJ" '(evil-window-move-very-bottom :which-key "move down")
+   "wk" '(evil-window-up :which-key "up")
+   "wK" '(evil-window-move-very-top :which-key "move up")
+   "wl" '(evil-window-right :which-key "right")
+   "wL" '(evil-window-move-far-right :which-key "move right")
    ))
 
 (use-package avy :ensure t
