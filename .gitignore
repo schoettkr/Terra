@@ -7,6 +7,8 @@ eproject.lst
 \#*
 .places
 .cache
+backups/
+recentf
 .recentf
 .recentf~
 projectile.cache
