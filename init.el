@@ -14,7 +14,7 @@
 (setq coding-system-for-write 'utf-8 )
 (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
 (setq default-fill-column 80)		; toggle wrapping text at the 80th character
-(setq tab-width 4)                    ; tab are 4 spaces large
+(setq tab-width 2)                    ; tab are 4 spaces large
 
 (setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
 (require 'package)
@@ -40,7 +40,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (arjen-grey-theme which-key evil avy general use-package))))
+    (linum-relative arjen-grey-theme which-key evil avy general use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -129,3 +129,9 @@
   ;;  (setq counsel-find-file-at-point t)
   ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
   (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
+
+(use-package linum-relative :ensure t
+  :config
+  (global-linum-mode nil)
+  (linum-relative-toggle)
+  (setq linum-relative-current-symbol ""))
