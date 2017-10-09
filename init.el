@@ -89,6 +89,7 @@
    ;; Buffer
    "b" '(:ignore t :which-key "Buffer")
    "bb" '(ivy-switch-buffer :which-key "Change buffer")
+   "bd" '(kill-buffer :which-key "kill buffer")
 
    ;; Files
    "f" '(:ignore t :which-key "Files")
@@ -99,6 +100,19 @@
    ;; Projects
    "p" '(:ignore t :which-key "Projects")
    "pf"  '(counsel-git :which-key: "Find file in git project")
+
+   ;; Windows
+   "w" '(:ignore t :which-key "Windows")
+   "wd"  '(evil-window-delete :which-key: "close window")
+   "ww"  '(evil-window-next :which-far-key: "next window")
+   "wh"  '(evil-window-left :which-key: "left")
+   "wH"  '(evil-window-move-far-left :which-key: "left")
+   "wj"  '(evil-window-down :which-key: "down")
+   "wJ"  '(evil-window-move-very-bottom :which-key: "down")
+   "wk"  '(evil-window-up :which-key: "up")
+   "wK"  '(evil-window-move-very-top :which-key: "up")
+   "wl"  '(evil-window-right :which-key: "right")
+   "wL"  '(evil-window-move-far-right :which-key: "move right")
    ))
 
 (use-package avy :ensure t
