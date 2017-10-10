@@ -47,6 +47,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(global-set-key (kbd "<escape>")      'keyboard-escape-quit)
+
 (use-package evil
   :ensure t
   :config
