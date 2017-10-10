@@ -118,6 +118,8 @@
    ;; Projects
    "p" '(:ignore t :which-key "Projects")
    "pf" '(counsel-git :which-key "Find file in git project")
+   "p/" '(counsel-ag :which-key "Search in project")
+   "pp" '(projectile-switch-project :which-key "Switch project")
 
    ;; Windows
    "w" '(:ignore t :which-key "Windows")
