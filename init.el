@@ -70,7 +70,12 @@
 (use-package general :ensure t
   :config
   (general-define-key
-   :states '(normal visual insert emacs)
+   ;; replace default keybindings
+   :states '(normal emacs)
+   "C-s" 'swiper             ; search for string in current buffer
+   "/" 'swiper             ; search for string in current buffer
+   "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+   )
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
 
