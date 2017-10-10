@@ -97,6 +97,8 @@
    "b" '(:ignore t :which-key "Buffer")
    "bb" '(ivy-switch-buffer :which-key "Change buffer")
    "bd" '(kill-buffer :which-key "kill buffer")
+   "bp" '(switch-to-prev-buffer :which-key "prev buffer")
+   "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
    ;; Files
    "f" '(:ignore t :which-key "Files")
