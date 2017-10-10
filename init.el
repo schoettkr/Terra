@@ -107,6 +107,14 @@
    "fs" '(save-buffer :which-key "save file")
    "f/" '(swiper :which-key "search in file")
 
+   ;; Git
+   "g" '(:ignore t :which-key "Git")
+   "gs" '(magit-status :which-key "status")
+
+   ;; Help
+   "h" '(:ignore t :which-key "Help")
+   "hh" '(help-for-help-internal :which-key "open help")
+
    ;; Projects
    "p" '(:ignore t :which-key "Projects")
    "pf" '(counsel-git :which-key "Find file in git project")
