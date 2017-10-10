@@ -76,8 +76,9 @@
    "/" 'swiper             ; search for string in current buffer
    "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
    )
+  (general-define-key
+   :states '(normal emacs motion)
    :prefix "SPC"
-   :non-normal-prefix "C-SPC"
 
    ;; simple command
    "'"   '(iterm-focus :which-key "iterm")
