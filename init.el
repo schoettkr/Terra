@@ -40,7 +40,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (linum-relative arjen-grey-theme which-key evil avy general use-package))))
+    (evil-magit projectile dashboard linum-relative arjen-grey-theme which-key evil avy general use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
