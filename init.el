@@ -92,6 +92,7 @@
    ;; Applications
    "a" '(:ignore t :which-key "Applications")
    "ar" 'ranger
+   "at" '(open-termite :which-key "Termite")
    "ad" 'dired
 
    ;; Buffer
@@ -178,3 +179,8 @@
   )
 
 (use-package evil-magit :ensure t)
+
+(defun open-termite ()
+  (interactive "@")
+  (shell-command (concat "termite"
+			 " > /dev/null 2>&1 & disown") nil nil))
