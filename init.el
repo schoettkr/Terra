@@ -49,6 +49,7 @@
  )
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
 
+(setq evil-want-C-u-scroll t)
 (use-package evil
   :ensure t
   :config
