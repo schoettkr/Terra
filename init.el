@@ -105,6 +105,7 @@
    "ff" '(counsel-find-file :which-key "find file")
    "fr"	'(counsel-recentf   :which-key "recent files")
    "fs" '(save-buffer :which-key "save file")
+   "f/" '(swiper :which-key "search in file")
 
    ;; Projects
    "p" '(:ignore t :which-key "Projects")
