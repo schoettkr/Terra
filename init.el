@@ -98,7 +98,9 @@
    "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
    "C-'" 'avy-goto-word-1
    "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
-	   
+   "=="  '(indent-buffer :which-key "Indent buffer")
+   "RET" '(add-semicolon :which-key "Insert ; at eol")
+
    ;; Applications
    "a" '(:ignore t :which-key "Applications")
    "ar" 'ranger
