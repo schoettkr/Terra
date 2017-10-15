@@ -356,5 +356,5 @@
 ;;  (face-list))
 
 (use-package evil-commentary :ensure t)
-(add-hook 'LaTeX-mode-hook
-          (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
+;; (add-hook 'LaTeX-mode-hook
+;;           (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
