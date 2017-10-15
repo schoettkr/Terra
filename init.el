@@ -309,3 +309,9 @@
   ;; `M-x package-install [ret] company`
   (company-mode +1))
 
+(add-hook 'prog-mode-hook 'company-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+;;(add-hook 'prog-mode-hook 'yas-global-mode)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+
