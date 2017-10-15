@@ -136,9 +136,18 @@
    "pp" '(projectile-switch-project :which-key "Switch project")
 
    ;; Windows
+   "1" '(winum-select-window-1 :which-key "win 1")
+   "2" '(winum-select-window-2 :which-key "win 2")
+   "3" '(winum-select-window-3 :which-key "win 3")
+   "4" '(winum-select-window-4 :which-key "win 4")
+   "5" '(winum-select-window-5 :which-key "win 5")
+   "6" '(winum-select-window-6 :which-key "win 6")
    "w" '(:ignore t :which-key "Windows")
+   "ws" '(split-window-below :which-key "Horizontal split")
+   "wv" '(split-window-right :which-key "Vertical split")
    "wd" '(evil-window-delete :which-key "close window")
    "ww" '(evil-window-next :which-far-key "next window")
+   "wm" '(delete-other-windows :which-far-key "next window")
    "wh" '(evil-window-left :which-key "left")
    "wH" '(evil-window-move-far-left :which-key "move left")
    "wj" '(evil-window-down :which-key "down")
