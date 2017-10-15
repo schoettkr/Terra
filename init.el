@@ -266,3 +266,9 @@
   (interactive "@")
   (shell-command (concat "termite"
 			 " > /dev/null 2>&1 & disown") nil nil))
+(defun indent-buffer ()
+  "Apply indentation rule to the entire buffer."
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max)))
+
