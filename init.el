@@ -173,12 +173,12 @@
   ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
   (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
 
- (use-package projectile :ensure t
-   :config
-   (setq projectile-mode-line " foo")
-   (setq projectile-completion-system 'ivy)
-   (setq projectile-file-exists-local-cache-expire (* 5 60))
-   (projectile-global-mode t))
+(use-package projectile :ensure t
+  :config
+  (setq projectile-mode-line " foo")
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-file-exists-local-cache-expire (* 5 60))
+  (projectile-global-mode t))
 
 (use-package linum-relative :ensure t
   :config
