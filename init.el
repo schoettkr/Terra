@@ -1,7 +1,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-(set-default-font "Hack 12")
-;;(set-default-font "Fantasque Sans Mono 14")
+;;(set-default-font "Hack 12")
+(set-default-font "Fantasque Sans Mono 14")
 (setq delete-old-versions -1 )		; delete excess backup versions silently
 (setq version-control t )		; use version control
 (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
