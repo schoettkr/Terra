@@ -53,17 +53,19 @@
 (toggle-scroll-bar -1)
 ;;(set-window-fringes (selected-window) 0 0 nil)
 
+(setq tab-stop-list (number-sequence 2 120 2))
 (setq evil-want-C-u-scroll t)
 (use-package evil
   :ensure t
   :config
   (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   ;; More configuration goes here
   )
 (use-package arjen-grey-theme
   :ensure t
   :config
-   (load-theme 'arjen-grey t))
+  (load-theme 'arjen-grey t))
 
 (use-package which-key
   :ensure t
