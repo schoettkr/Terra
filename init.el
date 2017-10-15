@@ -49,6 +49,9 @@
  ;; If there is more than one, they won't work right.
  )
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
+(set-fringe-mode 0)
+(toggle-scroll-bar -1)
+;;(set-window-fringes (selected-window) 0 0 nil)
 
 (setq evil-want-C-u-scroll t)
 (use-package evil
