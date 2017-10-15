@@ -220,6 +220,11 @@
 (define-key tern-mode-keymap (kbd "M-,") nil)
 
 
+(use-package js2-mode :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  )
+
 (defun open-termite ()
   (interactive "@")
   (shell-command (concat "termite"
