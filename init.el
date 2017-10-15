@@ -334,6 +334,7 @@
 
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'evil-commentary-mode)
 ;;(add-hook 'prog-mode-hook 'yas-global-mode)
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
