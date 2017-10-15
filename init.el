@@ -95,6 +95,14 @@
    "/" 'swiper             ; search for string in current buffer
    "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
    )
+  (general-define-key
+   :keymaps 'neotree-mode-map
+   "c" 'neotree-create-node
+   "r" 'neotree-rename-node
+   "d" 'neotree-delete-node
+   "v" 'neotree-enter-vertical-split
+   "s" 'neotree-enter-horizontal-split
+   )
 
   (general-define-key
    :states '(normal emacs motion)
@@ -130,6 +138,7 @@
    "fr"	'(counsel-recentf   :which-key "recent files")
    "fs" '(save-buffer :which-key "save file")
    "f/" '(swiper :which-key "search in file")
+   "ft" '(neotree-toggle :which-key "toggle neotree")
 
    ;; Git
    "g" '(:ignore t :which-key "Git")
@@ -331,3 +340,16 @@
   (when (not (looking-back ";"))
     (insert ";"))
   (evil-first-non-blank))
+(use-package all-the-icons :ensure t)
+;; dont forget to M-x all-the-icons-install-fonts
+(use-package neotree :ensure t
+  :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+
+;;(mapc
+;;  (lambda (face)
+;;    (set-face-attribute face nil :weight 'normal :underline nil))
+;;  (face-list))
+
+(use-package evil-commentary :ensure t)
+(add-hook 'LaTeX-mode-hook
+          (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
