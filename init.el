@@ -315,3 +315,9 @@
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
+(defun add-semicolon ()
+  (interactive)
+  (end-of-line)
+  (when (not (looking-back ";"))
+    (insert ";"))
+  (evil-first-non-blank))
