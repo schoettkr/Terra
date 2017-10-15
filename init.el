@@ -225,6 +225,21 @@
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
   )
 
+(use-package typescript-mode :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+  )
+
+(use-package tide :ensure t
+  :config
+  ;;(add-to-list 'auto-mode-alist '("\\.ts\\'" . tide-mode))
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
+  ;; formats the buffer before saving
+  ;;(add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  )
+
 (defun open-termite ()
   (interactive "@")
   (shell-command (concat "termite"
