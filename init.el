@@ -91,6 +91,7 @@
    :prefix "SPC"
 
    ;; simple command
+   "x" 'counsel-M-x        ; replace default M-x with ivy backend
    "'"   '(iterm-focus :which-key "iterm")
    "?"   '(iterm-goto-filedir-or-home :which-key "iterm - goto dir")
    "TAB" '(mode-line-other-buffer :which-key "prev buffer")
