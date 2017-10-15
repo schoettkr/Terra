@@ -80,9 +80,12 @@
    ;; replace default keybindings
    :states '(normal emacs)
    "C-s" 'swiper             ; search for string in current buffer
+;;   "C-p" 'company-select-previous             ; search for string in current buffer
+;;   "C-n" 'company-select-next             ; search for string in current buffer
    "/" 'swiper             ; search for string in current buffer
    "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
    )
+
   (general-define-key
    :states '(normal emacs motion)
    :prefix "SPC"
