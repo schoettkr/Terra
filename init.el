@@ -216,6 +216,10 @@
 (add-hook 'js2-mode-hook (lambda ()
 			   (tern-mode)
 			   (company-mode)))
+(define-key tern-mode-keymap (kbd "M-.") nil)
+(define-key tern-mode-keymap (kbd "M-,") nil)
+
+
 (defun open-termite ()
   (interactive "@")
   (shell-command (concat "termite"
