@@ -201,6 +201,21 @@
 
 (use-package evil-magit :ensure t)
 
+(use-package company :ensure t)
+;;  :config
+;;  (global-company-mode t))
+(use-package yasnippet :ensure t)
+;;  :config
+;;  (yas-global-mode 1))
+
+(use-package company-tern :ensure t
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-tern))
+
+(add-hook 'js2-mode-hook (lambda ()
+			   (tern-mode)
+			   (company-mode)))
 (defun open-termite ()
   (interactive "@")
   (shell-command (concat "termite"
