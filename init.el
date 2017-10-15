@@ -62,10 +62,20 @@
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   ;; More configuration goes here
   )
-(use-package arjen-grey-theme
+;;(use-package dracula-theme
+;;  :ensure t
+;;  :config
+;;  (load-theme 'dracula t))
+
+(use-package doom-themes
   :ensure t
   :config
-  (load-theme 'arjen-grey t))
+  (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled 
+  (load-theme 'doom-nova t)
+  ;; Enable custom neotree theme
+  (doom-themes-neotree-config) 
+ )
 
 (use-package which-key
   :ensure t
