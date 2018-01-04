@@ -41,7 +41,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (evil-commentary doom-themes all-the-icons neotree emacs-neotree dracula-theme winum window-numbering window-number tide typescript-mode typescript js2-mode company-tern yasnippet company evil-magit projectile dashboard linum-relative arjen-grey-theme which-key evil avy general use-package))))
+    (nord-theme indent-guide dumb-jump evil-commentary doom-themes all-the-icons neotree emacs-neotree dracula-theme winum window-numbering window-number tide typescript-mode typescript js2-mode company-tern yasnippet company evil-magit projectile dashboard linum-relative arjen-grey-theme which-key evil avy general use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,20 +62,24 @@
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   ;; More configuration goes here
   )
-;;(use-package dracula-theme
-;;  :ensure t
-;;  :config
-;;  (load-theme 'dracula t))
+(use-package dracula-theme :ensure t)
+(use-package arjen-grey-theme :ensure t)
+(use-package nord-theme :ensure t)
+;; (load-theme 'doom-nova t)
+;; (load-theme 'dracula t)
+;; (load-theme 'arjen-grey t)
+(load-theme 'nord t)
 
 (use-package doom-themes
   :ensure t
   :config
   (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled 
-  (load-theme 'doom-nova t)
+  ;; (load-theme 'doom-nova t)
   ;; Enable custom neotree theme
   (doom-themes-neotree-config) 
  )
+
 
 (use-package which-key
   :ensure t
@@ -118,6 +122,7 @@
    "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
    "=="  '(indent-buffer :which-key "Indent buffer")
    "RET" '(add-semicolon :which-key "Insert ; at eol")
+   "'" '(popup-shell :which-key "popup shell")
 
    ;; Applications
    "a" '(:ignore t :which-key "Applications")
@@ -338,6 +343,8 @@
 ;;(add-hook 'prog-mode-hook 'yas-global-mode)
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
+(add-hook 'prog-mode-hook 'indent-guide-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (defun add-semicolon ()
   (interactive)
@@ -350,11 +357,20 @@
 (use-package neotree :ensure t
   :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
-;;(mapc
-;;  (lambda (face)
-;;    (set-face-attribute face nil :weight 'normal :underline nil))
-;;  (face-list))
+(mapc
+ (lambda (face)
+   (set-face-attribute face nil :weight 'normal :underline nil))
+ (face-list))
 
 (use-package evil-commentary :ensure t)
 ;; (add-hook 'LaTeX-mode-hook
 ;;           (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
+
+;;(use-package dumb-jump :ensure t)
+(use-package indent-guide :ensure t)
+(use-package rainbow-delimiters :ensure t)
+(defun popup-shell ()
+  (interactive)
+  (ansi-term "/bin/zsh")
+  (mode-line-other-buffer)
+  (split-window-below))
