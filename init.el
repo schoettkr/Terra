@@ -1,7 +1,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-;;(set-default-font "Hack 12")
-(set-default-font "Fantasque Sans Mono 14")
+(set-default-font "Hack 11")
+;; (set-default-font "Fantasque Sans Mono 14")
 (setq delete-old-versions -1 )		; delete excess backup versions silently
 (setq version-control t )		; use version control
 (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
@@ -41,7 +41,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (nord-theme indent-guide dumb-jump evil-commentary doom-themes all-the-icons neotree emacs-neotree dracula-theme winum window-numbering window-number tide typescript-mode typescript js2-mode company-tern yasnippet company evil-magit projectile dashboard linum-relative arjen-grey-theme which-key evil avy general use-package))))
+    (gruvbox-theme gruvbox badger-theme rainbow-delimiters nord-theme indent-guide dumb-jump evil-commentary doom-themes all-the-icons neotree emacs-neotree dracula-theme winum window-numbering window-number tide typescript-mode typescript js2-mode company-tern yasnippet company evil-magit projectile dashboard linum-relative arjen-grey-theme which-key evil avy general use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,13 +62,17 @@
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   ;; More configuration goes here
   )
+(use-package gruvbox-theme :ensure t)
 (use-package dracula-theme :ensure t)
 (use-package arjen-grey-theme :ensure t)
 (use-package nord-theme :ensure t)
-;; (load-theme 'doom-nova t)
+(use-package badger-theme :ensure t)
+;; (load-theme 'doom-vibrant t)
 ;; (load-theme 'dracula t)
 ;; (load-theme 'arjen-grey t)
-(load-theme 'nord t)
+;; (load-theme 'badger t)
+;; (load-theme 'nord t)
+(load-theme 'gruvbox t)
 
 (use-package doom-themes
   :ensure t
