@@ -55,7 +55,7 @@
 
 
 * Appearance
-
+  
 #+begin_src emacs-lisp
   (menu-bar-mode 0)
   (tool-bar-mode 0)
@@ -76,15 +76,15 @@
   ;; (load-theme 'nord t)
   (load-theme 'gruvbox t)
 
-  (use-package doom-themes
-    :ensure t
-    :config
-      (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
-      	    doom-themes-enable-italic t) ; if nil, italics is universally disabled 
-      ;; (load-theme 'doom-nova t)
-      ;; Enable custom neotree theme
-      (doom-themes-neotree-config) 
-  )
+  ;; (use-package doom-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;     (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
+  ;;       	  doom-themes-enable-italic t) ; if nil, italics is universally disabled 
+  ;;     ;; (load-theme 'doom-nova t)
+  ;;     ;; Enable custom neotree theme
+  ;;     (doom-themes-neotree-config) 
+  ;; )
 
 #+end_src
 
@@ -165,8 +165,10 @@
    "s" 'neotree-enter-horizontal-split
    )
 
+  (general-def :states '(normal motion) "SPC" nil)
+
   (general-define-key
-   :states '(normal emacs motion)
+   :states '(normal motion)
    :prefix "SPC"
 
    ;; simple command
@@ -380,8 +382,8 @@ Display horizontal lines instead of ugly characters
 
 ** All the icons
 #+begin_src emacs-lisp
-(use-package all-the-icons :ensure t)
-;; dont forget to M-x all-the-icons-install-fonts
+  ;; (use-package all-the-icons :ensure t)
+  ;; dont forget to M-x all-the-icons-install-fonts
 #+end_src
    
 ** Neotree
