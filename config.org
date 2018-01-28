@@ -61,81 +61,76 @@
 * Appearance
   
 #+begin_src emacs-lisp
-  (menu-bar-mode 0)
-  (tool-bar-mode 0)
-  (set-default-font "Hack 11")
-  ;; (set-default-font "Fantasque Sans Mono 14")
-  (toggle-scroll-bar -1)
-  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
-  ;;(set-window-fringes (selected-window) 0 0 nil)
-  (use-package gruvbox-theme :ensure t)
-  (use-package dracula-theme :ensure t)
-  (use-package arjen-grey-theme :ensure t)
-  (use-package nord-theme :ensure t)
-  (use-package badger-theme :ensure t)
-  ;; (load-theme 'doom-vibrant t)
-  ;; (load-theme 'dracula t)
-  ;; (load-theme 'arjen-grey t)
-  ;; (load-theme 'badger t)
-  ;; (load-theme 'nord t)
-  (load-theme 'gruvbox t)
+       (menu-bar-mode 0)
+       (tool-bar-mode 0)
+       (set-default-font "Hack 11")
+       ;; (set-default-font "Fantasque Sans Mono 14")
+       (toggle-scroll-bar -1)
+       (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+       ;;(set-window-fringes (selected-window) 0 0 nil)
 
-  ;; (use-package doom-themes
-  ;;   :ensure t
-  ;;   :config
-  ;;     (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
-  ;;       	  doom-themes-enable-italic t) ; if nil, italics is universally disabled 
-  ;;     ;; (load-theme 'doom-nova t)
-  ;;     ;; Enable custom neotree theme
-  ;;     (doom-themes-neotree-config) 
-  ;; )
+       (use-package gruvbox-theme :ensure t)
+       (use-package dracula-theme :ensure t)
+       (use-package arjen-grey-theme :ensure t)
+       (use-package nord-theme :ensure t)
+       (use-package badger-theme :ensure t)
+       (use-package color-theme-sanityinc-tomorrow :ensure t)
+       ;;(use-package solarized-theme :ensure t)
+       (use-package plan9-theme :ensure t)
+
+       (load-theme 'gruvbox-light-soft t)
 
 #+end_src
 
 
 * Functions
 #+begin_src emacs-lisp
-(defun open-termite ()
-  (interactive "@")
-  (shell-command (concat "termite"
-			 " > /dev/null 2>&1 & disown") nil nil))
-(defun indent-buffer ()
-  "Apply indentation rule to the entire buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max)))
+   (defun open-termite ()
+     (interactive "@")
+     (shell-command (concat "termite"
+          " > /dev/null 2>&1 & disown") nil nil))
+   (defun indent-buffer ()
+     "Apply indentation rule to the entire buffer."
+     (interactive)
+     (delete-trailing-whitespace)
+     (indent-region (point-min) (point-max)))
 
-(defun company-mode/backend-with-yas (backend)
-  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-      backend
-    (append (if (consp backend) backend (list backend))
-            '(:with company-yasnippet))))
-	    
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
-  
-(defun add-semicolon ()
-  (interactive)
-  (end-of-line)
-  (when (not (looking-back ";"))
-    (insert ";"))
-  (evil-first-non-blank))
-  
-(defun popup-shell ()
-  (interactive)
-  (ansi-term "/bin/zsh")
-  (mode-line-other-buffer)
-  (split-window-below))
-  
+   (defun company-mode/backend-with-yas (backend)
+     (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+         backend
+       (append (if (consp backend) backend (list backend))
+               '(:with company-yasnippet))))
+
+   (defun setup-tide-mode ()
+     (interactive)
+     (tide-setup)
+     (flycheck-mode +1)
+     (setq flycheck-check-syntax-automatically '(save mode-enabled))
+     (eldoc-mode +1)
+     (tide-hl-identifier-mode +1)
+     ;; company is an optional dependency. You have to
+     ;; install it separately via package-install
+     ;; `M-x package-install [ret] company`
+     (company-mode +1))
+
+   (defun add-semicolon ()
+     (interactive)
+     (end-of-line)
+     (when (not (looking-back ";"))
+       (insert ";"))
+     (evil-first-non-blank))
+
+   (defun popup-shell ()
+     (interactive)
+     (ansi-term "/bin/zsh")
+     (split-window-below)
+     (mode-line-other-buffer)
+     (other-window 1)
+     ;; (enlarge-window 15)
+     ;; (/ (frame-height) 5)
+     ;; (add-to-list 'default-frame-alist '(height . (/ (frame-height) 5)))
+     )
+
 #+end_src
 
 
@@ -172,10 +167,10 @@
    "s" 'neotree-enter-horizontal-split
    )
 
-  (general-def :states '(normal motion) "SPC" nil)
+  (general-def :states '(normal motion emacs) "SPC" nil)
 
   (general-define-key
-   :states '(normal motion)
+   :states '(normal motion emacs)
    :prefix "SPC"
 
    ;; simple command
@@ -246,6 +241,9 @@
    "wK" '(evil-window-move-very-top :which-key "move up")
    "wl" '(evil-window-right :which-key "right")
    "wL" '(evil-window-move-far-right :which-key "move right")
+   "w+" '(evil-window-increase-height 30 :which-key "increase height")
+   "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+     ;; (enlarge-window 15)
    )
 
 )
@@ -328,6 +326,7 @@ load-path))
  ;;  (setq counsel-find-file-at-point t)
  ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
+ (setq ivy-initial-inputs-alist nil)
 #+end_src
 
 ** Projectile
@@ -483,6 +482,7 @@ Display horizontal lines instead of ugly characters
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
+;;(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+end_src
 
