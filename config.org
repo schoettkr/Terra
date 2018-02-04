@@ -61,24 +61,25 @@
 * Appearance
   
 #+begin_src emacs-lisp
-       (menu-bar-mode 0)
-       (tool-bar-mode 0)
-       (set-default-font "Hack 11")
-       ;; (set-default-font "Fantasque Sans Mono 14")
-       (toggle-scroll-bar -1)
-       (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
-       ;;(set-window-fringes (selected-window) 0 0 nil)
-
-       (use-package gruvbox-theme :ensure t)
-       (use-package dracula-theme :ensure t)
-       (use-package arjen-grey-theme :ensure t)
-       (use-package nord-theme :ensure t)
-       (use-package badger-theme :ensure t)
-       (use-package color-theme-sanityinc-tomorrow :ensure t)
-       ;;(use-package solarized-theme :ensure t)
-       (use-package plan9-theme :ensure t)
-
-       (load-theme 'gruvbox-light-soft t)
+  (menu-bar-mode 0)
+  (tool-bar-mode 0)
+  (set-default-font "Hack 11")
+  ;; (set-default-font "Fantasque Sans Mono 14")
+  (toggle-scroll-bar -1)
+  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+  (setq whitespace-line-column 999)
+  ;;(set-window-fringes (selected-window) 0 0 nil)
+  ;; (setq whitespace-style '(faces spaces indentation))
+  ;;(use-package solarized-theme :ensure t)
+  (use-package gruvbox-theme :ensure t)
+  (use-package dracula-theme :ensure t)
+  (use-package arjen-grey-theme :ensure t)
+  (use-package nord-theme :ensure t)
+  (use-package badger-theme :ensure t)
+  (use-package color-theme-sanityinc-tomorrow :ensure t)
+  (use-package moe-theme :ensure t)
+  (load-theme 'moe-light t)
+  ;; (moe-light)
 
 #+end_src
 
@@ -482,7 +483,7 @@ Display horizontal lines instead of ugly characters
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
-;;(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+end_src
 

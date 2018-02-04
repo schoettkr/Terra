@@ -32,10 +32,14 @@
   (setq coding-system-for-write 'utf-8 )
   (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
   (setq default-fill-column 80)		; toggle wrapping text at the 80th character
-  (setq tab-width 2)                    ; tab are 2 spaces large
+  (setq-default tab-width 2)                    ; tab are 2 spaces large
   (setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
   (setq tab-stop-list (number-sequence 2 120 2)) ;; set tab length
   (setq evil-want-C-u-scroll t) ;; scroll with C-u like in vim
+;;(set-display-table-slot standard-display-table 'wrap ?\ )
+  (set-display-table-slot standard-display-table 0 ?\ ) 
+  (set-display-table-slot standard-display-table 'wrap ?\ )
+  (setq-default indent-tabs-mode nil)
   
 (mapc
  (lambda (face)
@@ -48,33 +52,24 @@
 ;; (set-default-font "Fantasque Sans Mono 14")
 (toggle-scroll-bar -1)
 (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+(setq whitespace-line-column 999)
 ;;(set-window-fringes (selected-window) 0 0 nil)
+;; (setq whitespace-style '(faces spaces indentation))
+;;(use-package solarized-theme :ensure t)
 (use-package gruvbox-theme :ensure t)
 (use-package dracula-theme :ensure t)
 (use-package arjen-grey-theme :ensure t)
 (use-package nord-theme :ensure t)
 (use-package badger-theme :ensure t)
-;; (load-theme 'doom-vibrant t)
-;; (load-theme 'dracula t)
-;; (load-theme 'arjen-grey t)
-;; (load-theme 'badger t)
-;; (load-theme 'nord t)
-(load-theme 'gruvbox t)
-
-(use-package doom-themes
-  :ensure t
-  :config
-    (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
-      	  doom-themes-enable-italic t) ; if nil, italics is universally disabled 
-    ;; (load-theme 'doom-nova t)
-    ;; Enable custom neotree theme
-    (doom-themes-neotree-config) 
-)
+(use-package color-theme-sanityinc-tomorrow :ensure t)
+(use-package moe-theme :ensure t)
+(load-theme 'moe-light t)
+;; (moe-light)
 
 (defun open-termite ()
   (interactive "@")
   (shell-command (concat "termite"
-			 " > /dev/null 2>&1 & disown") nil nil))
+       " > /dev/null 2>&1 & disown") nil nil))
 (defun indent-buffer ()
   "Apply indentation rule to the entire buffer."
   (interactive)
@@ -86,7 +81,7 @@
       backend
     (append (if (consp backend) backend (list backend))
             '(:with company-yasnippet))))
-	    
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -98,19 +93,24 @@
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
   (company-mode +1))
-  
+
 (defun add-semicolon ()
   (interactive)
   (end-of-line)
   (when (not (looking-back ";"))
     (insert ";"))
   (evil-first-non-blank))
-  
+
 (defun popup-shell ()
   (interactive)
   (ansi-term "/bin/zsh")
+  (split-window-below)
   (mode-line-other-buffer)
-  (split-window-below))
+  (other-window 1)
+  ;; (enlarge-window 15)
+  ;; (/ (frame-height) 5)
+  ;; (add-to-list 'default-frame-alist '(height . (/ (frame-height) 5)))
+  )
 
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
 
@@ -124,6 +124,9 @@
 ;;   "C-n" 'company-select-next             ; search for string in current buffer
    "/" 'swiper             ; search for string in current buffer
    "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+   "n" 'evil-search-previous
+   "N" 'evil-search-next
+   "\\" 'evil-ex-nohighlight
    )
   (general-define-key
    :keymaps 'neotree-mode-map
@@ -134,8 +137,10 @@
    "s" 'neotree-enter-horizontal-split
    )
 
+  (general-def :states '(normal motion emacs) "SPC" nil)
+
   (general-define-key
-   :states '(normal emacs motion)
+   :states '(normal motion emacs)
    :prefix "SPC"
 
    ;; simple command
@@ -206,13 +211,21 @@
    "wK" '(evil-window-move-very-top :which-key "move up")
    "wl" '(evil-window-right :which-key "right")
    "wL" '(evil-window-move-far-right :which-key "move right")
-   ))
+   "w+" '(evil-window-increase-height 30 :which-key "increase height")
+   "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+     ;; (enlarge-window 15)
+   )
+
+)
 
 (use-package evil
     :ensure t
     :config
     (evil-mode 1)
     (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
+    (setq-default evil-shift-width 2)
+    (setq evil-search-module 'evil-search)
+;;    (setq evil-ex-nohighlight t)
 ;; More configuration goes here
 )
 
@@ -254,6 +267,7 @@ load-path))
  ;;  (setq counsel-find-file-at-point t)
  ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
+ (setq ivy-initial-inputs-alist nil)
 
 (use-package projectile :ensure t
  :config
@@ -277,8 +291,18 @@ load-path))
 		  (agenda . 5)
 		  (registers . 5)))
  )
+  ;; (add-hook 'dashboard-mode-hook
+  ;; 	    (lambda ()
+  ;; 	       (set-display-table-slot buffer-display-table 'wrap ?\ )))
 
 (use-package page-break-lines :ensure t)
+;;  (add-hook 'page-break-lines-mode-hook
+;; 	    (lambda ()
+;; (set-display-table-slot standard-display-table 0 ?\ )))
+;; (add-hook 'page-break-lines-mode-hook
+;; (lambda ()
+;;  (set-display-table-slot buffer-display-table 0 ?\ )))
+;;(set-display-table-slot buffer-display-table 'wrap ?\ )))
 
 (use-package company :ensure t)
 ;  :config
@@ -297,7 +321,7 @@ load-path))
 ;;  :config
 ;;  (yas-global-mode 1))
 
-(use-package all-the-icons :ensure t)
+;; (use-package all-the-icons :ensure t)
 ;; dont forget to M-x all-the-icons-install-fonts
 
 (use-package neotree :ensure t
@@ -333,10 +357,12 @@ load-path))
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
+(add-hook 'prog-mode-hook 'column-number-mode)
 ;;(add-hook 'prog-mode-hook 'yas-global-mode)
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
+(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
@@ -379,8 +405,16 @@ load-path))
   ;;(add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   )
-(setq typescript-indent-level 2) ; 
 (setq typescript-indent-level 2
       typescript-expr-indent-offset 2)
+(setq evil-shift-width 2)
+(setq typescript-indent-level 2) ; 
+
+ ;; typescript mode specific keybindings
+ (general-define-key
+ :states 'normal
+ :keymaps 'typescript-mode-map
+ "gd" 'tide-jump-to-definition
+ )
 
 (setq css-indent-offset 2) ; css-mode
