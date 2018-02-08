@@ -64,6 +64,7 @@
   (menu-bar-mode 0)
   (tool-bar-mode 0)
   (set-default-font "Hack 11")
+  ;; (set-default-font "Source Code Pro 11")
   ;; (set-default-font "Fantasque Sans Mono 14")
   (toggle-scroll-bar -1)
   (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
@@ -73,12 +74,13 @@
   ;;(use-package solarized-theme :ensure t)
   (use-package gruvbox-theme :ensure t)
   (use-package dracula-theme :ensure t)
-  (use-package arjen-grey-theme :ensure t)
-  (use-package nord-theme :ensure t)
   (use-package badger-theme :ensure t)
   (use-package color-theme-sanityinc-tomorrow :ensure t)
   (use-package moe-theme :ensure t)
-  (load-theme 'moe-light t)
+  (use-package oceanic-theme :ensure t)
+  (use-package subatomic-theme :ensure t)
+  ;; (load-theme 'github-modern t)
+  (load-theme 'subatomic t)
   ;; (moe-light)
 
 #+end_src
@@ -560,4 +562,55 @@ Display horizontal lines instead of ugly characters
 * Css
 #+begin_src emacs-lisp
 (setq css-indent-offset 2) ; css-mode
+#+end_src
+
+
+* Go
+
+#+begin_src emacs-lisp
+  (defun load-env-vars () 
+    (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+    (setenv "PATH" path)
+    (setq exec-path (append (split-string-and-unquote path ":") exec-path))))
+
+      (use-package go-mode :ensure t
+        :config
+        (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+        )
+
+      (use-package company-go :ensure t
+        :after company
+        :config
+        (add-to-list 'company-backends 'company-go))
+
+       (add-hook 'go-mode-hook (lambda ()
+        (set (make-local-variable 'company-backends) '(company-go))
+        (company-mode)))
+        
+        (add-hook 'go-mode-hook #'load-env-vars)
+
+      ;;(setenv "GOPATH" "/home/lenno/Dev/goProjects")
+      ;; (use-package exec-path-from-shell :ensure t)
+      ;;  (add-hook 'go-mode-hook (lambda ()
+      ;;  ((when (memq window-system '(mac ns x))
+      ;;   (exec-path-from-shell-initialize)))
+      ;;   ))
+    ;; (defun set-exec-path-from-shell-PATH ()
+    ;;   (let ((path-from-shell (replace-regexp-in-string
+    ;;                           "[ \t\n]*$"
+    ;;                           ""
+    ;;                           (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    ;;     (setenv "PATH" path-from-shell)
+    ;;     (setq eshell-path-env path-from-shell) ; for eshell users
+    ;;     (setq exec-path (split-string path-from-shell path-separator))))
+
+    ;; (when window-system (set-exec-path-from-shell-PATH))
+    ;; (setenv "GOPATH" "/home/lenno/Dev/goProjects")
+
+     (general-define-key
+     :states 'normal
+     :keymaps 'go-mode-map
+     "gd" 'godef-jump
+     "gh" 'godef-describe
+     )
 #+end_src
