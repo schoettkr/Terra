@@ -571,7 +571,12 @@ Display horizontal lines instead of ugly characters
   (defun load-env-vars () 
     (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
     (setenv "PATH" path)
-    (setq exec-path (append (split-string-and-unquote path ":") exec-path))))
+    (setq exec-path (append (split-string-and-unquote path ":") exec-path)))
+
+    (let ((gopath (shell-command-to-string ". ~/.zshrc; echo -n $GOPATH")))
+    (setenv "GOPATH" gopath)
+    (setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
+)
 
       (use-package go-mode :ensure t
         :config
