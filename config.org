@@ -194,6 +194,7 @@
      "N" 'evil-search-next
      "\\" 'evil-ex-nohighlight
      "eh" 'flymake-popup-current-error-menu
+     "C-w" 'evil-delete-buffer
      )
     (general-define-key
      :keymaps 'neotree-mode-map
@@ -235,6 +236,9 @@
      "bd" '(kill-buffer :which-key "kill buffer")
      "bp" '(switch-to-prev-buffer :which-key "prev buffer")
      "bn" '(switch-to-prev-buffer :which-key "next buffer")
+
+     ;; ;; Flymake
+     ;; "m" '(:ignore t :which-key "Major Mode")
 
      ;; Flymake
      "e" '(:ignore t :which-key "Flymake")
@@ -625,6 +629,8 @@ Display horizontal lines instead of ugly characters
   ;; :load-path "/tmp/elisp/go-mode"
     )
 
+  (use-package go-guru :ensure t)
+
   (use-package flymake-go :ensure t
     ;; :config
     ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
@@ -656,10 +662,18 @@ Display horizontal lines instead of ugly characters
   "gh" 'godef-describe
   )
 
+  (general-define-key
+  :states '(normal motion)
+  :keymaps 'go-mode-map
+  :prefix "SPC"
+  "m" '(go-guru-map :which-key "Major Mode[Go]")
+  )
+
   (add-hook 'go-mode-hook (lambda ()
     (set (make-local-variable 'company-backends) '(company-go))
     (company-mode)))
 
+  (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
   (add-hook 'go-mode-hook #'load-env-vars)
   (add-hook 'go-mode-hook 'my-go-mode-hook)
 #+end_src
