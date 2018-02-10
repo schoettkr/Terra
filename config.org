@@ -88,51 +88,84 @@
 
 * Functions
 #+begin_src emacs-lisp
-   (defun open-termite ()
-     (interactive "@")
-     (shell-command (concat "termite"
-          " > /dev/null 2>&1 & disown") nil nil))
-   (defun indent-buffer ()
-     "Apply indentation rule to the entire buffer."
-     (interactive)
-     (delete-trailing-whitespace)
-     (indent-region (point-min) (point-max)))
+;;(defun my-flymake-show-next-error()
+;;    (interactive)
+;;    (flymake-goto-next-error)
+;;    (flymake-popup-current-error-menu)
+;;    )
 
-   (defun company-mode/backend-with-yas (backend)
-     (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-         backend
-       (append (if (consp backend) backend (list backend))
-               '(:with company-yasnippet))))
+      (defun open-termite ()
+        (interactive "@")
+        (shell-command (concat "termite"
+             " > /dev/null 2>&1 & disown") nil nil))
+      (defun indent-buffer ()
+        "Apply indentation rule to the entire buffer."
+        (interactive)
+        (delete-trailing-whitespace)
+        (indent-region (point-min) (point-max)))
 
-   (defun setup-tide-mode ()
-     (interactive)
-     (tide-setup)
-     (flycheck-mode +1)
-     (setq flycheck-check-syntax-automatically '(save mode-enabled))
-     (eldoc-mode +1)
-     (tide-hl-identifier-mode +1)
-     ;; company is an optional dependency. You have to
-     ;; install it separately via package-install
-     ;; `M-x package-install [ret] company`
-     (company-mode +1))
+      (defun company-mode/backend-with-yas (backend)
+        (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+            backend
+          (append (if (consp backend) backend (list backend))
+                  '(:with company-yasnippet))))
 
-   (defun add-semicolon ()
-     (interactive)
-     (end-of-line)
-     (when (not (looking-back ";"))
-       (insert ";"))
-     (evil-first-non-blank))
+      (defun setup-tide-mode ()
+        (interactive)
+        (tide-setup)
+        (flycheck-mode +1)
+        (setq flycheck-check-syntax-automatically '(save mode-enabled))
+        (eldoc-mode +1)
+        (tide-hl-identifier-mode +1)
+        ;; company is an optional dependency. You have to
+        ;; install it separately via package-install
+        ;; `M-x package-install [ret] company`
+        (company-mode +1))
 
-   (defun popup-shell ()
-     (interactive)
-     (ansi-term "/bin/zsh")
-     (split-window-below)
-     (mode-line-other-buffer)
-     (other-window 1)
-     ;; (enlarge-window 15)
-     ;; (/ (frame-height) 5)
-     ;; (add-to-list 'default-frame-alist '(height . (/ (frame-height) 5)))
-     )
+      (defun add-semicolon ()
+        (interactive)
+        (end-of-line)
+        (when (not (looking-back ";"))
+          (insert ";"))
+        (evil-first-non-blank))
+
+    (defvar counter 0)
+    (defun popup-shell ()
+      (interactive)
+      (setq counter (+ counter 1))
+      (setq title (concat "Terminal-" (number-to-string counter)))
+      (setq buf-title (concat "*" title "*"))
+      (ansi-term "/bin/zsh" buf-title)
+      (mode-line-other-buffer)
+      (split-window-below)
+      (enlarge-window 15)
+      (evil-window-down 1)
+  )
+      ;; (defun popup-shell ()
+      ;;   (interactive)
+      ;;   (ansi-term "/usr/bin/zsh" "terminal")
+        ;; (split-window-below)
+        ;; (mode-line-other-buffer)
+        ;; (other-window 1)
+        ;; (enlarge-window 15)
+        ;; (/ (frame-height) 5)
+        ;; (add-to-list 'default-frame-alist '(height . (/ (frame-height) 5)))
+        ;; )
+
+      ;; (defvar counter 0)
+      ;; (defun popup-shell ()
+      ;;   "Open a new terminal and rename the buffer"
+      ;;   (interactive)
+      ;;   (setq counter (+ counter 1))
+      ;;   (setq title (concat "Terminal-" (number-to-string counter)))
+      ;;   (setq buf-title (concat "*" title "*"))
+      ;;   (message buf-title)
+      ;;   (set-buffer (make-term title "/bin/zsh"))
+        ;; (term-mode)
+        ;; (term-char-mode)
+        ;; (switch-to-buffer buf-title)
+      ;; )
+
 
 #+end_src
 
@@ -147,109 +180,116 @@
 ** General.el
 
 #+begin_src emacs-lisp
-(use-package general :ensure t
-  :config
-  (general-define-key
-   ;; replace default keybindings
-   :states '(normal emacs)
-   "C-s" 'swiper             ; search for string in current buffer
-;;   "C-p" 'company-select-previous             ; search for string in current buffer
-;;   "C-n" 'company-select-next             ; search for string in current buffer
-   "/" 'swiper             ; search for string in current buffer
-   "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
-   "n" 'evil-search-previous
-   "N" 'evil-search-next
-   "\\" 'evil-ex-nohighlight
-   )
-  (general-define-key
-   :keymaps 'neotree-mode-map
-   "c" 'neotree-create-node
-   "r" 'neotree-rename-node
-   "d" 'neotree-delete-node
-   "v" 'neotree-enter-vertical-split
-   "s" 'neotree-enter-horizontal-split
-   )
+  (use-package general :ensure t
+    :config
+    (general-define-key
+     ;; replace default keybindings
+     :states '(normal emacs)
+     "C-s" 'swiper             ; search for string in current buffer
+  ;;   "C-p" 'company-select-previous             ; search for string in current buffer
+  ;;   "C-n" 'company-select-next             ; search for string in current buffer
+     "/" 'swiper             ; search for string in current buffer
+     "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "n" 'evil-search-previous
+     "N" 'evil-search-next
+     "\\" 'evil-ex-nohighlight
+     "eh" 'flymake-popup-current-error-menu
+     )
+    (general-define-key
+     :keymaps 'neotree-mode-map
+     "c" 'neotree-create-node
+     "r" 'neotree-rename-node
+     "d" 'neotree-delete-node
+     "v" 'neotree-enter-vertical-split
+     "s" 'neotree-enter-horizontal-split
+     )
 
-  (general-def :states '(normal motion emacs) "SPC" nil)
+    (general-def :states '(normal motion emacs) "SPC" nil)
 
-  (general-define-key
-   :states '(normal motion emacs)
-   :prefix "SPC"
+    (general-define-key
+     :states '(normal motion emacs)
+     :prefix "SPC"
 
-   ;; simple command
-   "x" 'counsel-M-x        ; replace default M-x with ivy backend
-   "'"   '(iterm-focus :which-key "iterm")
-   "?"   '(iterm-goto-filedir-or-home :which-key "iterm - goto dir")
-   "TAB" '(mode-line-other-buffer :which-key "prev buffer")
-   "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
-   "C-'" 'avy-goto-word-1
-   "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
-   "=="  '(indent-buffer :which-key "Indent buffer")
-   "RET" '(add-semicolon :which-key "Insert ; at eol")
-   "'" '(popup-shell :which-key "popup shell")
+     ;; simple command
+     "x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "'"   '(iterm-focus :which-key "iterm")
+     "?"   '(iterm-goto-filedir-or-home :which-key "iterm - goto dir")
+     "TAB" '(mode-line-other-buffer :which-key "prev buffer")
+     "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
+     "C-'" 'avy-goto-word-1
+     "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
+     "=="  '(indent-buffer :which-key "Indent buffer")
+     "RET" '(add-semicolon :which-key "Insert ; at eol")
+     ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
+     "'" '(popup-shell :which-key "popup shell")
 
-   ;; Applications
-   "a" '(:ignore t :which-key "Applications")
-   "ar" 'ranger
-   "at" '(open-termite :which-key "Termite")
-   "ad" 'dired
+     ;; Applications
+     "a" '(:ignore t :which-key "Applications")
+     "ar" 'ranger
+     "at" '(open-termite :which-key "Termite")
+     "ad" 'dired
 
-   ;; Buffer
-   "b" '(:ignore t :which-key "Buffer")
-   "bb" '(ivy-switch-buffer :which-key "Change buffer")
-   "bd" '(kill-buffer :which-key "kill buffer")
-   "bp" '(switch-to-prev-buffer :which-key "prev buffer")
-   "bn" '(switch-to-prev-buffer :which-key "next buffer")
+     ;; Buffer
+     "b" '(:ignore t :which-key "Buffer")
+     "bb" '(ivy-switch-buffer :which-key "Change buffer")
+     "bd" '(kill-buffer :which-key "kill buffer")
+     "bp" '(switch-to-prev-buffer :which-key "prev buffer")
+     "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
-   ;; Files
-   "f" '(:ignore t :which-key "Files")
-   "ff" '(counsel-find-file :which-key "find file")
-   "fr"	'(counsel-recentf   :which-key "recent files")
-   "fs" '(save-buffer :which-key "save file")
-   "f/" '(swiper :which-key "search in file")
-   "ft" '(neotree-toggle :which-key "toggle neotree")
+     ;; Flymake
+     "e" '(:ignore t :which-key "Flymake")
+     "en" '(flymake-goto-next-error :which-key "next error")
+     "ep" '(flymake-goto-prev-error :which-key "prev error")
 
-   ;; Git
-   "g" '(:ignore t :which-key "Git")
-   "gs" '(magit-status :which-key "status")
+     ;; Files
+     "f" '(:ignore t :which-key "Files")
+     "ff" '(counsel-find-file :which-key "find file")
+     "fr"	'(counsel-recentf   :which-key "recent files")
+     "fs" '(save-buffer :which-key "save file")
+     "f/" '(swiper :which-key "search in file")
+     "ft" '(neotree-toggle :which-key "toggle neotree")
 
-   ;; Help
-   "h" '(:ignore t :which-key "Help")
-   "hh" '(help-for-help-internal :which-key "open help")
+     ;; Git
+     "g" '(:ignore t :which-key "Git")
+     "gs" '(magit-status :which-key "status")
 
-   ;; Projects
-   "p" '(:ignore t :which-key "Projects")
-   "pf" '(counsel-git :which-key "Find file in git project")
-   "p/" '(counsel-ag :which-key "Search in project")
-   "pp" '(projectile-switch-project :which-key "Switch project")
+     ;; Help
+     "h" '(:ignore t :which-key "Help")
+     "hh" '(help-for-help-internal :which-key "open help")
 
-   ;; Windows
-   "1" '(winum-select-window-1 :which-key "win 1")
-   "2" '(winum-select-window-2 :which-key "win 2")
-   "3" '(winum-select-window-3 :which-key "win 3")
-   "4" '(winum-select-window-4 :which-key "win 4")
-   "5" '(winum-select-window-5 :which-key "win 5")
-   "6" '(winum-select-window-6 :which-key "win 6")
-   "w" '(:ignore t :which-key "Windows")
-   "ws" '(split-window-below :which-key "Horizontal split")
-   "wv" '(split-window-right :which-key "Vertical split")
-   "wd" '(evil-window-delete :which-key "close window")
-   "ww" '(evil-window-next :which-far-key "next window")
-   "wm" '(delete-other-windows :which-far-key "next window")
-   "wh" '(evil-window-left :which-key "left")
-   "wH" '(evil-window-move-far-left :which-key "move left")
-   "wj" '(evil-window-down :which-key "down")
-   "wJ" '(evil-window-move-very-bottom :which-key "move down")
-   "wk" '(evil-window-up :which-key "up")
-   "wK" '(evil-window-move-very-top :which-key "move up")
-   "wl" '(evil-window-right :which-key "right")
-   "wL" '(evil-window-move-far-right :which-key "move right")
-   "w+" '(evil-window-increase-height 30 :which-key "increase height")
-   "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
-     ;; (enlarge-window 15)
-   )
+     ;; Projects
+     "p" '(:ignore t :which-key "Projects")
+     "pf" '(counsel-git :which-key "Find file in git project")
+     "p/" '(counsel-ag :which-key "Search in project")
+     "pp" '(projectile-switch-project :which-key "Switch project")
 
-)
+     ;; Windows
+     "1" '(winum-select-window-1 :which-key "win 1")
+     "2" '(winum-select-window-2 :which-key "win 2")
+     "3" '(winum-select-window-3 :which-key "win 3")
+     "4" '(winum-select-window-4 :which-key "win 4")
+     "5" '(winum-select-window-5 :which-key "win 5")
+     "6" '(winum-select-window-6 :which-key "win 6")
+     "w" '(:ignore t :which-key "Windows")
+     "ws" '(split-window-below :which-key "Horizontal split")
+     "wv" '(split-window-right :which-key "Vertical split")
+     "wd" '(evil-window-delete :which-key "close window")
+     "ww" '(evil-window-next :which-far-key "next window")
+     "wm" '(delete-other-windows :which-far-key "next window")
+     "wh" '(evil-window-left :which-key "left")
+     "wH" '(evil-window-move-far-left :which-key "move left")
+     "wj" '(evil-window-down :which-key "down")
+     "wJ" '(evil-window-move-very-bottom :which-key "move down")
+     "wk" '(evil-window-up :which-key "up")
+     "wK" '(evil-window-move-very-top :which-key "move up")
+     "wl" '(evil-window-right :which-key "right")
+     "wL" '(evil-window-move-far-right :which-key "move right")
+     "w+" '(evil-window-increase-height 30 :which-key "increase height")
+     "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+       ;; (enlarge-window 15)
+     )
+
+  )
 #+end_src
 
 
@@ -465,7 +505,6 @@ Display horizontal lines instead of ugly characters
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters :ensure t)
 #+end_src
-
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
@@ -568,6 +607,8 @@ Display horizontal lines instead of ugly characters
 * Go
 
 #+begin_src emacs-lisp
+;; go get: goflymake golang.org/x/tools/cmd/... godef gocode
+
   (defun load-env-vars () 
     (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
     (setenv "PATH" path)
@@ -576,46 +617,51 @@ Display horizontal lines instead of ugly characters
     (let ((gopath (shell-command-to-string ". ~/.zshrc; echo -n $GOPATH")))
     (setenv "GOPATH" gopath)
     (setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
-)
+  )
 
-      (use-package go-mode :ensure t
-        :config
-        (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-        )
+  (use-package go-mode :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  ;; :load-path "/tmp/elisp/go-mode"
+    )
 
-      (use-package company-go :ensure t
-        :after company
-        :config
-        (add-to-list 'company-backends 'company-go))
+  (use-package flymake-go :ensure t
+    ;; :config
+    ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  ;; :load-path "/tmp/elisp/go-mode"
+    )
 
-       (add-hook 'go-mode-hook (lambda ()
-        (set (make-local-variable 'company-backends) '(company-go))
-        (company-mode)))
-        
-        (add-hook 'go-mode-hook #'load-env-vars)
+  (use-package company-go :ensure t
+    :after company
+    :config
+    (add-to-list 'company-backends 'company-go))
 
-      ;;(setenv "GOPATH" "/home/lenno/Dev/goProjects")
-      ;; (use-package exec-path-from-shell :ensure t)
-      ;;  (add-hook 'go-mode-hook (lambda ()
-      ;;  ((when (memq window-system '(mac ns x))
-      ;;   (exec-path-from-shell-initialize)))
-      ;;   ))
-    ;; (defun set-exec-path-from-shell-PATH ()
-    ;;   (let ((path-from-shell (replace-regexp-in-string
-    ;;                           "[ \t\n]*$"
-    ;;                           ""
-    ;;                           (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-    ;;     (setenv "PATH" path-from-shell)
-    ;;     (setq eshell-path-env path-from-shell) ; for eshell users
-    ;;     (setq exec-path (split-string path-from-shell path-separator))))
+  (defun my-go-mode-hook ()
+    ;; (require 'go-guru)
+  ;; (use-package go-guru
+  ;; user-emacs-directory
+  ;;  :load-path concat(user-emacs-directory "")"")
 
-    ;; (when window-system (set-exec-path-from-shell-PATH))
-    ;; (setenv "GOPATH" "/home/lenno/Dev/goProjects")
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
+    )
 
-     (general-define-key
-     :states 'normal
-     :keymaps 'go-mode-map
-     "gd" 'godef-jump
-     "gh" 'godef-describe
-     )
+
+
+
+  (general-define-key
+  :states 'normal
+  :keymaps 'go-mode-map
+  "gd" 'godef-jump
+  "gh" 'godef-describe
+  )
+
+  (add-hook 'go-mode-hook (lambda ()
+    (set (make-local-variable 'company-backends) '(company-go))
+    (company-mode)))
+
+  (add-hook 'go-mode-hook #'load-env-vars)
+  (add-hook 'go-mode-hook 'my-go-mode-hook)
 #+end_src
+
+  
