@@ -227,7 +227,8 @@
 
      ;; Applications
      "a" '(:ignore t :which-key "Applications")
-     "ar" 'ranger
+     "aa" '(ag :which-key "Ag")
+     "ar" '(ranger :which-key "Ranger")
      "at" '(open-termite :which-key "Termite")
      "ac" '(compile :which-key "compile")
      "ar" '(recompile :which-key "recompile")
