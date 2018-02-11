@@ -193,12 +193,12 @@
      "n" 'evil-search-previous
      "N" 'evil-search-next
      "\\" 'evil-ex-nohighlight
-     "eh" 'flymake-popup-current-error-menu
-     "C-w" 'evil-delete-buffer
+     ;; "C-w" 'evil-delete-buffer
      )
     (general-define-key
      :keymaps 'neotree-mode-map
      "c" 'neotree-create-node
+     "RET" 'neotree-enter
      "r" 'neotree-rename-node
      "d" 'neotree-delete-node
      "v" 'neotree-enter-vertical-split
@@ -228,6 +228,8 @@
      "a" '(:ignore t :which-key "Applications")
      "ar" 'ranger
      "at" '(open-termite :which-key "Termite")
+     "ac" '(compile :which-key "compile")
+     "ar" '(recompile :which-key "recompile")
      "ad" 'dired
 
      ;; Buffer
@@ -242,6 +244,7 @@
 
      ;; Flymake
      "e" '(:ignore t :which-key "Flymake")
+     "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
      "en" '(flymake-goto-next-error :which-key "next error")
      "ep" '(flymake-goto-prev-error :which-key "prev error")
 
@@ -456,8 +459,9 @@ Display horizontal lines instead of ugly characters
    
 ** Neotree
 #+begin_src emacs-lisp
-(use-package neotree :ensure t
-  :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+  (use-package neotree :ensure t
+    ;; :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+    :config (setq neo-theme (if (display-graphic-p) 'arrow)))
 #+end_src
 
 
