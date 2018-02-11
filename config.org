@@ -221,6 +221,7 @@
      "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
      "=="  '(indent-buffer :which-key "Indent buffer")
      "RET" '(add-semicolon :which-key "Insert ; at eol")
+     "/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
      ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
      "'" '(popup-shell :which-key "popup shell")
 
@@ -267,7 +268,7 @@
      ;; Projects
      "p" '(:ignore t :which-key "Projects")
      "pf" '(counsel-git :which-key "Find file in git project")
-     "p/" '(counsel-ag :which-key "Search in project")
+     "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
      "pp" '(projectile-switch-project :which-key "Switch project")
 
      ;; Windows
@@ -513,6 +514,15 @@ Display horizontal lines instead of ugly characters
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters :ensure t)
 #+end_src
+** Ag
+#+begin_src emacs-lisp
+(use-package ag :ensure t)
+#+end_src
+
+   
+
+
+
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
