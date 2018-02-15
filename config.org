@@ -63,7 +63,8 @@
 #+begin_src emacs-lisp
   (menu-bar-mode 0)
   (tool-bar-mode 0)
-  (set-default-font "Hack 11")
+  (set-default-font "Fira Code 12")
+  ;; (set-default-font "Hack 11")
   ;; (set-default-font "Source Code Pro 11")
   ;; (set-default-font "Fantasque Sans Mono 14")
   (toggle-scroll-bar -1)
@@ -195,15 +196,6 @@
      "\\" 'evil-ex-nohighlight
      ;; "C-w" 'evil-delete-buffer
      )
-    (general-define-key
-     :keymaps 'neotree-mode-map
-     "c" 'neotree-create-node
-     "RET" 'neotree-enter
-     "r" 'neotree-rename-node
-     "d" 'neotree-delete-node
-     "v" 'neotree-enter-vertical-split
-     "s" 'neotree-enter-horizontal-split
-     )
 
     (general-def :states '(normal motion emacs) "SPC" nil)
 
@@ -256,7 +248,7 @@
      "fr"	'(counsel-recentf   :which-key "recent files")
      "fs" '(save-buffer :which-key "save file")
      "f/" '(swiper :which-key "search in file")
-     "ft" '(neotree-toggle :which-key "toggle neotree")
+     "ft" '(treemacs-toggle :which-key "toggle treemacs")
 
      ;; Git
      "g" '(:ignore t :which-key "Git")
@@ -459,22 +451,56 @@ Display horizontal lines instead of ugly characters
   ;; dont forget to M-x all-the-icons-install-fonts
 #+end_src
    
-** Neotree
+** Treemacs
 #+begin_src emacs-lisp
-  (use-package neotree :ensure t
-    ;; :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
-    :config (setq neo-theme (if (display-graphic-p) 'arrow)))
-#+end_src
+(use-package treemacs
+:ensure t
+:defer t
+;;:init
+;;(with-eval-after-load 'winum
+;;  (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+:config
+(progn
+  (use-package treemacs-evil
+    :ensure t
+    :demand t)
+  (setq treemacs-change-root-without-asking nil
+        treemacs-collapse-dirs              (if (executable-find "python") 3 0)
+        treemacs-file-event-delay           5000
+        treemacs-follow-after-init          t
+        treemacs-follow-recenter-distance   0.1
+        treemacs-goto-tag-strategy          'refetch-index
+        treemacs-indentation                2
+        treemacs-indentation-string         " "
+        treemacs-is-never-other-window      nil
+        treemacs-never-persist              nil
+        treemacs-no-png-images              nil
+        treemacs-recenter-after-file-follow nil
+        treemacs-recenter-after-tag-follow  nil
+        treemacs-show-hidden-files          t
+        treemacs-silent-filewatch           nil
+        treemacs-silent-refresh             nil
+        treemacs-sorting                    'alphabetic-desc
+        treemacs-tag-follow-cleanup         t
+        treemacs-tag-follow-delay           1.5
+        treemacs-width                      35)
 
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (pcase (cons (not (null (executable-find "git")))
+                (not (null (executable-find "python3"))))
+    (`(t . t)
+      (treemacs-git-mode 'extended))
+    (`(t . _)
+      (treemacs-git-mode 'simple)))))
+;;(use-package treemacs-projectile
+;;  :defer t
+;;  :ensure t
+;;  :config
+;;  (setq treemacs-header-function #'treemacs-projectile-create-header))
+ #+end_src
 
-
-
-
-
-
-
-
-*** Winum
+** Winum
  Maps numbers to windows on screen, allows switching windows by window number
 #+begin_src emacs-lisp
 (use-package winum :ensure t
