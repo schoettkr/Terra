@@ -234,12 +234,12 @@
    "pp" '(projectile-switch-project :which-key "Switch project")
 
    ;; Windows
-   "1" '(winum-select-window-1 :which-key " ")
-   "2" '(winum-select-window-2 :which-key " ")
-   "3" '(winum-select-window-3 :which-key " ")
-   "4" '(winum-select-window-4 :which-key " ")
-   "5" '(winum-select-window-5 :which-key " ")
-   "6" '(winum-select-window-6 :which-key " ")
+   "1" '(winum-select-window-1 :which-key "win 1")
+   "2" '(winum-select-window-2 :which-key "win 2")
+   "3" '(winum-select-window-3 :which-key "win 3")
+   "4" '(winum-select-window-4 :which-key "win 4")
+   "5" '(winum-select-window-5 :which-key "win 5")
+   "6" '(winum-select-window-6 :which-key "win 6")
    "w" '(:ignore t :which-key "Windows")
    "ws" '(split-window-below :which-key "Horizontal split")
    "wv" '(split-window-right :which-key "Vertical split")
@@ -419,8 +419,20 @@ load-path))
 
 (use-package winum :ensure t
   :config
+;;  (setq winum-keymap
+;;	(let ((map (make-sparse-keymap)))
+;;	  (define-key map (kbd "C-0") 'winum-select-window-0-or-10)
+;;	  (define-key map (kbd "C-1") 'winum-select-window-1)
+;;	  (define-key map (kbd "M-2") 'winum-select-window-2)
+;;	  (define-key map (kbd "M-3") 'winum-select-window-3)
+;;	  (define-key map (kbd "M-4") 'winum-select-window-4)
+;;	  (define-key map (kbd "M-5") 'winum-select-window-5)
+;;	  (define-key map (kbd "M-6") 'winum-select-window-6)
+;;	  (define-key map (kbd "M-7") 'winum-select-window-7)
+;;	  (define-key map (kbd "M-8") 'winum-select-window-8)
+;;	  map))
   (winum-mode)
-)
+  )
 
 (use-package evil-commentary :ensure t)
 
@@ -432,7 +444,7 @@ load-path))
 
 (use-package ag :ensure t)
 
-(use-package pdf-tools) ;; pdf-tools install
+(use-package pdf-tools :ensure t) ;; pdf-tools install
 
 
 
