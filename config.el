@@ -47,72 +47,105 @@
  (face-list))
 
 (menu-bar-mode 0)
-  (tool-bar-mode 0)
-  (set-default-font "Hack 11")
-  ;; (set-default-font "Fantasque Sans Mono 14")
-  (toggle-scroll-bar -1)
-  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
-  (setq whitespace-line-column 999)
-  ;;(set-window-fringes (selected-window) 0 0 nil)
-  ;; (setq whitespace-style '(faces spaces indentation))
-  (use-package solarized-theme :ensure t)
-  (use-package gruvbox-theme :ensure t)
-  (use-package dracula-theme :ensure t)
-  (use-package arjen-grey-theme :ensure t)
-  (use-package nord-theme :ensure t)
-  (use-package badger-theme :ensure t)
-  (use-package color-theme-sanityinc-tomorrow :ensure t)
-;;  (use-package moe-theme :ensure t)
-  ;; (load-theme 'moe-light t)
-  (load-theme 'gruvbox-dark-soft t)
-  ;; (load-theme 'dracula t)
-  ;; (moe-light)
+(tool-bar-mode 0)
+(set-default-font "Fira Code 12")
+;; (set-default-font "Hack 11")
+;; (set-default-font "Source Code Pro 11")
+;; (set-default-font "Fantasque Sans Mono 14")
+(toggle-scroll-bar -1)
+(set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+(setq whitespace-line-column 999)
+;;(set-window-fringes (selected-window) 0 0 nil)
+;; (setq whitespace-style '(faces spaces indentation))
+;;(use-package solarized-theme :ensure t)
+(use-package gruvbox-theme :ensure t)
+(use-package dracula-theme :ensure t)
+(use-package badger-theme :ensure t)
+(use-package color-theme-sanityinc-tomorrow :ensure t)
+(use-package moe-theme :ensure t)
+(use-package oceanic-theme :ensure t)
+(use-package subatomic-theme :ensure t)
+;; (load-theme 'github-modern t)
+(load-theme 'subatomic t)
+;; (moe-light)
 
-(defun open-termite ()
-  (interactive "@")
-  (shell-command (concat "termite"
-       " > /dev/null 2>&1 & disown") nil nil))
-(defun indent-buffer ()
-  "Apply indentation rule to the entire buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max)))
+;;(defun my-flymake-show-next-error()
+;;    (interactive)
+;;    (flymake-goto-next-error)
+;;    (flymake-popup-current-error-menu)
+;;    )
 
-(defun company-mode/backend-with-yas (backend)
-  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-      backend
-    (append (if (consp backend) backend (list backend))
-            '(:with company-yasnippet))))
+      (defun open-termite ()
+        (interactive "@")
+        (shell-command (concat "termite"
+             " > /dev/null 2>&1 & disown") nil nil))
+      (defun indent-buffer ()
+        "Apply indentation rule to the entire buffer."
+        (interactive)
+        (delete-trailing-whitespace)
+        (indent-region (point-min) (point-max)))
 
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+      (defun company-mode/backend-with-yas (backend)
+        (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+            backend
+          (append (if (consp backend) backend (list backend))
+                  '(:with company-yasnippet))))
 
-(defun add-semicolon ()
-  (interactive)
-  (end-of-line)
-  (when (not (looking-back ";"))
-    (insert ";"))
-  (evil-first-non-blank))
+      (defun setup-tide-mode ()
+        (interactive)
+        (tide-setup)
+        (flycheck-mode +1)
+        (setq flycheck-check-syntax-automatically '(save mode-enabled))
+        (eldoc-mode +1)
+        (tide-hl-identifier-mode +1)
+        ;; company is an optional dependency. You have to
+        ;; install it separately via package-install
+        ;; `M-x package-install [ret] company`
+        (company-mode +1))
 
-(defun popup-shell ()
-  (interactive)
-  (ansi-term "/bin/zsh")
-  (split-window-below)
-  (mode-line-other-buffer)
-  (other-window 1)
-  ;; (enlarge-window 15)
-  ;; (/ (frame-height) 5)
-  ;; (add-to-list 'default-frame-alist '(height . (/ (frame-height) 5)))
+      (defun add-semicolon ()
+        (interactive)
+        (end-of-line)
+        (when (not (looking-back ";"))
+          (insert ";"))
+        (evil-first-non-blank))
+
+    (defvar counter 0)
+    (defun popup-shell ()
+      (interactive)
+      (setq counter (+ counter 1))
+      (setq title (concat "Terminal-" (number-to-string counter)))
+      (setq buf-title (concat "*" title "*"))
+      (ansi-term "/bin/zsh" buf-title)
+      (mode-line-other-buffer)
+      (split-window-below)
+      (enlarge-window 15)
+      (evil-window-down 1)
   )
+      ;; (defun popup-shell ()
+      ;;   (interactive)
+      ;;   (ansi-term "/usr/bin/zsh" "terminal")
+        ;; (split-window-below)
+        ;; (mode-line-other-buffer)
+        ;; (other-window 1)
+        ;; (enlarge-window 15)
+        ;; (/ (frame-height) 5)
+        ;; (add-to-list 'default-frame-alist '(height . (/ (frame-height) 5)))
+        ;; )
+
+      ;; (defvar counter 0)
+      ;; (defun popup-shell ()
+      ;;   "Open a new terminal and rename the buffer"
+      ;;   (interactive)
+      ;;   (setq counter (+ counter 1))
+      ;;   (setq title (concat "Terminal-" (number-to-string counter)))
+      ;;   (setq buf-title (concat "*" title "*"))
+      ;;   (message buf-title)
+      ;;   (set-buffer (make-term title "/bin/zsh"))
+        ;; (term-mode)
+        ;; (term-char-mode)
+        ;; (switch-to-buffer buf-title)
+      ;; )
 
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
 
@@ -129,14 +162,7 @@
    "n" 'evil-search-previous
    "N" 'evil-search-next
    "\\" 'evil-ex-nohighlight
-   )
-  (general-define-key
-   :keymaps 'neotree-mode-map
-   "c" 'neotree-create-node
-   "r" 'neotree-rename-node
-   "d" 'neotree-delete-node
-   "v" 'neotree-enter-vertical-split
-   "s" 'neotree-enter-horizontal-split
+   ;; "C-w" 'evil-delete-buffer
    )
 
   (general-def :states '(normal motion emacs) "SPC" nil)
@@ -155,12 +181,18 @@
    "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
    "=="  '(indent-buffer :which-key "Indent buffer")
    "RET" '(add-semicolon :which-key "Insert ; at eol")
+   "/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
+   ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
    "'" '(popup-shell :which-key "popup shell")
 
    ;; Applications
    "a" '(:ignore t :which-key "Applications")
-   "ar" 'ranger
+   "aa" '(ag :which-key "Ag")
+   "ar" '(ranger :which-key "Ranger")
    "at" '(open-termite :which-key "Termite")
+   "ac" '(compile :which-key "compile")
+   "ar" '(recompile :which-key "recompile")
+   "ao" '(occur :which-key "occur") ;; example usage function\|var
    "ad" 'dired
 
    ;; Buffer
@@ -170,13 +202,22 @@
    "bp" '(switch-to-prev-buffer :which-key "prev buffer")
    "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
+   ;; ;; Flymake
+   ;; "m" '(:ignore t :which-key "Major Mode")
+
+   ;; Flymake
+   "e" '(:ignore t :which-key "Flymake")
+   "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
+   "en" '(flymake-goto-next-error :which-key "next error")
+   "ep" '(flymake-goto-prev-error :which-key "prev error")
+
    ;; Files
    "f" '(:ignore t :which-key "Files")
    "ff" '(counsel-find-file :which-key "find file")
    "fr"	'(counsel-recentf   :which-key "recent files")
    "fs" '(save-buffer :which-key "save file")
    "f/" '(swiper :which-key "search in file")
-   "ft" '(neotree-toggle :which-key "toggle neotree")
+   "ft" '(treemacs-toggle :which-key "toggle treemacs")
 
    ;; Git
    "g" '(:ignore t :which-key "Git")
@@ -189,7 +230,7 @@
    ;; Projects
    "p" '(:ignore t :which-key "Projects")
    "pf" '(counsel-git :which-key "Find file in git project")
-   "p/" '(counsel-ag :which-key "Search in project")
+   "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
    "pp" '(projectile-switch-project :which-key "Switch project")
 
    ;; Windows
@@ -205,6 +246,8 @@
    "wd" '(evil-window-delete :which-key "close window")
    "ww" '(evil-window-next :which-far-key "next window")
    "wm" '(delete-other-windows :which-far-key "next window")
+   "wu" '(winner-undo :which-key "winner undo")
+   "wr" '(winner-redo :which-key "winner redo")
    "wh" '(evil-window-left :which-key "left")
    "wH" '(evil-window-move-far-left :which-key "move left")
    "wj" '(evil-window-down :which-key "down")
@@ -227,6 +270,8 @@
     (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
     (setq-default evil-shift-width 2)
     (setq evil-search-module 'evil-search)
+;;    (evil-set-initial-state 'occur-mode 'normal)
+
 ;;    (setq evil-ex-nohighlight t)
 ;; More configuration goes here
 )
@@ -326,8 +371,51 @@ load-path))
 ;; (use-package all-the-icons :ensure t)
 ;; dont forget to M-x all-the-icons-install-fonts
 
-(use-package neotree :ensure t
-  :config (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+(use-package treemacs
+:ensure t
+:defer t
+;;:init
+;;(with-eval-after-load 'winum
+;;  (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+:config
+(progn
+  (use-package treemacs-evil
+    :ensure t
+    :demand t)
+  (setq treemacs-change-root-without-asking nil
+        treemacs-collapse-dirs              (if (executable-find "python") 3 0)
+        treemacs-file-event-delay           5000
+        treemacs-follow-after-init          t
+        treemacs-follow-recenter-distance   0.1
+        treemacs-goto-tag-strategy          'refetch-index
+        treemacs-indentation                2
+        treemacs-indentation-string         " "
+        treemacs-is-never-other-window      nil
+        treemacs-never-persist              nil
+        treemacs-no-png-images              nil
+        treemacs-recenter-after-file-follow nil
+        treemacs-recenter-after-tag-follow  nil
+        treemacs-show-hidden-files          t
+        treemacs-silent-filewatch           nil
+        treemacs-silent-refresh             nil
+        treemacs-sorting                    'alphabetic-desc
+        treemacs-tag-follow-cleanup         t
+        treemacs-tag-follow-delay           1.5
+        treemacs-width                      35)
+
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (pcase (cons (not (null (executable-find "git")))
+                (not (null (executable-find "python3"))))
+    (`(t . t)
+      (treemacs-git-mode 'extended))
+    (`(t . _)
+      (treemacs-git-mode 'simple)))))
+;;(use-package treemacs-projectile
+;;  :defer t
+;;  :ensure t
+;;  :config
+;;  (setq treemacs-header-function #'treemacs-projectile-create-header))
 
 (use-package winum :ensure t
   :config
@@ -354,6 +442,10 @@ load-path))
 
 (use-package rainbow-delimiters :ensure t)
 
+(use-package ag :ensure t)
+
+(use-package pdf-tools :ensure t) ;; pdf-tools install
+
 
 
 (add-hook 'prog-mode-hook 'company-mode)
@@ -364,6 +456,7 @@ load-path))
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
+(add-hook 'prog-mode-hook 'winner-mode)
 ;; (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
@@ -420,3 +513,69 @@ load-path))
  )
 
 (setq css-indent-offset 2) ; css-mode
+
+;; go get: goflymake golang.org/x/tools/cmd/... godef gocode
+
+  (defun load-env-vars () 
+    (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+    (setenv "PATH" path)
+    (setq exec-path (append (split-string-and-unquote path ":") exec-path)))
+
+    (let ((gopath (shell-command-to-string ". ~/.zshrc; echo -n $GOPATH")))
+    (setenv "GOPATH" gopath)
+    (setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
+  )
+
+  (use-package go-mode :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  ;; :load-path "/tmp/elisp/go-mode"
+    )
+
+  (use-package go-guru :ensure t)
+
+  (use-package flymake-go :ensure t
+    ;; :config
+    ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+  ;; :load-path "/tmp/elisp/go-mode"
+    )
+
+  (use-package company-go :ensure t
+    :after company
+    :config
+    (add-to-list 'company-backends 'company-go))
+
+  (defun my-go-mode-hook ()
+    ;; (require 'go-guru)
+  ;; (use-package go-guru
+  ;; user-emacs-directory
+  ;;  :load-path concat(user-emacs-directory "")"")
+
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
+    )
+
+
+
+
+  (general-define-key
+  :states 'normal
+  :keymaps 'go-mode-map
+  "gd" 'godef-jump
+  "gh" 'godef-describe
+  )
+
+  (general-define-key
+  :states '(normal motion)
+  :keymaps 'go-mode-map
+  :prefix "SPC"
+  "m" '(go-guru-map :which-key "Major Mode[Go]")
+  )
+
+  (add-hook 'go-mode-hook (lambda ()
+    (set (make-local-variable 'company-backends) '(company-go))
+    (company-mode)))
+
+  (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
+  (add-hook 'go-mode-hook #'load-env-vars)
+  (add-hook 'go-mode-hook 'my-go-mode-hook)

@@ -224,6 +224,7 @@
      "at" '(open-termite :which-key "Termite")
      "ac" '(compile :which-key "compile")
      "ar" '(recompile :which-key "recompile")
+     "ao" '(occur :which-key "occur") ;; example usage function\|var
      "ad" 'dired
 
      ;; Buffer
@@ -277,6 +278,8 @@
      "wd" '(evil-window-delete :which-key "close window")
      "ww" '(evil-window-next :which-far-key "next window")
      "wm" '(delete-other-windows :which-far-key "next window")
+     "wu" '(winner-undo :which-key "winner undo")
+     "wr" '(winner-redo :which-key "winner redo")
      "wh" '(evil-window-left :which-key "left")
      "wH" '(evil-window-move-far-left :which-key "move left")
      "wj" '(evil-window-down :which-key "down")
@@ -306,6 +309,8 @@
     (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
     (setq-default evil-shift-width 2)
     (setq evil-search-module 'evil-search)
+;;    (evil-set-initial-state 'occur-mode 'normal)
+
 ;;    (setq evil-ex-nohighlight t)
 ;; More configuration goes here
 )
@@ -549,10 +554,18 @@ Display horizontal lines instead of ugly characters
    
 
 
-
+** TemplateForNewPackage
+#+begin_src emacs-lisp
+(use-package pdf-tools :ensure t) ;; pdf-tools install
+#+end_src
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
+
+   
+
+
+
 
    
 
@@ -569,6 +582,7 @@ Display horizontal lines instead of ugly characters
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode)
   (add-hook 'prog-mode-hook 'indent-guide-mode)
+  (add-hook 'prog-mode-hook 'winner-mode)
   ;; (add-hook 'prog-mode-hook 'whitespace-mode)
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 #+end_src
