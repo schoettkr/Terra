@@ -205,13 +205,10 @@
 
      ;; simple command
      "x" 'counsel-M-x        ; replace default M-x with ivy backend
-     "'"   '(iterm-focus :which-key "iterm")
-     "?"   '(iterm-goto-filedir-or-home :which-key "iterm - goto dir")
      "TAB" '(mode-line-other-buffer :which-key "prev buffer")
      "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
      "C-'" 'avy-goto-word-1
      "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
-     "=="  '(indent-buffer :which-key "Indent buffer")
      "RET" '(add-semicolon :which-key "Insert ; at eol")
      "/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
      ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
@@ -266,13 +263,13 @@
      "pp" '(projectile-switch-project :which-key "Switch project")
 
      ;; Windows
-     "1" '(winum-select-window-1 :which-key "win 1")
-     "2" '(winum-select-window-2 :which-key "win 2")
-     "3" '(winum-select-window-3 :which-key "win 3")
-     "4" '(winum-select-window-4 :which-key "win 4")
-     "5" '(winum-select-window-5 :which-key "win 5")
-     "6" '(winum-select-window-6 :which-key "win 6")
      "w" '(:ignore t :which-key "Windows")
+     "w1" '(winum-select-window-1 :which-key "win 1")
+     "w2" '(winum-select-window-2 :which-key "win 2")
+     "w3" '(winum-select-window-3 :which-key "win 3")
+     "w4" '(winum-select-window-4 :which-key "win 4")
+     "w5" '(winum-select-window-5 :which-key "win 5")
+     "w6" '(winum-select-window-6 :which-key "win 6")
      "ws" '(split-window-below :which-key "Horizontal split")
      "wv" '(split-window-right :which-key "Vertical split")
      "wd" '(evil-window-delete :which-key "close window")
@@ -703,6 +700,19 @@ Display horizontal lines instead of ugly characters
   ;; user-emacs-directory
   ;;  :load-path concat(user-emacs-directory "")"")
 
+    (general-define-key
+    :states 'normal
+    :keymaps 'go-mode-map
+    "gd" 'godef-jump
+    "gh" 'godef-describe
+    )
+
+    (general-define-key
+    :states '(normal motion)
+    :keymaps 'go-mode-map
+    :prefix "SPC"
+    "m" '(go-guru-map :which-key "Major Mode[Go]")
+    )
     (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
     )
@@ -710,19 +720,6 @@ Display horizontal lines instead of ugly characters
 
 
 
-  (general-define-key
-  :states 'normal
-  :keymaps 'go-mode-map
-  "gd" 'godef-jump
-  "gh" 'godef-describe
-  )
-
-  (general-define-key
-  :states '(normal motion)
-  :keymaps 'go-mode-map
-  :prefix "SPC"
-  "m" '(go-guru-map :which-key "Major Mode[Go]")
-  )
 
   (add-hook 'go-mode-hook (lambda ()
     (set (make-local-variable 'company-backends) '(company-go))
