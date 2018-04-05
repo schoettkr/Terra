@@ -7,24 +7,26 @@
 
 * Package Manager Setup
 #+begin_src emacs-lisp
-(require 'package)
-(setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
-;; the following lines tell emacs where on the internet to look up
-;; for new packages.
-(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-                         ("gnu"       . "https://elpa.gnu.org/packages/")
-                         ("melpa"     . "https://melpa.org/packages/")
-                                        ;			 ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ))
+  (require 'package)
+  (setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
 
-(package-initialize) ; guess what this one does ?
+  ;; the following lines tell emacs where on the internet to look up
+  ;; for new packages.
+  ;; when facing problems with package installation delete ~/.emacs.d/elpa/archives/melpa/archive-contents and `M-x package-refresh-contens` on next launch
+  (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
+                           ("gnu"       . "https://elpa.gnu.org/packages/")
+                           ("melpa"     . "https://melpa.org/packages/")
+                           ;;("marmalade" . "http://marmalade-repo.org/packages/")
+                           ))
 
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package) ; unless it is already installed
-  (package-refresh-contents) ; updage packages archive
-  (package-install 'use-package)) ; and install the most recent version of use-package
+  (package-initialize) ; guess what this one does ?
 
-(require 'use-package) ; guess what this one does too ?
+  ;; Bootstrap `use-package'
+  (unless (package-installed-p 'use-package) ; unless it is already installed
+    (package-refresh-contents) ; updage packages archive
+    (package-install 'use-package)) ; and install the most recent version of use-package
+
+  (require 'use-package) ; guess what this one does too ?
 #+end_src
 
 
@@ -59,7 +61,8 @@
 
 
 * Appearance
-
+  
+** General
 #+begin_src emacs-lisp
   (menu-bar-mode 0)
   (tool-bar-mode 0)
@@ -73,20 +76,21 @@
   (setq whitespace-line-column 999)
   ;;(set-window-fringes (selected-window) 0 0 nil)
   ;; (setq whitespace-style '(faces spaces indentation))
-  ;;(use-package solarized-theme :ensure t)
-  (use-package gruvbox-theme :ensure t)
-  (use-package dracula-theme :ensure t)
-  (use-package badger-theme :ensure t)
-  (use-package color-theme-sanityinc-tomorrow :ensure t)
-  (use-package moe-theme :ensure t)
-  (use-package oceanic-theme :ensure t)
-  (use-package subatomic-theme :ensure t)
-  ;; (load-theme 'github-modern t)
-  (load-theme 'subatomic t)
-  ;; (moe-light)
-
 #+end_src
 
+** Theme
+#+begin_src emacs-lisp
+  ;;(use-package subatomic-theme :ensure t)
+  ;;(use-package moe-theme :ensure t)
+  ;; (load-theme 'github-modern t)
+  ;; (load-theme 'subatomic t)
+  ;; (moe-light)
+  (use-package spacemacs-theme
+    :ensure t
+    :defer t
+    :init (load-theme 'spacemacs-light t))
+
+#+end_src
 
 * Functions
 #+begin_src emacs-lisp
