@@ -580,11 +580,12 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
-** TemplateForNewPackage
+** Tabbar
 #+begin_src emacs-lisp
-(use-package pdf-tools :ensure t) ;; pdf-tools install
+(use-package tabbar :ensure t)
+
 #+end_src
+
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
@@ -607,11 +608,12 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'prog-mode-hook 'column-number-mode)
 ;;(add-hook 'prog-mode-hook 'yas-global-mode)
 (yas-reload-all)
-(add-hook 'prog-mode-hook #'yas-minor-mode)
+(add-hook 'prog-mode-hook 'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
 (add-hook 'prog-mode-hook 'winner-mode)
 ;; (add-hook 'prog-mode-hook 'whitespace-mode)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'tabbar-mode)
 #+end_src
 
 
