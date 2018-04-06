@@ -67,15 +67,16 @@
   (menu-bar-mode 0)
   (tool-bar-mode 0)
   ;; (set-default-font "Fira Code 12")
-  ;; (set-default-font "Hack 11")
-  ;; (set-default-font "Source Code Pro 11")
-  ;; (set-default-font "Fantasque Sans Mono 14")
-  (set-default-font "Iosevka 13")
+  ;; (set-default-font "Hack 12")
+  (set-default-font "Inconsolata 14")
+  ;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
   (toggle-scroll-bar -1)
   ;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
   (setq whitespace-line-column 999)
+  (set-face-bold-p 'bold nil)
   ;;(set-window-fringes (selected-window) 0 0 nil)
   ;; (setq whitespace-style '(faces spaces indentation))
+
 #+end_src
 
 ** Theme
@@ -85,10 +86,18 @@
   ;; (load-theme 'github-modern t)
   ;; (load-theme 'subatomic t)
   ;; (moe-light)
-  (use-package spacemacs-theme
+
+  ;; (use-package spacemacs-theme
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :init (load-theme 'spacemacs-light t))
+
+  (use-package doom-themes
     :ensure t
     :defer t
-    :init (load-theme 'spacemacs-light t))
+    :config (setq doom-themes-enable-bold nil
+                  doom-themes-enable-italic nil))
+  (load-theme 'doom-molokai)
 
 #+end_src
 
