@@ -24,3 +24,5 @@ bookmarks
 tmp/
 /history
 /test.org
+config.el
+/abbrev_defs

@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Angular 2 Route Definition
-# key: a2rdef
-# --
-{ path: '/${1:path}, component: ${2:Component} }$0
