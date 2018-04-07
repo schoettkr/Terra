@@ -26,3 +26,5 @@ tmp/
 /test.org
 config.el
 /abbrev_defs
+/.emacs.desktop
+/.emacs.desktop.lock
