@@ -87,17 +87,17 @@
   ;; (load-theme 'subatomic t)
   ;; (moe-light)
 
-  ;; (use-package spacemacs-theme
-  ;;   :ensure t
-  ;;   :defer t
-  ;;   :init (load-theme 'spacemacs-light t))
-
-  (use-package doom-themes
+  (use-package spacemacs-theme
     :ensure t
     :defer t
-    :config (setq doom-themes-enable-bold nil
-                  doom-themes-enable-italic nil))
-  (load-theme 'doom-molokai)
+    :init (load-theme 'spacemacs-light t))
+
+  ;; (use-package doom-themes
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :config (setq doom-themes-enable-bold nil
+  ;;                 doom-themes-enable-italic nil))
+  ;; (load-theme 'doom-molokai)
 
 #+end_src
 
@@ -329,27 +329,39 @@
 
 ** Org
 #+begin_src emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :init 
-    (setq org-bullets-bullet-list
-    '("◉" "◎" "⚫" "○" "►" "◇"))
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    (use-package org-bullets
+      :ensure t
+      :init 
+      (setq org-bullets-bullet-list
+      '("◉" "◎" "⚫" "○" "►" "◇"))
+      ;; org-hide-emphasis-markers t)
+      ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
+      (setq org-format-latex-options
+        (quote(:foreground default :background default :scale 1.7 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                      ("begin" "$1" "$" "$$" "\\(" "\\["))))
+      :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-                                          ; Force utf8 and then change todo symbols
-  (setq locale-coding-system 'utf-8)
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  (set-selection-coding-system 'utf-8)
-  (prefer-coding-system 'utf-8)
-  (when (display-graphic-p)
-    (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
-  (setq org-todo-keywords (quote((sequence "⚑ Todo" "⚐ In Progress | Waiting" "|" "✔ Done" "✘ Canceled"))))
-  (setq org-todo-keyword-faces
-        '(("⚑ Todo" . "blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
-(setq org-adapt-indentation nil)
+                                            ; Force utf8 and then change todo symbols
+    (setq locale-coding-system 'utf-8)
+    (set-terminal-coding-system 'utf-8)
+    (set-keyboard-coding-system 'utf-8)
+    (set-selection-coding-system 'utf-8)
+    (prefer-coding-system 'utf-8)
+    (when (display-graphic-p)
+      (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
+
+    (setq org-todo-keywords (quote((sequence "⚑ Todo" "⚐ In Progress | Waiting" "|" "✔ Done" "✘ Canceled"))))
+    (setq org-todo-keyword-faces
+          '(("⚑ Todo" . "blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
+  (setq org-adapt-indentation nil)
+
+  ;; Latex preview for .tex only
+  ;; (use-package latex-preview-pane
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'org-mode-hook (lambda () (latex-preview-pane-mode 1))))
 #+end_src
 
 ** Emacs Speak Statistics (ESS)
