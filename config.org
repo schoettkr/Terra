@@ -68,7 +68,7 @@
   (tool-bar-mode 0)
   ;; (set-default-font "Fira Code 12")
   ;; (set-default-font "Hack 12")
-  (set-default-font "Inconsolata 14")
+  ;; (set-default-font "Inconsolata 14")
   ;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
   (toggle-scroll-bar -1)
   ;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
