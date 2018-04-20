@@ -87,17 +87,17 @@
   ;; (load-theme 'subatomic t)
   ;; (moe-light)
 
-  (use-package spacemacs-theme
-    :ensure t
-    :defer t
-    :init (load-theme 'spacemacs-light t))
-
-  ;; (use-package doom-themes
+  ;; (use-package spacemacs-theme
   ;;   :ensure t
   ;;   :defer t
-  ;;   :config (setq doom-themes-enable-bold nil
-  ;;                 doom-themes-enable-italic nil))
-  ;; (load-theme 'doom-molokai)
+  ;;   :init (load-theme 'spacemacs-light t))
+
+  (use-package doom-themes
+    :ensure t
+    :defer t
+    :config (setq doom-themes-enable-bold nil
+                  doom-themes-enable-italic nil))
+  (load-theme 'doom-molokai)
 
 #+end_src
 
