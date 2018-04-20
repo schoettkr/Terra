@@ -576,7 +576,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 #+end_src
 
-
 ** Evil Commentary
 #+begin_src emacs-lisp
 (use-package evil-commentary :ensure t)
@@ -601,12 +600,75 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+end_src
 
 
-
 ** Tabbar
 #+begin_src emacs-lisp
 (use-package tabbar :ensure t)
 
 #+end_src
+
+** Pdf Tools
+#+begin_src emacs-lisp
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install)
+    (evil-set-initial-state 'pdf-view-mode 'normal)
+    (evil-define-key 'normal pdf-view-mode-map
+      ;; motion
+      (kbd "<return>") 'image-next-line
+      "j" 'pdf-view-next-line-or-next-page
+      "k" 'pdf-view-previous-line-or-previous-page
+      "J" 'pdf-view-next-page-command
+      "K" 'pdf-view-previous-page-command
+      "gj" 'pdf-view-next-page-command
+      "gk" 'pdf-view-previous-page-command
+      "gg" 'pdf-view-first-page
+      "G" 'pdf-view-last-page
+      "l"  'image-forward-hscroll
+      "h"  'image-backward-hscroll
+      ;; zoom
+      "+" 'pdf-view-enlarge
+      "-" 'pdf-view-shrink
+      "0" 'pdf-view-scale-reset
+      "=" 'pdf-view-enlarge
+      
+      "i" 'org-noter-insert-note
+      "I" 'org-noter-insert-precise-note
+      
+      (kbd "<C-down-mouse-1>") 'pdf-view-mouse-extend-region
+      (kbd "<M-down-mouse-1>") 'pdf-view-mouse-set-region-rectangle
+      (kbd "<down-mouse-1>")  'pdf-view-mouse-set-region
+      ;; search
+      "/" 'pdf-occur
+
+      "zd" 'pdf-view-dark-minor-mode
+      "zm" 'pdf-view-midnight-minor-mode
+      "zp" 'pdf-view-printer-minor-mode
+      )
+    )
+#+end_src
+
+
+
+
+
+
+
+
+** TemplateForNewPackage
+#+begin_src emacs-lisp
+  (use-package org-noter
+    :ensure t)
+#+end_src
+
+
+
+
+
+
+
+
+
 
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
