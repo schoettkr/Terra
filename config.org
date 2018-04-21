@@ -592,7 +592,15 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 ** Indent Guide
 #+begin_src emacs-lisp
-(use-package indent-guide :ensure t)
+(use-package indent-guide :ensure t
+:config (set-face-background 'indent-guide-face "SkyBlue4")
+;(setq indent-guide-delay 0.1)
+(setq indent-guide-char " "))
+; (use-package highlight-indentation :ensure t
+; :config
+;  (set-face-background 'highlight-indentation-face "#ffffff")
+;  (set-face-background 'highlight-indentation-current-column-face "#ff0000")
+;)
 #+end_src
 
 ** Rainbow Delimiters
@@ -699,10 +707,12 @@ Maps numbers to windows on screen, allows switching windows by window number
 (yas-reload-all)
 (add-hook 'prog-mode-hook 'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
+;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
 (add-hook 'prog-mode-hook 'winner-mode)
 ;; (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'tabbar-mode)
+(add-hook 'prog-mode-hook 'linum-relative-mode)
 #+end_src
 
 
