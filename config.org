@@ -66,6 +66,8 @@
 #+begin_src emacs-lisp
   (menu-bar-mode 0)
   (tool-bar-mode 0)
+  ;; (set-face-attribute 'default nil :height 120)
+  (set-default-font "Noto Sans 12")
   ;; (set-default-font "Fira Code 12")
   ;; (set-default-font "Hack 12")
   ;; (set-default-font "Inconsolata 14")
