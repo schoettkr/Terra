@@ -444,11 +444,11 @@
 
 ** Linum Relative
 #+begin_src emacs-lisp
-  ;; (use-package linum-relative :ensure t
-  ;;   :config
+  (use-package linum-relative :ensure t
+    :config
+    (setq linum-relative-current-symbol ""))
   ;;   (global-linum-mode nil)
   ;;   (linum-relative-toggle)
-  ;;   (setq linum-relative-current-symbol ""))
 #+end_src
 
 ** Dashboard
