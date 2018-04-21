@@ -99,7 +99,9 @@
     :defer t
     :config (setq doom-themes-enable-bold nil
                   doom-themes-enable-italic nil))
-  (load-theme 'doom-molokai)
+  ;; (load-theme 'doom-one-light)
+  (load-theme 'doom-one)
+  ;; (load-theme 'doom-molokai)
 
 #+end_src
 
