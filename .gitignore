@@ -28,3 +28,5 @@ config.el
 /abbrev_defs
 /.emacs.desktop
 /.emacs.desktop.lock
+/.local/
+/eshell/
