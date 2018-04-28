@@ -375,9 +375,50 @@
 
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
-(use-package ess
-  :ensure t
-  :init (require 'ess-site))
+  (use-package ess
+    :ensure t
+    :init (require 'ess-site)
+    :config 
+    (general-define-key
+     :states '(normal motion)
+     :keymaps 'ess-mode-map
+     :prefix "SPC"
+     "m" '(:ignore :which-key "Major Mode[ESS]")
+     "mb" '(ess-eval-buffer :which-key "Eval buffer")
+     "ml" '(ess-eval-line-and-step :which-key "Eval line")
+     "mr" '(ess-eval-region :which-key "Eval region")
+     "mi" '(asb-ess-R-object-popup-str :which-key "String inspect")
+     "mI" '(asb-ess-R-object-popup-interactive :which-key "Interactive inspect")
+     )
+    (defun asb-read-into-string (buffer)
+      (with-current-buffer buffer
+        (buffer-string)))
+
+    (defun asb-ess-R-object-popup (r-func)
+      "R-FUNC: The R function to use on the object.
+    Run R-FUN for object at point, and display results in a popup."
+      (let ((objname (current-word))
+            (tmpbuf (get-buffer-create "**ess-R-object-popup**")))
+        (if objname
+            (progn
+              (ess-command (concat "class(" objname ")\n") tmpbuf)
+              (let ((bs (asb-read-into-string tmpbuf)))
+                (if (not(string-match "\(object .* not found\)\|unexpected" bs))
+                    (progn
+                      (ess-command (concat r-func "(" objname ")\n") tmpbuf)
+                      (let ((bs (asb-read-into-string tmpbuf)))
+                        (popup-tip bs)))))))
+        (kill-buffer tmpbuf)))
+
+    (defun asb-ess-R-object-popup-str ()
+      (interactive)
+      (asb-ess-R-object-popup "str"))
+
+    (defun asb-ess-R-object-popup-interactive (r-func)
+      (interactive "sR function to execute: ")
+      (asb-ess-R-object-popup r-func))
+    )
+  (use-package popup :ensure t)
 #+end_src
 
 ** Polymode
@@ -485,7 +526,10 @@ Display horizontal lines instead of ugly characters
 
 ** Company
 #+begin_src emacs-lisp
-(use-package company :ensure t)
+(use-package company :ensure t
+      :config
+      (add-hook 'company-mode-hook 'company-quickhelp-mode)
+)
                                         ;  :config
                                         ;  (global-company-mode t))
 (with-eval-after-load 'company
@@ -497,6 +541,7 @@ Display horizontal lines instead of ugly characters
 (defvar company-mode/enable-yas t
   "Enable yasnippet for all backends.")
 (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+(use-package company-quickhelp :ensure t)
 
 #+end_src
 
