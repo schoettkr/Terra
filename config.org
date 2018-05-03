@@ -942,3 +942,12 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+end_src
 
 
+
+* C++
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c++-mode-hook
+  (lambda ()
+    (set (make-local-variable 'compile-command)
+         (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
+#+END_SRC
+
