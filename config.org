@@ -262,6 +262,9 @@
    "bd" '(kill-buffer :which-key "kill buffer")
    "bp" '(switch-to-prev-buffer :which-key "prev buffer")
    "bn" '(switch-to-prev-buffer :which-key "next buffer")
+   
+
+   "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
 
    ;; ;; Flymake
    ;; "m" '(:ignore t :which-key "Major Mode")
@@ -561,12 +564,6 @@ Display horizontal lines instead of ugly characters
 (use-package yasnippet :ensure t)
 ;;  :config
 ;;  (yas-global-mode 1))
-#+end_src
-
-** All the icons
-#+begin_src emacs-lisp
-;; (use-package all-the-icons :ensure t)
-;; dont forget to M-x all-the-icons-install-fonts
 #+end_src
 
 ** Treemacs
