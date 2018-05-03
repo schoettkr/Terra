@@ -30,3 +30,7 @@ config.el
 /.emacs.desktop.lock
 /.local/
 /eshell/
+/quelpa/build/font-lock+/
+/quelpa/build/quelpa-use-package/
+/quelpa/cache
+/quelpa/melpa/
