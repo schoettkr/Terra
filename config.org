@@ -726,7 +726,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-** TemplateForNewPackage
+** Org Noter
 #+begin_src emacs-lisp
   (use-package org-noter
     :ensure t)
