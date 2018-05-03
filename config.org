@@ -951,3 +951,26 @@ Maps numbers to windows on screen, allows switching windows by window number
          (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
 #+END_SRC
 
+
+* Misc
+#+BEGIN_SRC emacs-lisp
+  (diminish 'company-mode)
+  (diminish 'abbrev-mode)
+  (diminish 'yas-minor-mode)
+  (diminish 'line-number-mode)
+  (diminish 'linum-relative-mode)
+  (diminish 'undo-tree-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'tide-mode)
+  (diminish 'flycheck-mode)
+  (diminish 'evil-commentary-mode)
+  (diminish 'page-break-lines-mode)
+  (diminish 'ivy-mode)
+  (diminish 'which-key-mode)
+  (diminish 'visual-line-mode)
+  (diminish 'indent-guide-mode)
+  (diminish 'auto-revert-mode)
+  (diminish 'projectile-mode)
+  
+(define-key global-map [(S-return)] 'add-semicolon)
+#+END_SRC
