@@ -741,6 +741,28 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
+** Smooth Scroll
+#+begin_src emacs-lisp
+  (use-package smooth-scroll
+    :ensure t
+    :config
+    (smooth-scroll-mode 1)
+    ;; (setq smooth-scroll/vscroll-step-size 5)
+  ;; (setq scroll-step            5
+    )
+    (setq scroll-margin 5)
+     (setq scroll-conservatively most-positive-fixnum)
+#+end_src
+
+
+
+
+
+
+
+
+
+
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
