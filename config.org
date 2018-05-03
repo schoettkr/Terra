@@ -522,7 +522,10 @@
 
 ** Magit
 #+begin_src emacs-lisp
-(use-package evil-magit :ensure t)
+(use-package evil-magit
+ :ensure t
+ :config 
+  (add-hook 'magit-mode-hook 'visual-line-mode))
 #+end_src
 
 ** Avy
