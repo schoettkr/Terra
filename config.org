@@ -230,6 +230,7 @@
    )
 
   (general-def :states '(normal motion emacs) "SPC" nil)
+  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "SPC" nil)
 
   (general-define-key
    :states '(normal motion emacs)
