@@ -321,6 +321,8 @@
    "bd" '(kill-buffer :which-key "kill buffer")
    "bp" '(switch-to-prev-buffer :which-key "prev buffer")
    "bn" '(switch-to-prev-buffer :which-key "next buffer")
+
+   "c" '(kill-current-buffer :which-key "kill current buffer")
    
 
    "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
@@ -382,6 +384,9 @@
    "wL" '(evil-window-move-far-right :which-key "move right")
    "w+" '(evil-window-increase-height 30 :which-key "increase height")
    "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+   "wc" '(eyebrowse-create-window-config :which-key "create workspace")
+   "wn" '(eyebrowse-next-window-config :which-key "next workspace")
+   "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
    ;; (enlarge-window 15)
    )
 
@@ -410,33 +415,42 @@
 
 ** Org
 #+begin_src emacs-lisp
-    (use-package org-bullets
-      :ensure t
-      :init 
-      (setq org-bullets-bullet-list
-      '("◉" "◎" "⚫" "○" "►" "◇"))
-      ;; org-hide-emphasis-markers t)
-      ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
-      (setq org-format-latex-options
-        (quote(:foreground default :background default :scale 1.7 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-                      ("begin" "$1" "$" "$$" "\\(" "\\["))))
-      :config
-      (add-hook 'org-mode-hook 'visual-line-mode)
-      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (use-package org-bullets
+    :ensure t
+    :init 
+    (setq org-bullets-bullet-list
+          '("◉" "◎" "⚫" "○" "►" "◇"))
+    ;; org-hide-emphasis-markers t)
+    ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
+    (setq org-format-latex-options
+          (quote(:foreground default :background default :scale 1.7 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                             ("begin" "$1" "$" "$$" "\\(" "\\["))))
+    :config
+    (general-define-key
+     :states '(normal motion)
+     :keymaps 'org-mode-map
+     :prefix "SPC"
+     "m" '(:ignore :which-key "Major Mode[Org]")
+     "mp" '(org-latex-export-to-pdf :which-key "Export to Pdf")
+     )
+    (add-hook 'org-mode-hook 'visual-line-mode)
+    (add-hook 'org-mode-hook 'company-mode)
+    (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 
-                                            ; Force utf8 and then change todo symbols
-    (setq locale-coding-system 'utf-8)
-    (set-terminal-coding-system 'utf-8)
-    (set-keyboard-coding-system 'utf-8)
-    (set-selection-coding-system 'utf-8)
-    (prefer-coding-system 'utf-8)
-    (when (display-graphic-p)
-      (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
+                                          ; Force utf8 and then change todo symbols
+  (setq locale-coding-system 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
+  (set-selection-coding-system 'utf-8)
+  (prefer-coding-system 'utf-8)
+  (when (display-graphic-p)
+    (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
-    (setq org-todo-keywords (quote((sequence "⚑ Todo" "⚐ In Progress | Waiting" "|" "✔ Done" "✘ Canceled"))))
-    (setq org-todo-keyword-faces
-          '(("⚑ Todo" . "blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
+  (setq org-todo-keywords (quote((sequence "⚑ Todo" "⚐ In Progress | Waiting" "|" "✔ Done" "✘ Canceled"))))
+  (setq org-todo-keyword-faces
+        '(("⚑ Todo" . "blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
   (setq org-adapt-indentation nil)
 
   ;; Latex preview for .tex only
@@ -730,11 +744,10 @@ Maps numbers to windows on screen, allows switching windows by window number
 (use-package ag :ensure t)
 #+end_src
 
-
-** Tabbar
+** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
-(use-package tabbar :ensure t)
-
+(use-package eyebrowse :ensure t
+:config (eyebrowse-mode t))
 #+end_src
 
 ** Pdf Tools
@@ -776,12 +789,12 @@ Maps numbers to windows on screen, allows switching windows by window number
       "zm" 'pdf-view-midnight-minor-mode
       "zp" 'pdf-view-printer-minor-mode
       )
+      (add-hook 'pdf-view-mode-hook 'auto-revert-mode)
+      (add-hook 'pdf-view-mode-hook (lambda () (beacon-mode -1)))
     )
   (evil-define-key 'normal pdf-occur-buffer-mode-map
     (kbd "<return>") 'pdf-occur-goto-occurrence)
 #+end_src
-
-
 
 
 
@@ -793,8 +806,6 @@ Maps numbers to windows on screen, allows switching windows by window number
   (use-package org-noter
     :ensure t)
 #+end_src
-
-
 
 
 
@@ -823,20 +834,15 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
-
+** TemplateForNewPackage
+#+begin_src emacs-lisp
+(use-package beacon 
+:ensure t
+:config (beacon-mode 1))
+#+end_src
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
-
-
-
-
-
-
-
-
-
 
 
 * ProgMode
@@ -853,7 +859,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'prog-mode-hook 'winner-mode)
 ;; (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook 'tabbar-mode)
 (add-hook 'prog-mode-hook 'linum-relative-mode)
 #+end_src
 
@@ -1011,6 +1016,18 @@ Maps numbers to windows on screen, allows switching windows by window number
   (lambda ()
     (set (make-local-variable 'compile-command)
          (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
+#+END_SRC
+
+
+* Markdown
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
 #+END_SRC
 
 
