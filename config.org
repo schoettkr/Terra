@@ -289,6 +289,7 @@
 
   (general-def :states '(normal motion emacs) "SPC" nil)
   (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "SPC" nil)
+  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
 
   (general-define-key
    :states '(normal motion emacs)
@@ -536,10 +537,11 @@
 
 ** Magit
 #+begin_src emacs-lisp
-(use-package evil-magit
- :ensure t
- :config 
-  (add-hook 'magit-mode-hook 'visual-line-mode))
+  (use-package evil-magit
+   :ensure t
+   :config 
+   ;; (add-hook 'magit-mode-hook 'visual-line-mode)
+   )
 #+end_src
 
 ** Avy
