@@ -400,6 +400,7 @@
 * General Packages
 ** Evil
 #+begin_src emacs-lisp
+(setq evil-want-Y-yank-to-eol t)
 (use-package evil
   :ensure t
   :config
