@@ -323,7 +323,7 @@
    "bp" '(switch-to-prev-buffer :which-key "prev buffer")
    "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
-   "c" '(kill-current-buffer :which-key "kill current buffer")
+   "c" '(kill-this-buffer :which-key "kill current buffer")
    
 
    "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
