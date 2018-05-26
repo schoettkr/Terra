@@ -168,7 +168,8 @@
     :config (setq doom-themes-enable-bold nil
                   doom-themes-enable-italic nil))
   ;; (load-theme 'doom-one-light)
-  (load-theme 'doom-one)
+  ;(load-theme 'doom-one)
+  (load-theme 'doom-dracula)
   ;; (load-theme 'doom-molokai)
 
 #+end_src
@@ -288,7 +289,7 @@
    )
 
   (general-def :states '(normal motion emacs) "SPC" nil)
-  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "SPC" nil)
+  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
   (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
 
   (general-define-key
@@ -438,6 +439,7 @@
     (add-hook 'org-mode-hook 'visual-line-mode)
     (add-hook 'org-mode-hook 'company-mode)
     (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
+    (add-hook 'org-mode-hook (lambda () (linum-relative-mode t)))
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 
@@ -793,6 +795,7 @@ Maps numbers to windows on screen, allows switching windows by window number
       "zp" 'pdf-view-printer-minor-mode
       )
       (add-hook 'pdf-view-mode-hook 'auto-revert-mode)
+      (add-hook 'pdf-view-mode-hook (lambda () (linum-relative-mode nil)))
       (add-hook 'pdf-view-mode-hook (lambda () (beacon-mode -1)))
     )
   (evil-define-key 'normal pdf-occur-buffer-mode-map
@@ -1031,6 +1034,12 @@ Maps numbers to windows on screen, allows switching windows by window number
   (lambda ()
     (set (make-local-variable 'compile-command)
          (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
+#+END_SRC
+
+
+* Python
+#+BEGIN_SRC emacs-lisp
+(use-package elpy :ensure t :config (elpy-enable))
 #+END_SRC
 
 
