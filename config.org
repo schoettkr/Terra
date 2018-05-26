@@ -836,12 +836,24 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
-** TemplateForNewPackage
+** Beacon
 #+begin_src emacs-lisp
 (use-package beacon 
 :ensure t
 :config (beacon-mode 1))
+#+end_src
+** Color Identifiers
+#+begin_src emacs-lisp
+  (use-package color-identifiers-mode 
+  :ensure t
+  :config 
+  (add-hook 'after-init-hook 'global-color-identifiers-mode)
+  (add-to-list
+   'color-identifiers:modes-alist
+   `(typescript-mode . ("[^.][[:space:]]*"
+                "\\_<\\([a-zA-Z_$]\\(?:\\s_\\|\\sw\\)*\\)"
+                (nil font-lock-variable-name-face))))
+  )
 #+end_src
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
