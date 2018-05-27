@@ -401,6 +401,7 @@
 * General Packages
 ** Evil
 #+begin_src emacs-lisp
+(setq evil-symbol-word-search t)
 (setq evil-want-Y-yank-to-eol t)
 (use-package evil
   :ensure t
@@ -859,6 +860,16 @@ Maps numbers to windows on screen, allows switching windows by window number
                 (nil font-lock-variable-name-face))))
   )
 #+end_src
+** Eshell Autosuggest
+#+begin_src emacs-lisp
+(use-package esh-autosuggest
+  :hook (eshell-mode . esh-autosuggest-mode)
+  ;; If you have use-package-hook-name-suffix set to nil, uncomment and use the
+  ;; line below instead:
+  ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
+  :ensure t)
+#+end_src
+
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
