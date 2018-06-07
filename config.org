@@ -65,7 +65,7 @@
 ** All the icons
 #+begin_src emacs-lisp
   (setq load-prefer-newer t)
-  (use-package all-the-icons :ensure t)
+  (use-package all-the-icons :ensure t :defer t)
   ;; dont forget to M-x all-the-icons-install-fonts
 #+end_src
 
@@ -162,14 +162,14 @@
   ;;   :defer t
   ;;   :init (load-theme 'spacemacs-light t))
 
-  (use-package doom-themes
-    :ensure t
-    :defer t
-    :config (setq doom-themes-enable-bold nil
-                  doom-themes-enable-italic nil))
-  ;; (load-theme 'doom-one-light)
-  ;(load-theme 'doom-one)
-  (load-theme 'doom-dracula)
+;  (use-package doom-themes
+;    :ensure t
+;    :defer t
+;    :config (setq doom-themes-enable-bold nil
+;                  doom-themes-enable-italic nil))
+;  ;; (load-theme 'doom-one-light)
+;  ;(load-theme 'doom-one)
+;  (load-theme 'doom-dracula)
   ;; (load-theme 'doom-molokai)
 
 #+end_src
@@ -272,127 +272,127 @@
 
 ** General.el
 #+begin_src emacs-lisp
-(use-package general :ensure t
-  :config
-  (general-define-key
-   ;; replace default keybindings
-   :states '(normal emacs)
-   "C-s" 'swiper             ; search for string in current buffer
-   ;;   "C-p" 'company-select-previous             ; search for string in current buffer
-   ;;   "C-n" 'company-select-next             ; search for string in current buffer
-   "/" 'swiper             ; search for string in current buffer
-   "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
-   "n" 'evil-search-previous
-   "N" 'evil-search-next
-   "\\" 'evil-ex-nohighlight
-   ;; "C-w" 'evil-delete-buffer
-   )
+  (use-package general :ensure t
+    :config
+    (general-define-key
+     ;; replace default keybindings
+     :states '(normal emacs)
+     "C-s" 'swiper             ; search for string in current buffer
+     ;;   "C-p" 'company-select-previous             ; search for string in current buffer
+     ;;   "C-n" 'company-select-next             ; search for string in current buffer
+     "/" 'swiper             ; search for string in current buffer
+     "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "n" 'evil-search-previous
+     "N" 'evil-search-next
+     "\\" 'evil-ex-nohighlight
+     ;; "C-w" 'evil-delete-buffer
+     )
 
-  (general-def :states '(normal motion emacs) "SPC" nil)
-  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
-  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
+    (general-def :states '(normal motion emacs) "SPC" nil)
+    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
+    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
 
-  (general-define-key
-   :states '(normal motion emacs)
-   :prefix "SPC"
+    (general-define-key
+     :states '(normal motion emacs)
+     :prefix "SPC"
 
-   ;; simple command
-   "x" 'counsel-M-x        ; replace default M-x with ivy backend
-   "TAB" '(mode-line-other-buffer :which-key "prev buffer")
-   "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
-   "C-'" 'avy-goto-word-1
-   "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
-   "RET" '(add-semicolon :which-key "Insert ; at eol")
-   "/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
-   ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
-   "'" '(popup-shell :which-key "popup shell")
+     ;; simple command
+     "x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "TAB" '(mode-line-other-buffer :which-key "prev buffer")
+     "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
+     "C-'" 'avy-goto-word-1
+     "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
+     "RET" '(add-semicolon :which-key "Insert ; at eol")
+     "/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
+     ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
+     "'" '(popup-shell :which-key "popup shell")
 
-   ;; Applications
-   "a" '(:ignore t :which-key "Applications")
-   "aa" '(ag :which-key "Ag")
-   "ar" '(ranger :which-key "Ranger")
-   "at" '(open-termite :which-key "Termite")
-   "ac" '(compile :which-key "compile")
-   "ar" '(recompile :which-key "recompile")
-   "ao" '(occur :which-key "occur") ;; example usage function\|var
-   "ad" 'dired
+     ;; Applications
+     "a" '(:ignore t :which-key "Applications")
+     "aa" '(ag :which-key "Ag")
+     "ar" '(ranger :which-key "Ranger")
+     "at" '(open-termite :which-key "Termite")
+     "ac" '(compile :which-key "compile")
+     "ar" '(recompile :which-key "recompile")
+     "ao" '(occur :which-key "occur") ;; example usage function\|var
+     "ad" 'dired
 
-   ;; Buffer
-   "b" '(:ignore t :which-key "Buffer")
-   "bb" '(ivy-switch-buffer :which-key "Change buffer")
-   "bd" '(kill-buffer :which-key "kill buffer")
-   "bp" '(switch-to-prev-buffer :which-key "prev buffer")
-   "bn" '(switch-to-prev-buffer :which-key "next buffer")
+     ;; Buffer
+     "b" '(:ignore t :which-key "Buffer")
+     "bb" '(ivy-switch-buffer :which-key "Change buffer")
+     "bd" '(kill-buffer :which-key "kill buffer")
+     "bp" '(switch-to-prev-buffer :which-key "prev buffer")
+     "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
-   "c" '(kill-this-buffer :which-key "kill current buffer")
+     "c" '(kill-this-buffer :which-key "kill current buffer")
    
 
-   "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
+     "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
 
-   ;; ;; Flymake
-   ;; "m" '(:ignore t :which-key "Major Mode")
+     ;; ;; Flymake
+     ;; "m" '(:ignore t :which-key "Major Mode")
 
-   ;; Flymake
-   "e" '(:ignore t :which-key "Flymake")
-   "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
-   "en" '(flymake-goto-next-error :which-key "next error")
-   "ep" '(flymake-goto-prev-error :which-key "prev error")
+     ;; Flymake
+     "e" '(:ignore t :which-key "Flymake")
+     "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
+     "en" '(flymake-goto-next-error :which-key "next error")
+     "ep" '(flymake-goto-prev-error :which-key "prev error")
 
-   ;; Files
-   "f" '(:ignore t :which-key "Files")
-   "ff" '(counsel-find-file :which-key "find file")
-   "f." '(counsel-find-file :which-key "find file")
-   "fr"	'(counsel-recentf   :which-key "recent files")
-   "fs" '(save-buffer :which-key "save file")
-   "f/" '(swiper :which-key "search in file")
-   "ft" '(treemacs-toggle :which-key "toggle treemacs")
+     ;; Files
+     "f" '(:ignore t :which-key "Files")
+     "ff" '(counsel-find-file :which-key "find file")
+     "f." '(counsel-find-file :which-key "find file")
+     "fr"	'(counsel-recentf   :which-key "recent files")
+     "fs" '(save-buffer :which-key "save file")
+     "f/" '(swiper :which-key "search in file")
+     "ft" '(treemacs-toggle :which-key "toggle treemacs")
 
-   ;; Git
-   "g" '(:ignore t :which-key "Git")
-   "gs" '(magit-status :which-key "status")
+     ;; Git
+     "g" '(:ignore t :which-key "Git")
+     "gs" '(magit-status :which-key "status")
 
-   ;; Help
-   "h" '(:ignore t :which-key "Help")
-   "hh" '(help-for-help-internal :which-key "open help")
+     ;; Help
+     "h" '(:ignore t :which-key "Help")
+     "hh" '(help-for-help-internal :which-key "open help")
 
-   ;; Projects
-   "p" '(:ignore t :which-key "Projects")
-   "pf" '(counsel-git :which-key "Find file in git project")
-   "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
-   "pp" '(projectile-switch-project :which-key "Switch project")
+     ;; Projects
+     "p" '(:ignore t :which-key "Projects")
+     "pf" '(counsel-git :which-key "Find file in git project")
+     "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
+     "pp" '(projectile-switch-project :which-key "Switch project")
 
-   ;; Windows
-   "w" '(:ignore t :which-key "Windows")
-   "w1" '(winum-select-window-1 :which-key "win 1")
-   "w2" '(winum-select-window-2 :which-key "win 2")
-   "w3" '(winum-select-window-3 :which-key "win 3")
-   "w4" '(winum-select-window-4 :which-key "win 4")
-   "w5" '(winum-select-window-5 :which-key "win 5")
-   "w6" '(winum-select-window-6 :which-key "win 6")
-   "ws" '(split-window-below :which-key "Horizontal split")
-   "wv" '(split-window-right :which-key "Vertical split")
-   "wd" '(evil-window-delete :which-key "close window")
-   "ww" '(evil-window-next :which-far-key "next window")
-   "wm" '(delete-other-windows :which-far-key "next window")
-   "wu" '(winner-undo :which-key "winner undo")
-   "wr" '(winner-redo :which-key "winner redo")
-   "wh" '(evil-window-left :which-key "left")
-   "wH" '(evil-window-move-far-left :which-key "move left")
-   "wj" '(evil-window-down :which-key "down")
-   "wJ" '(evil-window-move-very-bottom :which-key "move down")
-   "wk" '(evil-window-up :which-key "up")
-   "wK" '(evil-window-move-very-top :which-key "move up")
-   "wl" '(evil-window-right :which-key "right")
-   "wL" '(evil-window-move-far-right :which-key "move right")
-   "w+" '(evil-window-increase-height 30 :which-key "increase height")
-   "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
-   "wc" '(eyebrowse-create-window-config :which-key "create workspace")
-   "wn" '(eyebrowse-next-window-config :which-key "next workspace")
-   "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
-   ;; (enlarge-window 15)
-   )
+     ;; Windows
+     "w" '(:ignore t :which-key "Windows")
+     "w1" '(winum-select-window-1 :which-key "win 1")
+     "w2" '(winum-select-window-2 :which-key "win 2")
+     "w3" '(winum-select-window-3 :which-key "win 3")
+     "w4" '(winum-select-window-4 :which-key "win 4")
+     "w5" '(winum-select-window-5 :which-key "win 5")
+     "w6" '(winum-select-window-6 :which-key "win 6")
+     "ws" '(split-window-below :which-key "Horizontal split")
+     "wv" '(split-window-right :which-key "Vertical split")
+     "wd" '(evil-window-delete :which-key "close window")
+     "ww" '(evil-window-next :which-far-key "next window")
+     "wm" '(delete-other-windows :which-far-key "next window")
+     "wu" '(winner-undo :which-key "winner undo")
+     "wr" '(winner-redo :which-key "winner redo")
+     "wh" '(evil-window-left :which-key "left")
+     "wH" '(evil-window-move-far-left :which-key "move left")
+     "wj" '(evil-window-down :which-key "down")
+     "wJ" '(evil-window-move-very-bottom :which-key "move down")
+     "wk" '(evil-window-up :which-key "up")
+     "wK" '(evil-window-move-very-top :which-key "move up")
+     "wl" '(evil-window-right :which-key "right")
+     "wL" '(evil-window-move-far-right :which-key "move right")
+     "w+" '(evil-window-increase-height 30 :which-key "increase height")
+     "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+     "wc" '(eyebrowse-create-window-config :which-key "create workspace")
+     "wn" '(eyebrowse-next-window-config :which-key "next workspace")
+     "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
+     ;; (enlarge-window 15)
+     )
 
-  )
+    )
 #+end_src
 
 
@@ -405,6 +405,8 @@
 (setq evil-want-Y-yank-to-eol t)
 (use-package evil
   :ensure t
+  :defer .1
+  ; maybe setq vars in :init
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
@@ -418,9 +420,18 @@
 #+end_src
 
 ** Org
+Part below can be used to get a more recent version of org mode
+#+begin_src emacs-lisp
+;;(unless (file-expand-wildcards (concat package-user-dir "/org-[0-9]*"))
+;;  (package-install (elt (cdr (assoc 'org package-archive-contents)) 0)))
+;;(require 'org)
+#+end_src
+
+Making org mode work how I like it:
 #+begin_src emacs-lisp
   (use-package org-bullets
     :ensure t
+    :defer t
     :init 
     (setq org-bullets-bullet-list
           '("◉" "◎" "⚫" "○" "►" "◇"))
@@ -437,11 +448,12 @@
      "m" '(:ignore :which-key "Major Mode[Org]")
      "mp" '(org-latex-export-to-pdf :which-key "Export to Pdf")
      )
+  )
     (add-hook 'org-mode-hook 'visual-line-mode)
     (add-hook 'org-mode-hook 'company-mode)
     (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
     (add-hook 'org-mode-hook (lambda () (linum-relative-mode t)))
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 
                                           ; Force utf8 and then change todo symbols
@@ -457,7 +469,22 @@
   (setq org-todo-keyword-faces
         '(("⚑ Todo" . "deep sky blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
   (setq org-adapt-indentation nil)
+  (setq-default org-display-custom-times t)
+  (setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
 
+  ;; (setq org-agenda-files '("~/Dev/notes/inbox.org"
+  ;;                          "~/Dev/notes/gtd.org"
+  ;;                          "~/Dev/notes/tickler.org"))
+
+  ;; (setq org-capture-templates '(("t" "Todo [inbox]" entry
+  ;;                                (file+headline "~/Dev/notes/inbox.org" "Tasks")
+  ;;                                "* TODO %i%?")
+  ;;                               ("T" "Tickler" entry
+  ;;                                (file+headline "~/Dev/notes/tickler.org" "Tickler")
+  ;;                                "* %i%? \n %U")))
+  ;; (setq org-refile-targets '(("~/Dev/notes/gtd.org" :maxlevel . 3)
+  ;;                            ("~/Dev/notes/someday.org" :level . 1)
+  ;;                            ("~/Dev/notes/tickler.org" :maxlevel . 2)))
   ;; Latex preview for .tex only
   ;; (use-package latex-preview-pane
   ;;   :ensure t
@@ -469,6 +496,7 @@
 #+begin_src emacs-lisp
   (use-package ess
     :ensure t
+    :defer t
     :init (require 'ess-site)
     :config 
     (general-define-key
@@ -517,6 +545,7 @@
 #+begin_src emacs-lisp
 (use-package polymode
   :ensure t
+  :defer t
   :config
   (setq load-path
         (append '("~/.emacs.d/elpa/polymode-20170307"  "~/.emacs.d/elpa/polymode-20170307/")
@@ -543,6 +572,7 @@
 #+begin_src emacs-lisp
   (use-package evil-magit
    :ensure t
+;   :defer t ;; will loose keybinding overwritings
    :config 
    ;; (add-hook 'magit-mode-hook 'visual-line-mode)
    )
@@ -551,11 +581,13 @@
 ** Avy
 #+begin_src emacs-lisp
 (use-package avy :ensure t
+  :defer t
   :commands (avy-goto-word-1))
 #+end_src
 ** Ivy
 #+begin_src emacs-lisp
 (use-package ivy
+  :defer t
   :commands (ivy-switch-buffer
              ivy-switch-buffer-other-window)
   :config
@@ -565,6 +597,7 @@
 ** Counsel
 #+begin_src emacs-lisp
 (use-package counsel :ensure t
+  :defer t
   :config
   ;;  (setq counsel-find-file-at-point t)
   ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
@@ -575,6 +608,7 @@
 ** Projectile
 #+begin_src emacs-lisp
 (use-package projectile :ensure t
+  :defer t
   :config
   (setq projectile-mode-line " foo")
   (setq projectile-completion-system 'ivy)
@@ -585,6 +619,7 @@
 ** Linum Relative
 #+begin_src emacs-lisp
   (use-package linum-relative :ensure t
+    :defer t
     :config
     (setq linum-relative-current-symbol ""))
   ;;   (global-linum-mode nil)
@@ -623,8 +658,12 @@ Display horizontal lines instead of ugly characters
 ** Company
 #+begin_src emacs-lisp
 (use-package company :ensure t
+      :defer t
       :config
+      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+      (setq company-idle-delay 0.2)
       (add-hook 'company-mode-hook 'company-quickhelp-mode)
+      ;(yas-reload-all)
 )
                                         ;  :config
                                         ;  (global-company-mode t))
@@ -636,14 +675,15 @@ Display horizontal lines instead of ugly characters
 
 (defvar company-mode/enable-yas t
   "Enable yasnippet for all backends.")
-(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+;;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 (use-package company-quickhelp :ensure t)
 
 #+end_src
 
 ** Yasnippet
+Needs to be looked into
 #+begin_src emacs-lisp
-(use-package yasnippet :ensure t)
+;(use-package yasnippet :ensure t :defer t)
 ;;  :config
 ;;  (yas-global-mode 1))
 #+end_src
@@ -701,6 +741,7 @@ Display horizontal lines instead of ugly characters
 Maps numbers to windows on screen, allows switching windows by window number
 #+begin_src emacs-lisp
 (use-package winum :ensure t
+  :defer t
   :config
   ;;  (setq winum-keymap
   ;;	(let ((map (make-sparse-keymap)))
@@ -721,7 +762,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 ** Evil Commentary
 #+begin_src emacs-lisp
-(use-package evil-commentary :ensure t)
+(use-package evil-commentary :ensure t :defer t)
 #+end_src
 ** Dumb Jump
 #+begin_src emacs-lisp
@@ -731,6 +772,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 ** Indent Guide
 #+begin_src emacs-lisp
 (use-package indent-guide :ensure t
+:defer t
 :config (set-face-background 'indent-guide-face "SkyBlue4")
 ;(setq indent-guide-delay 0.1)
 (setq indent-guide-char " "))
@@ -743,16 +785,16 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 ** Rainbow Delimiters
 #+begin_src emacs-lisp
-(use-package rainbow-delimiters :ensure t)
+(use-package rainbow-delimiters :ensure t :defer t)
 #+end_src
 ** Ag
 #+begin_src emacs-lisp
-(use-package ag :ensure t)
+(use-package ag :ensure t :defer t)
 #+end_src
 
 ** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
-(use-package eyebrowse :ensure t
+(use-package eyebrowse :ensure t :defer 1
 :config (eyebrowse-mode t))
 #+end_src
 
@@ -760,6 +802,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+begin_src emacs-lisp
   (use-package pdf-tools
     :ensure t
+    :defer t
     :config
     (pdf-tools-install)
     (evil-set-initial-state 'pdf-view-mode 'normal)
@@ -795,13 +838,16 @@ Maps numbers to windows on screen, allows switching windows by window number
       "zm" 'pdf-view-midnight-minor-mode
       "zp" 'pdf-view-printer-minor-mode
       )
+
       (add-hook 'pdf-view-mode-hook 'auto-revert-mode)
       (add-hook 'pdf-view-mode-hook (lambda () (linum-relative-mode -1)))
       (add-hook 'pdf-view-mode-hook (lambda () (linum-mode -1)))
       (add-hook 'pdf-view-mode-hook (lambda () (beacon-mode -1)))
+      (evil-define-key 'normal pdf-occur-buffer-mode-map
+        (kbd "<return>") 'pdf-occur-goto-occurrence)
     )
-  (evil-define-key 'normal pdf-occur-buffer-mode-map
-    (kbd "<return>") 'pdf-occur-goto-occurrence)
+;  (evil-define-key 'normal pdf-occur-buffer-mode-map
+;    (kbd "<return>") 'pdf-occur-goto-occurrence)
 #+end_src
 
 
@@ -812,6 +858,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 ** Org Noter
 #+begin_src emacs-lisp
   (use-package org-noter
+  :defer t
     :ensure t)
 #+end_src
 
@@ -887,14 +934,13 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
 (add-hook 'prog-mode-hook 'column-number-mode)
 ;;(add-hook 'prog-mode-hook 'yas-global-mode)
-(yas-reload-all)
 (add-hook 'prog-mode-hook 'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
 ;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
 (add-hook 'prog-mode-hook 'winner-mode)
-;; (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook 'linum-relative-mode)
+(add-hook 'prog-mode-hook 'whitespace-mode)
 #+end_src
 
 
@@ -910,20 +956,23 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 #+begin_src emacs-lisp
 (use-package company-tern :ensure t
+  :defer t
   :after company
   :config
 (setenv "PATH" (concat (getenv "PATH") ":~/.node_modules/bin"))
     (setq exec-path (append exec-path '("~/.node_modules/bin")))
-  (add-to-list 'company-backends 'company-tern))
+  (add-to-list 'company-backends 'company-tern)
+(define-key tern-mode-keymap (kbd "M-.") nil)
+(define-key tern-mode-keymap (kbd "M-,") nil)
+)
 
 (add-hook 'js2-mode-hook (lambda ()
                            (tern-mode)
                            (company-mode)))
-(define-key tern-mode-keymap (kbd "M-.") nil)
-(define-key tern-mode-keymap (kbd "M-,") nil)
 
 
 (use-package js2-mode :ensure t
+  :defer t
   :config
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
   )
@@ -941,18 +990,20 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 #+begin_src emacs-lisp
 (use-package typescript-mode 
+  :defer t
   :config
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
   )
 
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
 (use-package tide :ensure t
+  :defer t
   :config
   ;;(add-to-list 'auto-mode-alist '("\\.ts\\'" . tide-mode))
   ;; aligns annotation to the right hand side
   (setq company-tooltip-align-annotations t)
   ;; formats the buffer before saving
   ;;(add-hook 'before-save-hook 'tide-format-before-save)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
   )
 (setq typescript-indent-level 2
       typescript-expr-indent-offset 2)
@@ -992,21 +1043,21 @@ Maps numbers to windows on screen, allows switching windows by window number
     (setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
   )
 
-(use-package go-mode :ensure t
+(use-package go-mode :ensure t :defer t
   :config
   (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
   ;; :load-path "/tmp/elisp/go-mode"
   )
 
-(use-package go-guru :ensure t)
+(use-package go-guru :ensure t :defer t)
 
-(use-package flymake-go :ensure t
+(use-package flymake-go :ensure t :defer t
   ;; :config
   ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
   ;; :load-path "/tmp/elisp/go-mode"
   )
 
-(use-package company-go :ensure t
+(use-package company-go :ensure t :defer t 
   :after company
   :config
   (add-to-list 'company-backends 'company-go))
@@ -1060,7 +1111,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 * Python
 #+BEGIN_SRC emacs-lisp
-(use-package elpy :ensure t :config (elpy-enable))
+(use-package elpy :ensure t :defer t :config (elpy-enable))
 #+END_SRC
 
 
@@ -1068,6 +1119,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
+    :defer t
     :commands (markdown-mode gfm-mode)
     :mode (("README\\.md\\'" . gfm-mode)
            ("\\.md\\'" . markdown-mode)
@@ -1098,16 +1150,42 @@ Maps numbers to windows on screen, allows switching windows by window number
 
   (define-key global-map [(S-return)] 'add-semicolon)
 
-  (defface special-comment '((t (:foreground "#a02a2a"))) "Cyan")
 
-  (font-lock-add-keywords
-   'typescript-mode '(("\\(?:\\s_\\|\\sw\\)*:" 0 'special-comment t)))
 #+END_SRC
-;(add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
+
+
+* Theme Test
+#+BEGIN_SRC emacs-lisp
+  ;;  (defface special-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
+    (defface extra-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
+
+    ;;(defface extra-comment '((t (:foreground "#ffffff"))) "Cyan")
+
+    (font-lock-add-keywords
+     'prog-mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t))))
+     ;'typescript-mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t))))
+
+    (setq whitespace-space-regexp "\\(^ +\\| +$\\)") ; defines what should be matched as space, whitespaces that are not matched get default styling..
+
+    (setq whitespace-display-mappings
+          '((space-mark   32     [183]     [46]) ; space
+            (space-mark   160    [164]     [95]) ; hard space
+            (newline-mark ?\n    [?\n]) ; remove $ to not display it
+            (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
+
+;    (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
 ;
-;(load-theme 'one-light t t)
+;    (load-theme 'one-light t t)
 ;
-;(enable-theme 'one-light)
+;    (enable-theme 'one-light)
+
+  (mapc (lambda (mode)
+          (font-lock-add-keywords
+          mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
+          ; '(("FIXME" 0 'show-paren-mismatch-face)
+          ;  ("\\.\\( \\)\\b" 1 'extra-whitespace-face))))
+        '(text-mode latex-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode
+          texinfo-mode))
 #+END_SRC
 Status: 
 
