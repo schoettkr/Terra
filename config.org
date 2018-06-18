@@ -1043,21 +1043,21 @@ Maps numbers to windows on screen, allows switching windows by window number
     (setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
   )
 
-(use-package go-mode :ensure t :defer t
+(use-package go-mode :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
   ;; :load-path "/tmp/elisp/go-mode"
   )
 
-(use-package go-guru :ensure t :defer t)
+(use-package go-guru :ensure t)
 
-(use-package flymake-go :ensure t :defer t
+(use-package flymake-go :ensure t
   ;; :config
   ;; (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
   ;; :load-path "/tmp/elisp/go-mode"
   )
 
-(use-package company-go :ensure t :defer t 
+(use-package company-go :ensure t
   :after company
   :config
   (add-to-list 'company-backends 'company-go))
@@ -1096,6 +1096,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
 (add-hook 'go-mode-hook #'load-env-vars)
 (add-hook 'go-mode-hook 'my-go-mode-hook)
+(add-hook 'go-mode-hook (lambda () (whitespace-mode -1)))
 #+end_src
 
 
