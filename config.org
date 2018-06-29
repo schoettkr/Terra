@@ -1017,6 +1017,13 @@ Maps numbers to windows on screen, allows switching windows by window number
  :states 'normal
  :keymaps 'typescript-mode-map
  "gd" 'tide-jump-to-definition
+ "gr" 'tide-references
+ )
+
+(general-define-key
+ :states 'normal
+ :keymaps 'tide-references-mode-map
+ "RET" 'tide-goto-reference
  )
 
 #+end_src
