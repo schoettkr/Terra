@@ -1193,8 +1193,10 @@ Maps numbers to windows on screen, allows switching windows by window number
           mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
           ; '(("FIXME" 0 'show-paren-mismatch-face)
           ;  ("\\.\\( \\)\\b" 1 'extra-whitespace-face))))
-        '(text-mode latex-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode
+        '(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
           texinfo-mode))
+(evil-add-command-properties #'tide-jump-to-definition :jump t)
+
 #+END_SRC
 Status: 
 
