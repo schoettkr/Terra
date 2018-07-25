@@ -1133,6 +1133,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 ;    (add-to-list 'company-backends 'company-omnisharp))
 
   (use-package omnisharp
+    :ensure t
     :after company
     :config
 ;;(define-key omnisharp-mode-map (kbd ".") 'omnisharp-add-dot-and-auto-complete)
