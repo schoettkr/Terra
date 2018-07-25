@@ -802,7 +802,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+begin_src emacs-lisp
   (use-package pdf-tools
     :ensure t
-    :defer t
+    :defer 1
     :config
     (pdf-tools-install)
     (evil-set-initial-state 'pdf-view-mode 'normal)
@@ -996,9 +996,8 @@ Maps numbers to windows on screen, allows switching windows by window number
   )
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
 (use-package tide :ensure t
-  :defer t
+;;  :defer t
   :config
   ;;(add-to-list 'auto-mode-alist '("\\.ts\\'" . tide-mode))
   ;; aligns annotation to the right hand side
