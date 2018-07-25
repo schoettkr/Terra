@@ -1191,7 +1191,9 @@ Maps numbers to windows on screen, allows switching windows by window number
 
   (define-key global-map [(S-return)] 'add-semicolon)
 
-
+(evil-add-command-properties #'tide-jump-to-definition :jump t)
+(evil-add-command-properties #'evil-previous-line :jump t)
+(evil-add-command-properties #'evil-next-line :jump t)
 #+END_SRC
 
 
