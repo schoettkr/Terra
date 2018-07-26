@@ -157,10 +157,10 @@
    ;; (load-theme 'subatomic t)
    ;; (moe-light)
 
-   ;; (use-package spacemacs-theme
-   ;;   :ensure t
-   ;;   :defer t
-   ;;   :init (load-theme 'spacemacs-light t))
+ (use-package spacemacs-theme
+   :ensure t
+   :defer t
+   :init (load-theme 'spacemacs-light t))
 
   ;;  (use-package doom-themes
   ;;   :ensure t
@@ -1129,6 +1129,8 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 * C#
+If it doesnt work start C# project with vs code, it will get the dependecies.
+Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 #+BEGIN_SRC emacs-lisp
   (use-package csharp-mode :ensure t)
 ;  (use-package omnisharp
@@ -1175,6 +1177,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 )
 #+END_SRC
 
+
 * Misc
 #+BEGIN_SRC emacs-lisp
     (diminish 'company-mode)
@@ -1206,7 +1209,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 * Theme Test
 #+BEGIN_SRC emacs-lisp
   ;;  (defface special-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
-    (defface extra-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
+    (defface extra-comment '((t (:background "#fbf8ef" :foreground "#fafafa"))) "Green")
 
     ;;(defface extra-comment '((t (:foreground "#ffffff"))) "Cyan")
 
@@ -1222,11 +1225,11 @@ Maps numbers to windows on screen, allows switching windows by window number
             (newline-mark ?\n    [?\n]) ; remove $ to not display it
             (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
 
-    (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
+ ;   (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
 
-    (load-theme 'one-light t t)
+ ;   (load-theme 'one-light t t)
 
-    (enable-theme 'one-light)
+ ;   (enable-theme 'one-light)
 
   (mapc (lambda (mode)
           (font-lock-add-keywords
@@ -1252,4 +1255,5 @@ Maps numbers to windows on screen, allows switching windows by window number
         (setq my-prev-whitespace-mode nil))))
 (advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
 (advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+(set-cursor-color "#7B1FA2")
 #+END_SRC
