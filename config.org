@@ -290,9 +290,9 @@
      ;; "C-w" 'evil-delete-buffer
      )
 
-    (general-def :states '(normal motion emacs) "SPC" nil)
-    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
-    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
+  (general-def :states '(normal motion emacs) "SPC" nil)
+  (general-def :keymaps '(compilation-mode-map ess-help-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
+  (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
 
     (general-define-key
      :states '(normal motion emacs)
@@ -992,9 +992,8 @@ Maps numbers to windows on screen, allows switching windows by window number
 * Typescript
 
 #+begin_src emacs-lisp
-(use-package typescript-mode 
+(use-package typescript-mode :ensure t
   :defer t
-  :config
   )
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
