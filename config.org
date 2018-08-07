@@ -352,6 +352,10 @@
      ;; Git
      "g" '(:ignore t :which-key "Git")
      "gs" '(magit-status :which-key "status")
+     "gu" '(smerge-keep-upper :which-key "keep upper")
+     "gl" '(smerge-keep-lower :which-key "keep lower")
+     "gb" '(smerge-keep-all :which-key "keep both")
+     "gn" '(smerge-next :which-key "next conflict")
 
      ;; Help
      "h" '(:ignore t :which-key "Help")
