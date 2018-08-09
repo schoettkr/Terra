@@ -92,6 +92,42 @@
 #+end_src
 
 ** Modeline
+*** Customization
+#+BEGIN_SRC emacs-lisp
+  (defadvice vc-mode-line (after strip-backend () activate)
+    (when (stringp vc-mode)
+      (let ((noback (replace-regexp-in-string
+                     (format "^ %s:" (vc-backend buffer-file-name))
+                     " " vc-mode)))
+        (setq vc-mode noback))))
+  (defun simple-mode-line-render (left right)
+    "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
+    (let* ((available-width (- (window-width) (length left) 1)))
+      (format (format "%%s %%%ds" available-width) left right)))
+  (setq-default
+   mode-line-format
+   '((:eval
+      (simple-mode-line-render
+       ;; left
+       (format-mode-line
+        (quote
+         (" %e"
+          mode-line-modified
+          mode-line-frame-identification
+          mode-line-buffer-identification
+          (vc-mode vc-mode)
+
+          " [%l:%c] "
+          ;; evil-mode-line-tag
+          "%m"
+          mode-line-misc-info
+          )))
+       ;; right
+       (format-mode-line
+        (eval (format-time-string "%d.%m.%Y %H:%M")
+          ;; mode-line-modes
+          ))))))
+#+END_SRC
 *** Diminish
 #+BEGIN_SRC emacs-lisp
   (eval-when-compile (require 'cl))
@@ -801,7 +837,10 @@ Maps numbers to windows on screen, allows switching windows by window number
 ** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
 (use-package eyebrowse :ensure t :defer 1
-:config (eyebrowse-mode t))
+:config (eyebrowse-mode t)
+(setq eyebrowse-mode-line-separator "|")
+;;(setq eyebrowse-mode-line-style t)
+)
 #+end_src
 
 ** Pdf Tools
@@ -859,6 +898,14 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
+
+** Org Reveal
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-reveal
+    :ensure t
+    :config (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js")
+)
+#+END_SRC
 
 
 ** Org Noter
@@ -959,7 +1006,8 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+end_src
 
 
-* JavaScript
+* Languages
+** JavaScript
 
 #+begin_src emacs-lisp
 (use-package company-tern :ensure t
@@ -993,7 +1041,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-* Typescript
+** Typescript
 
 #+begin_src emacs-lisp
 (use-package typescript-mode :ensure t
@@ -1037,13 +1085,13 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+end_src
 
 
-* Css
+** Css
 #+begin_src emacs-lisp
 (setq css-indent-offset 2) ; css-mode
 #+end_src
 
 
-* Go
+** Go
 
 #+begin_src emacs-lisp
 ;; go get: goflymake golang.org/x/tools/cmd/... godef gocode
@@ -1116,7 +1164,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-* C++
+** C++
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
   (lambda ()
@@ -1125,13 +1173,13 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+END_SRC
 
 
-* Python
+** Python
 #+BEGIN_SRC emacs-lisp
 (use-package elpy :ensure t :defer t :config (elpy-enable))
 #+END_SRC
 
 
-* C#
+** C#
 If it doesnt work start C# project with vs code, it will get the dependecies.
 Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 #+BEGIN_SRC emacs-lisp
@@ -1159,7 +1207,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 #+END_SRC
 
 
-* Markdown
+** Markdown
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t
@@ -1169,15 +1217,6 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "multimarkdown"))
-#+END_SRC
-
-
-* Org Reveal
-#+BEGIN_SRC emacs-lisp
-  (use-package ox-reveal
-    :ensure t
-    :config (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js")
-)
 #+END_SRC
 
 
