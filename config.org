@@ -36,6 +36,7 @@
 (setq version-control t )		; use version control
 (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
+(fset 'yes-or-no-p 'y-or-n-p)
 (setq vc-follow-symlinks t )				       ; don't ask for confirmation when opening symlinked file
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
 (setq inhibit-startup-screen t )	; inhibit useless and old-school startup screen
@@ -513,6 +514,11 @@ Making org mode work how I like it:
   (setq org-adapt-indentation nil)
   (setq-default org-display-custom-times t)
   (setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
+  (setq org-agenda-files '("~/personal/logbook.org"))
+  (setq org-default-notes-file '("~/personal/logbook.org"))
+  (setq org-capture-templates '(("t" "Add note [inbox]" entry
+                                 (file+headline "~/personal/logbook.org" "Inbox")
+                                 "* %i%?")))
 
   ;; (setq org-agenda-files '("~/Dev/notes/inbox.org"
   ;;                          "~/Dev/notes/gtd.org"
@@ -674,7 +680,7 @@ Making org mode work how I like it:
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
+                          ;;(bookmarks . 5)
                           (projects . 5)
                           (agenda . 5)
                           (registers . 5)))
@@ -846,10 +852,10 @@ Maps numbers to windows on screen, allows switching windows by window number
 ** Pdf Tools
 #+begin_src emacs-lisp
   (use-package pdf-tools
-    :ensure t
+;;    :ensure t
     :defer 1
     :config
-    (pdf-tools-install)
+;;    (pdf-tools-install)
     (evil-set-initial-state 'pdf-view-mode 'normal)
     (evil-define-key 'normal pdf-view-mode-map
       ;; motion
