@@ -364,7 +364,7 @@
      "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
      "c" '(kill-this-buffer :which-key "kill current buffer")
-   
+
 
      "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
 
@@ -433,6 +433,13 @@
      "wn" '(eyebrowse-next-window-config :which-key "next workspace")
      "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
      ;; (enlarge-window 15)
+
+     ;; Org Mode
+     "o" '(:ignore t :which-key "Org")
+     "oa" '(org-agenda :which-key "agenda")
+     "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
+     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
+     "oq" '(org-capture :which-key "quick capture")
      )
 
     )
@@ -514,11 +521,12 @@ Making org mode work how I like it:
   (setq org-adapt-indentation nil)
   (setq-default org-display-custom-times t)
   (setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
+  (setq org-agenda-window-setup 'only-window)
   (setq org-agenda-files '("~/personal/logbook.org"))
   (setq org-default-notes-file '("~/personal/logbook.org"))
   (setq org-capture-templates '(("t" "Add note [inbox]" entry
                                  (file+headline "~/personal/logbook.org" "Inbox")
-                                 "* %i%?")))
+                                 "*  %i%?")))
 
   ;; (setq org-agenda-files '("~/Dev/notes/inbox.org"
   ;;                          "~/Dev/notes/gtd.org"
