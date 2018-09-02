@@ -384,7 +384,8 @@
      "fr"	'(counsel-recentf   :which-key "recent files")
      "fs" '(save-buffer :which-key "save file")
      "f/" '(swiper :which-key "search in file")
-     "ft" '(treemacs-toggle :which-key "toggle treemacs")
+     ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
+     "ft" '(dired-sidebar-toggle-sidebar :which-key "toggle sidebar")
 
      ;; Git
      "g" '(:ignore t :which-key "Git")
@@ -746,51 +747,51 @@ Needs to be looked into
 
 ** Treemacs
 #+begin_src emacs-lisp
-(use-package treemacs
-  :ensure t
-  :defer t
-  ;;:init
-  ;;(with-eval-after-load 'winum
-  ;;  (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (use-package treemacs-evil
-      :ensure t
-      :demand t)
-    (setq treemacs-change-root-without-asking nil
-          treemacs-collapse-dirs              (if (executable-find "python") 3 0)
-          treemacs-file-event-delay           5000
-          treemacs-follow-after-init          t
-          treemacs-follow-recenter-distance   0.1
-          treemacs-goto-tag-strategy          'refetch-index
-          treemacs-indentation                2
-          treemacs-indentation-string         " "
-          treemacs-is-never-other-window      nil
-          treemacs-never-persist              nil
-          treemacs-no-png-images              nil
-          treemacs-recenter-after-file-follow nil
-          treemacs-recenter-after-tag-follow  nil
-          treemacs-show-hidden-files          t
-          treemacs-silent-filewatch           nil
-          treemacs-silent-refresh             nil
-          treemacs-sorting                    'alphabetic-desc
-          treemacs-tag-follow-cleanup         t
-          treemacs-tag-follow-delay           1.5
-          treemacs-width                      35)
+  ;; (use-package treemacs
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   ;;:init
+  ;;   ;;(with-eval-after-load 'winum
+  ;;   ;;  (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  ;;   :config
+  ;;   (progn
+  ;;     (use-package treemacs-evil
+  ;;       :ensure t
+  ;;       :demand t)
+  ;;     (setq treemacs-change-root-without-asking nil
+  ;;           treemacs-collapse-dirs              (if (executable-find "python") 3 0)
+  ;;           treemacs-file-event-delay           5000
+  ;;           treemacs-follow-after-init          t
+  ;;           treemacs-follow-recenter-distance   0.1
+  ;;           treemacs-goto-tag-strategy          'refetch-index
+  ;;           treemacs-indentation                2
+  ;;           treemacs-indentation-string         " "
+  ;;           treemacs-is-never-other-window      nil
+  ;;           treemacs-never-persist              nil
+  ;;           treemacs-no-png-images              nil
+  ;;           treemacs-recenter-after-file-follow nil
+  ;;           treemacs-recenter-after-tag-follow  nil
+  ;;           treemacs-show-hidden-files          t
+  ;;           treemacs-silent-filewatch           nil
+  ;;           treemacs-silent-refresh             nil
+  ;;           treemacs-sorting                    'alphabetic-desc
+  ;;           treemacs-tag-follow-cleanup         t
+  ;;           treemacs-tag-follow-delay           1.5
+  ;;           treemacs-width                      35)
 
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null (executable-find "python3"))))
-      (`(t . t)
-       (treemacs-git-mode 'extended))
-      (`(t . _)
-       (treemacs-git-mode 'simple)))))
-;;(use-package treemacs-projectile
-;;  :defer t
-;;  :ensure t
-;;  :config
-;;  (setq treemacs-header-function #'treemacs-projectile-create-header))
+  ;;     (treemacs-follow-mode t)
+  ;;     (treemacs-filewatch-mode t)
+  ;;     (pcase (cons (not (null (executable-find "git")))
+  ;;                  (not (null (executable-find "python3"))))
+  ;;       (`(t . t)
+  ;;        (treemacs-git-mode 'extended))
+  ;;       (`(t . _)
+  ;;        (treemacs-git-mode 'simple)))))
+  ;;(use-package treemacs-projectile
+  ;;  :defer t
+  ;;  :ensure t
+  ;;  :config
+  ;;  (setq treemacs-header-function #'treemacs-projectile-create-header))
 #+end_src
 
 ** Winum
@@ -989,6 +990,21 @@ Maps numbers to windows on screen, allows switching windows by window number
 (use-package rainbow-mode :ensure t)
 #+end_src
 
+** Vs Code Icon
+#+BEGIN_SRC emacs-lisp
+(use-package vscode-icon
+  :ensure t
+  :commands (vscode-icon-for-file))
+#+END_SRC
+** Dired sidebar
+#+BEGIN_SRC emacs-lisp
+(use-package dired-sidebar
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar)
+  :config
+  (setq dired-sidebar-theme 'vscode)
+)
+#+END_SRC
 ** TemplateForNewPackage
 #+begin_src emacs-lisp
 #+end_src
