@@ -1224,6 +1224,8 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
     :ensure t
     :after company
     :config
+    (setq omnisharp-company-ignore-case nil)
+    (setq omnisharp-company-sort-results nil)
 ;;(define-key omnisharp-mode-map (kbd ".") 'omnisharp-add-dot-and-auto-complete)
 (define-key omnisharp-mode-map (kbd "<C-SPC>") 'omnisharp-auto-complete)
     (add-hook 'csharp-mode-hook
