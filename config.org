@@ -722,6 +722,7 @@ Display horizontal lines instead of ugly characters
       (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
       (setq company-idle-delay 0.2)
       (add-hook 'company-mode-hook 'company-quickhelp-mode)
+      (setq company-dabbrev-downcase nil)
       ;(yas-reload-all)
 )
                                         ;  :config
@@ -915,7 +916,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
 ** Org Reveal
 #+BEGIN_SRC emacs-lisp
   (use-package ox-reveal
@@ -924,14 +924,12 @@ Maps numbers to windows on screen, allows switching windows by window number
 )
 #+END_SRC
 
-
 ** Org Noter
 #+begin_src emacs-lisp
   (use-package org-noter
   :defer t
     :ensure t)
 #+end_src
-
 
 
 
@@ -951,7 +949,6 @@ Maps numbers to windows on screen, allows switching windows by window number
     (setq scroll-margin 5)
      (setq scroll-conservatively most-positive-fixnum)
 #+end_src
-
 
 
 
