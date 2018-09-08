@@ -672,6 +672,13 @@ Making org mode work how I like it:
    )
 #+end_src
 
+** Eshell
+#+BEGIN_SRC emacs-lisp
+(use-package eshell-git-prompt 
+:ensure t
+:config (eshell-git-prompt-use-theme 'powerline)
+)
+#+END_SRC
 ** Avy
 #+begin_src emacs-lisp
 (use-package avy :ensure t
