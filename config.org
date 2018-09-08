@@ -725,6 +725,10 @@ Making org mode work how I like it:
 (use-package dashboard :ensure t
   :config
   (dashboard-setup-startup-hook)
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-banner-logo-title "“A good programmer is someone who always looks both ways before crossing a one-way street.” (Yoda)")
+  ;(setq dashboard-startup-banner (expand-file-name "emacs-logo.png"
+                                                   ;user-emacs-directory))
   (setq dashboard-items '((recents  . 5)
                           ;;(bookmarks . 5)
                           (projects . 5)
