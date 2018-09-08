@@ -380,6 +380,7 @@
      ;; Applications
      "a" '(:ignore t :which-key "Applications")
      "aa" '(ag :which-key "Ag")
+     "ae" '(eshell :which-key "eshell")
      "ar" '(ranger :which-key "Ranger")
      "at" '(open-termite :which-key "Termite")
      "ac" '(compile :which-key "compile")
