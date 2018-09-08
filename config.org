@@ -1357,3 +1357,4 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 (advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
 (set-cursor-color "#7B1FA2")
 #+END_SRC
+
