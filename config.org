@@ -1149,20 +1149,26 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 ** Go
-
+The code below worked to load everything from .zshrc
+#+BEGIN_SRC emacs-lisp
+;;(defun load-env-vars () 
+  ;;(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+    ;;(setenv "PATH" path)
+    ;;(setq exec-path (append (split-string-and-unquote path ":") exec-path)))
+;;
+  ;;(let ((gopath (shell-command-to-string ". ~/.zshrc; echo -n $GOPATH")))
+    ;;(setenv "GOPATH" gopath)
+    ;;(setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
+#+END_SRC
+However trying out this, will find out if it works the next time I work with Golang
+#+BEGIN_SRC emacs-lisp
+(use-package exec-path-from-shell
+  :ensure t
+  :config (exec-path-from-shell-initialize))
+#+END_SRC
+Rest of go settings
 #+begin_src emacs-lisp
 ;; go get: goflymake golang.org/x/tools/cmd/... godef gocode
-
-(defun load-env-vars () 
-  (let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
-    (setenv "PATH" path)
-    (setq exec-path (append (split-string-and-unquote path ":") exec-path)))
-
-  (let ((gopath (shell-command-to-string ". ~/.zshrc; echo -n $GOPATH")))
-    (setenv "GOPATH" gopath)
-    (setq exec-path (append (split-string-and-unquote gopath ":") exec-path)))
-  )
-
 (use-package go-mode :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
@@ -1205,10 +1211,6 @@ Maps numbers to windows on screen, allows switching windows by window number
   (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
   )
 
-
-
-
-
 (add-hook 'go-mode-hook (lambda ()
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
@@ -1218,9 +1220,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 (add-hook 'go-mode-hook (lambda () (whitespace-mode -1)))
 #+end_src
-
-
-
 ** C++
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
