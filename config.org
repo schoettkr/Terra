@@ -664,12 +664,12 @@ Making org mode work how I like it:
 
 ** Magit
 #+begin_src emacs-lisp
-  (use-package evil-magit
-   :ensure t
-;   :defer t ;; will loose keybinding overwritings
-   :config 
-   ;; (add-hook 'magit-mode-hook 'visual-line-mode)
-   )
+    (use-package evil-magit
+     :ensure t
+  ;   :defer t ;; will loose keybinding overwritings
+     :config 
+     ;; (add-hook 'magit-mode-hook 'visual-line-mode)
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 #+end_src
 
 ** Eshell
@@ -961,7 +961,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
 ** Org Reveal
 #+BEGIN_SRC emacs-lisp
   (use-package ox-reveal
@@ -982,7 +981,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
 ** Smooth Scroll
 #+begin_src emacs-lisp
   (use-package smooth-scroll
@@ -995,7 +993,6 @@ Maps numbers to windows on screen, allows switching windows by window number
     (setq scroll-margin 5)
      (setq scroll-conservatively most-positive-fixnum)
 #+end_src
-
 
 
 
@@ -1050,9 +1047,6 @@ Maps numbers to windows on screen, allows switching windows by window number
   (setq dired-sidebar-theme 'vscode)
 )
 #+END_SRC
-** TemplateForNewPackage
-#+begin_src emacs-lisp
-#+end_src
 
 
 * ProgMode
