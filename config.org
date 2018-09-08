@@ -1331,13 +1331,13 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
  ;   (enable-theme 'one-light)
 
-  (mapc (lambda (mode)
-          (font-lock-add-keywords
-          mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
-          ; '(("FIXME" 0 'show-paren-mismatch-face)
-          ;  ("\\.\\( \\)\\b" 1 'extra-whitespace-face))))
-        '(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
-          texinfo-mode))
+;; Regex to set color for single whitespaces
+  ;(mapc (lambda (mode)
+          ;(font-lock-add-keywords
+          ;mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
+        ;'(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
+          ;texinfo-mode))
+
 (defvar my-prev-whitespace-mode nil)
 (make-variable-buffer-local 'my-prev-whitespace-mode)
 (defun pre-popup-draw ()
