@@ -1093,7 +1093,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'prog-mode-hook 'evil-commentary-mode)
 (add-hook 'prog-mode-hook 'column-number-mode)
 ;;(add-hook 'prog-mode-hook 'yas-global-mode)
-(add-hook 'prog-mode-hook 'yas-minor-mode)
+;(add-hook 'prog-mode-hook 'yas-minor-mode)
 (add-hook 'prog-mode-hook 'indent-guide-mode)
 ;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
 (add-hook 'prog-mode-hook 'winner-mode)
@@ -1280,7 +1280,7 @@ Rest of go settings
 
 ** Python
 #+BEGIN_SRC emacs-lisp
-(use-package elpy :ensure t :defer t :config (elpy-enable))
+(use-package elpy :defer t :config (elpy-enable))
 #+END_SRC
 
 
@@ -1297,6 +1297,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
   (use-package omnisharp
     :ensure t
+    :defer t
     :after company
     :config
     (setq omnisharp-company-ignore-case nil)
