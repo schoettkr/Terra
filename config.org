@@ -349,11 +349,14 @@
     (general-define-key
      ;; replace default keybindings
      :states '(normal emacs)
-     "C-s" 'swiper             ; search for string in current buffer
+     ;;"C-s" 'swiper             ; search for string in current buffer
+     "C-s" 'helm-swoop             ; search for string in current buffer
      ;;   "C-p" 'company-select-previous             ; search for string in current buffer
      ;;   "C-n" 'company-select-next             ; search for string in current buffer
-     "/" 'swiper             ; search for string in current buffer
-     "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+     ;;"/" 'swiper             ; search for string in current buffer
+     "/" 'helm-swoop             ; search for string in current buffer
+     ;;"M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "M-x" 'helm-M-x        ; replace default M-x with helm backend
      "n" 'evil-search-previous
      "N" 'evil-search-next
      "\\" 'evil-ex-nohighlight
@@ -369,13 +372,15 @@
      :prefix "SPC"
 
      ;; simple command
-     "x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "x" 'helm-M-x        ; replace default M-x with helm backend
+     ;;"x" 'counsel-M-x        ; replace default M-x with ivy backend
      "TAB" '(mode-line-other-buffer :which-key "prev buffer")
      "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
      "C-'" 'avy-goto-word-1
      "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
      "RET" '(add-semicolon :which-key "Insert ; at eol")
-     "/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
+     ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
+     "/" '(helm-do-grep-ag :which-key "Helm grep ag search [everywhere]")
      ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
      "'" '(popup-shell :which-key "popup shell")
 
@@ -392,7 +397,8 @@
 
      ;; Buffer
      "b" '(:ignore t :which-key "Buffer")
-     "bb" '(ivy-switch-buffer :which-key "Change buffer")
+     ;;"bb" '(ivy-switch-buffer :which-key "Change buffer")
+     "bb" '(helm-mini :which-key "Change buffer")
      "bd" '(kill-buffer :which-key "kill buffer")
      "bp" '(switch-to-prev-buffer :which-key "prev buffer")
      "bn" '(switch-to-prev-buffer :which-key "next buffer")
@@ -413,11 +419,13 @@
 
      ;; Files
      "f" '(:ignore t :which-key "Files")
-     "ff" '(counsel-find-file :which-key "find file")
-     "f." '(counsel-find-file :which-key "find file")
-     "fr"	'(counsel-recentf   :which-key "recent files")
+     ;;"ff" '(counsel-find-file :which-key "find file")
+     ;;"fr"	'(counsel-recentf   :which-key "recent files")
+     "ff" '(helm-find-files :which-key "find file")
+     "fr"	'(helm-recentf   :which-key "recent files")
      "fs" '(save-buffer :which-key "save file")
-     "f/" '(swiper :which-key "search in file")
+     ;;"f/" '(swiper :which-key "search in file")
+     "f/" '(helm-swoop :which-key "search in file")
      ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
      "ft" '(dired-sidebar-toggle-sidebar :which-key "toggle sidebar")
 
@@ -435,7 +443,8 @@
 
      ;; Projects
      "p" '(:ignore t :which-key "Projects")
-     "pf" '(counsel-git :which-key "Find file in git project")
+     ;"pf" '(counsel-git :which-key "Find file in git project")
+     "pf" '(helm-ls-git-ls :which-key "Find file in git project")
      "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
      "pp" '(projectile-switch-project :which-key "Switch project")
 
