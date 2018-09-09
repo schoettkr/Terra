@@ -1062,6 +1062,19 @@ Maps numbers to windows on screen, allows switching windows by window number
   :ensure t
   :commands (vscode-icon-for-file))
 #+END_SRC
+** Writer Mode
+#+BEGIN_SRC emacs-lisp
+;(use-package poet-theme
+  ;  :ensure t)
+  ;(use-package olivetti
+  ;  :ensure t)
+  (use-package writeroom-mode
+    :ensure t)
+  (defun writemode ()
+    (interactive)
+    (writeroom-mode)
+    (load-theme 'poet))
+#+END_SRC
 ** Dired sidebar
 #+BEGIN_SRC emacs-lisp
 (use-package dired-sidebar
