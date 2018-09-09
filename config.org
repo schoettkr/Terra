@@ -1351,8 +1351,9 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
   (define-key global-map [(S-return)] 'add-semicolon)
 
 (evil-add-command-properties #'tide-jump-to-definition :jump t)
-(evil-add-command-properties #'evil-previous-line :jump t)
-(evil-add-command-properties #'evil-next-line :jump t)
+;;(evil-add-command-properties #'evil-previous-line :jump t)
+;;(evil-add-command-properties #'evil-next-line :jump t)
+#+END_SRC
 #+END_SRC
 
 
