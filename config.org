@@ -596,10 +596,12 @@ Making org mode work how I like it:
 
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
+(use-package julia-mode :ensure t) ;; dependency for ess-site
   (use-package ess
     :ensure t
     :defer t
-    :init (require 'ess-site)
+    :init 
+    (require 'ess-site)
     :config 
     (general-define-key
      :states '(normal motion)
