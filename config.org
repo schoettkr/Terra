@@ -63,7 +63,6 @@
 
 
 * Appearance
-
 ** All the icons
 #+begin_src emacs-lisp
   (setq load-prefer-newer t)
@@ -204,6 +203,8 @@
   :ensure t
   :config
   (load-theme 'atom-one-dark))
+
+
 
 
   ;;  (use-package doom-themes
@@ -960,8 +961,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 ;    (kbd "<return>") 'pdf-occur-goto-occurrence)
 #+end_src
 
-
-
 ** Org Reveal
 #+BEGIN_SRC emacs-lisp
   (use-package ox-reveal
@@ -980,8 +979,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
-
 ** Smooth Scroll
 #+begin_src emacs-lisp
   (use-package smooth-scroll
@@ -994,8 +991,6 @@ Maps numbers to windows on screen, allows switching windows by window number
     (setq scroll-margin 5)
      (setq scroll-conservatively most-positive-fixnum)
 #+end_src
-
-
 
 
 
