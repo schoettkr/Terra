@@ -2,6 +2,7 @@
 #+begin_src emacs-lisp
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
+(setq gc-cons-threshold 100000000)
 #+end_src
 
 
