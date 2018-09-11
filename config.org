@@ -350,15 +350,15 @@
      ;; replace default keybindings
      :states '(normal emacs)
      ;;"C-s" 'swiper             ; search for string in current buffer
-     "C-s" 'helm-swoop             ; search for string in current buffer
+     "C-s" 'helm-do-grep-ag
      ;;   "C-p" 'company-select-previous             ; search for string in current buffer
      ;;   "C-n" 'company-select-next             ; search for string in current buffer
      ;;"/" 'swiper             ; search for string in current buffer
-     "/" 'helm-swoop             ; search for string in current buffer
+     "/" 'evil-search-forward             ; search for string in current buffer
      ;;"M-x" 'counsel-M-x        ; replace default M-x with ivy backend
      "M-x" 'helm-M-x        ; replace default M-x with helm backend
-     "n" 'evil-search-previous
-     "N" 'evil-search-next
+     "N" 'evil-search-previous
+     "n" 'evil-search-next
      "\\" 'evil-ex-nohighlight
      ;; "C-w" 'evil-delete-buffer
      )
@@ -380,7 +380,7 @@
      "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
      "RET" '(add-semicolon :which-key "Insert ; at eol")
      ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
-     "/" '(helm-do-grep-ag :which-key "Helm grep ag search [everywhere]")
+     "/" '(helm-swoop :which-key "Helm swoop")
      ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
      "'" '(popup-shell :which-key "popup shell")
 
