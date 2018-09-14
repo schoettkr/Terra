@@ -1298,7 +1298,6 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
   (use-package omnisharp
     :ensure t
-    :defer t
     :after company
     :config
     (setq omnisharp-company-ignore-case nil)
