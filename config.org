@@ -400,6 +400,7 @@
      ;;"bb" '(ivy-switch-buffer :which-key "Change buffer")
      "bb" '(helm-mini :which-key "Change buffer")
      "bd" '(kill-buffer :which-key "kill buffer")
+     "bD" '(kill-some-buffers :which-key "kill some buffers")
      "bp" '(switch-to-prev-buffer :which-key "prev buffer")
      "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
