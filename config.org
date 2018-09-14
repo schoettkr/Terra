@@ -289,7 +289,7 @@
                           (user-full-name)
                           user-mail-address
                           (recent-keys)))))
-    (format "%s-%s-4%s-%s%s-%s"
+    (insert (format "%s-%s-4%s-%s%s-%s"
             (substring rnd 0 8)
             (substring rnd 8 12)
             (substring rnd 13 16)
@@ -301,8 +301,8 @@
                       (string-to-number
                        (substring rnd 16 18) 16))))
             (substring rnd 18 20)
-            (substring rnd 20 32))
-    (insert rnd)))
+            (substring rnd 20 32)))
+    ))
 ;; (defun popup-shell ()
 ;;   (interactive)
 ;;   (ansi-term "/usr/bin/zsh" "terminal")
