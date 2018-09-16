@@ -188,24 +188,24 @@
 #+END_SRC
 ** Theme
 #+begin_src emacs-lisp
-   ;;(use-package subatomic-theme :ensure t)
-   ;;(use-package moe-theme :ensure t)
-   ;; (load-theme 'github-modern t)
-   ;; (load-theme 'subatomic t)
-   ;; (moe-light)
+  (setq dark-theme nil)
+  (if dark-theme
+      (use-package atom-one-dark-theme
+        :ensure t
+        :config
+        (load-theme 'atom-one-dark))
+    (load-theme 'tsdh-light))
 
-; (use-package spacemacs-theme
-;   :ensure t
-;   :defer t
-;   :init (load-theme 'spacemacs-light t))
+  ;;(use-package subatomic-theme :ensure t)
+  ;;(use-package moe-theme :ensure t)
+  ;; (load-theme 'github-modern t)
+  ;; (load-theme 'subatomic t)
+  ;; (moe-light)
 
-(use-package atom-one-dark-theme
-  :ensure t
-  :config
-  (load-theme 'atom-one-dark))
-
-
-
+  ; (use-package spacemacs-theme
+  ;   :ensure t
+  ;   :defer t
+  ;   :init (load-theme 'spacemacs-light t))
 
   ;;  (use-package doom-themes
   ;;   :ensure t
@@ -215,8 +215,7 @@
   ;; ;; (load-theme 'doom-one-light)
   ;; ;(load-theme 'doom-one)
   ;; (load-theme 'doom-dracula)
-   ;; (load-theme 'doom-molokai)
-
+  ;; (load-theme 'doom-molokai)
 #+end_src
 
 
