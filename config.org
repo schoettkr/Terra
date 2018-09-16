@@ -523,20 +523,28 @@ Part below can be used to get a more recent version of org mode
 ;;(require 'org)
 #+end_src
 
-Making org mode work how I like it:
+Add org-bullets for nice icons instead of stars
 #+begin_src emacs-lisp
   (use-package org-bullets
     :ensure t
     :defer t
     :init 
     (setq org-bullets-bullet-list
-          '("◉" "◎" "⚫" "○" "►" "◇"))
+          '("◉" "◎" "⚫" "○" "►" "◇")))
     ;; org-hide-emphasis-markers t)
     ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
     (setq org-format-latex-options
           (quote(:foreground default :background default :scale 1.7 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
                              ("begin" "$1" "$" "$$" "\\(" "\\["))))
-    :config
+    ;(require 'epa-file)
+    ;(epa-file-enable)
+    (require 'org-crypt) 
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    ;; GPG key to use for encryption
+    ;; Either the Key ID or set to nil to use symmetric encryption.
+    (setq org-crypt-key "B489EB34B4E6E154")
+    
     (general-define-key
      :states '(normal motion)
      :keymaps 'org-mode-map
@@ -544,7 +552,7 @@ Making org mode work how I like it:
      "m" '(:ignore :which-key "Major Mode[Org]")
      "mp" '(org-latex-export-to-pdf :which-key "Export to Pdf")
      )
-  )
+
     (add-hook 'org-mode-hook 'visual-line-mode)
     (add-hook 'org-mode-hook 'company-mode)
     (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
