@@ -189,34 +189,17 @@
 #+END_SRC
 ** Theme
 #+begin_src emacs-lisp
-  (setq dark-theme nil)
+  (use-package base16-theme :ensure t)
+  (setq dark-theme t)
+
   (if dark-theme
-      (use-package atom-one-dark-theme
-        :ensure t
-        :config
-        (load-theme 'atom-one-dark))
-    (load-theme 'tsdh-light))
+      (load-theme 'base16-materia)
+    (load-theme 'base16-material-lighter))
 
-  ;;(use-package subatomic-theme :ensure t)
-  ;;(use-package moe-theme :ensure t)
-  ;; (load-theme 'github-modern t)
-  ;; (load-theme 'subatomic t)
-  ;; (moe-light)
 
-  ; (use-package spacemacs-theme
-  ;   :ensure t
-  ;   :defer t
-  ;   :init (load-theme 'spacemacs-light t))
-
-  ;;  (use-package doom-themes
-  ;;   :ensure t
-  ;;   :defer t
-  ;;   :config (setq doom-themes-enable-bold nil
-  ;;                 doom-themes-enable-italic nil))
-  ;; ;; (load-theme 'doom-one-light)
-  ;; ;(load-theme 'doom-one)
-  ;; (load-theme 'doom-dracula)
-  ;; (load-theme 'doom-molokai)
+  ;;(load-theme 'base16-material-lighter)
+  ;;(load-theme 'base16-one-light)
+  ;; (load-theme 'base16-harmonic-light)
 #+end_src
 
 
@@ -857,6 +840,7 @@ Add org-bullets for nice icons instead of stars
                           (projects . 5)
                           (agenda . 5)
                           (registers . 5)))
+  (set-face-attribute 'widget-button nil :underline nil)
   )
 ;; (add-hook 'dashboard-mode-hook
 ;; 	    (lambda ()
