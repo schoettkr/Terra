@@ -211,6 +211,11 @@
 ;;    (flymake-goto-next-error)
 ;;    (flymake-popup-current-error-menu)
 ;;    )
+(defun my/disable-scroll-bars (frame)
+  (modify-frame-parameters frame
+                           '((vertical-scroll-bars . nil)
+                             (horizontal-scroll-bars . nil))))
+(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
 (defun open-termite ()
   (interactive "@")
@@ -488,7 +493,7 @@
      ;;"f/" '(swiper :which-key "search in file")
      "f/" '(helm-swoop :which-key "search in file")
      ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
-     "ft" '(dired-sidebar-toggle-sidebar :which-key "toggle sidebar")
+     "ft" '(neotree-toggle :which-key "toggle sidebar")
 
      ;; Git
      "g" '(:ignore t :which-key "Git")
@@ -1147,12 +1152,41 @@ Maps numbers to windows on screen, allows switching windows by window number
 #+END_SRC
 ** Dired sidebar
 #+BEGIN_SRC emacs-lisp
-(use-package dired-sidebar
-  :ensure t
-  :commands (dired-sidebar-toggle-sidebar)
-  :config
-  (setq dired-sidebar-theme 'vscode)
-)
+  ;; (use-package dired-sidebar
+  ;;   :ensure t
+  ;;   :commands (dired-sidebar-toggle-sidebar)
+  ;;   :config
+  ;;   (setq dired-sidebar-theme 'vscode)
+  ;; )
+  (setq dired-dwim-target t)
+#+END_SRC
+
+
+** Neotree
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree :ensure t
+    :config 
+    (setq neo-smart-open t)
+    (setq neo-theme 'ascii)
+    (evil-set-initial-state 'neotree-mode 'normal) ;; Neotree start in normal by default.
+
+    ;; (add-hook 'neotree-mode-hook
+    ;;           (lambda ()
+                (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+                (evil-define-key 'normal neotree-mode-map (kbd "SPC") nil)
+                (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+                (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+                (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+                (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+                (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
+                (evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
+                (evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
+                (evil-define-key 'normal neotree-mode-map (kbd "L") 'neotree-change-root)
+                (evil-define-key 'normal neotree-mode-map (kbd "M") 'neotree-stretch-toggle)
+                (evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-rename-node)
+                (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
+  ;;)
+    ;;)
 #+END_SRC
 
 
