@@ -668,6 +668,24 @@ Add org-bullets for nice icons instead of stars
   ;;   (add-hook 'org-mode-hook (lambda () (latex-preview-pane-mode 1))))
 #+end_src
 
+# Add org ref for citation management
+#+begin_src emacs-lisp
+  ;; (setq org-latex-pdf-process
+  ;;       '("pdflatex -interaction nonstopmode -output-directory %o %f"
+  ;;         "bibtex %b"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o %f"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;;(use-package org-ref :ensure t)
+
+;  (setq org-latex-to-pdf-process
+;  '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
+(setq org-latex-pdf-process
+      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -interaction nonstopmode -output-directory %o %f"))
+#+end_src
+
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
 (use-package julia-mode :ensure t) ;; dependency for ess-site
