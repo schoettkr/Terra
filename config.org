@@ -1117,9 +1117,9 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 ** Beacon
 #+begin_src emacs-lisp
-(use-package beacon 
-:ensure t
-:config (beacon-mode 1))
+  ;; (use-package beacon 
+  ;; :ensure t
+  ;; :config (beacon-mode 1))
 #+end_src
 ** Color Identifiers
 #+begin_src emacs-lisp
@@ -1223,6 +1223,7 @@ Maps numbers to windows on screen, allows switching windows by window number
 (add-hook 'prog-mode-hook 'linum-relative-mode)
 ;;(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'show-paren-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
 #+end_src
 
 
