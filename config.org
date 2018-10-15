@@ -190,8 +190,8 @@
 ** Theme
 #+begin_src emacs-lisp
     (use-package base16-theme :ensure t)
-  ;;  (use-package gruvbox-theme :ensure t)
     (setq dark-theme nil)
+    (use-package gruvbox-theme :ensure t)
 
     (if dark-theme
         ;; (load-theme 'base16-materia)
@@ -1165,6 +1165,7 @@ Maps numbers to windows on screen, allows switching windows by window number
   ;  :ensure t)
   (use-package writeroom-mode
     :ensure t
+    :config
    (setq writeroom-fullscreen-effect 'maximized))
   (defun writemode ()
     (interactive)
