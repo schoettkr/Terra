@@ -1103,7 +1103,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 
 
-
 ** Smooth Scroll
 #+begin_src emacs-lisp
   (use-package smooth-scroll
@@ -1116,7 +1115,6 @@ Maps numbers to windows on screen, allows switching windows by window number
     (setq scroll-margin 5)
      (setq scroll-conservatively most-positive-fixnum)
 #+end_src
-
 
 
 ** Beacon
@@ -1184,7 +1182,6 @@ Maps numbers to windows on screen, allows switching windows by window number
   (setq dired-dwim-target t)
 #+END_SRC
 
-
 ** Neotree
 #+BEGIN_SRC emacs-lisp
   (use-package neotree :ensure t
@@ -1211,6 +1208,38 @@ Maps numbers to windows on screen, allows switching windows by window number
                 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle))
   ;;)
     ;;)
+#+END_SRC
+
+** Ispell
+#+BEGIN_SRC emacs-lisp
+  ;; (setenv
+  ;;   "DICPATH"
+  ;;   "/usr/share/hunspell/de_DE")
+  ;; ;; Tell ispell-mode to use hunspell.
+  (setq
+    ispell-program-name
+    "hunspell")
+
+;  (add-to-list 'ispell-local-dictionary-alist '("deutsch-hunspell"
+;                                                "[[:alpha:]]"
+;                                                "[^[:alpha:]]"
+;                                                "[']"
+;                                                t
+;                                                ("-d" "de_DE"); Dictionary file name
+;                                                nil
+;                                                iso-8859-1))
+
+  ;; (add-to-list 'ispell-local-dictionary-alist '("english-hunspell"
+  ;;                                               "[[:alpha:]]"
+  ;;                                               "[^[:alpha:]]"
+  ;;                                               "[']"
+  ;;                                               t
+  ;;                                               ("-d" "en_US")
+  ;;                                               nil
+                                                ;; iso-8859-1))
+
+  (setq ispell-program-name "hunspell"          ; Use hunspell to correct mistakes
+        ispell-dictionary   "deutsch") ; Default dictionary to use -> ispell-hunspell-dictionary-alist
 #+END_SRC
 
 
