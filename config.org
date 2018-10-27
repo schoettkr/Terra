@@ -1042,6 +1042,7 @@ Display horizontal lines instead of ugly characters
       (setq company-dabbrev-downcase nil)
       ;(yas-reload-all)
 )
+(setq company-clang-executable "/usr/bin/clang")
                                         ;  :config
                                         ;  (global-company-mode t))
 (with-eval-after-load 'company
