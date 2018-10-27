@@ -553,7 +553,7 @@
      "o" '(:ignore t :which-key "Org")
      "oa" '(org-agenda :which-key "agenda")
      "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
-     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
+;     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
      "oq" '(org-capture :which-key "quick capture")
      )
 
