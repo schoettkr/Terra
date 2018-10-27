@@ -419,14 +419,12 @@
     (general-define-key
      ;; replace default keybindings
      :states '(normal emacs)
-     ;;"C-s" 'swiper             ; search for string in current buffer
-     "C-s" 'helm-do-grep-ag
+     "C-s" 'swiper             ; search for string in current buffer
      ;;   "C-p" 'company-select-previous             ; search for string in current buffer
      ;;   "C-n" 'company-select-next             ; search for string in current buffer
-     ;;"/" 'swiper             ; search for string in current buffer
-     "/" 'evil-search-forward             ; search for string in current buffer
-     ;;"M-x" 'counsel-M-x        ; replace default M-x with ivy backend
-     "M-x" 'helm-M-x        ; replace default M-x with helm backend
+     "/" 'swiper             ; search for string in current buffer
+     ;"/" 'evil-search-forward             ; search for string in current buffer
+     "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
      "N" 'evil-search-previous
      "n" 'evil-search-next
      "\\" 'evil-ex-nohighlight
@@ -442,15 +440,14 @@
      :prefix "SPC"
 
      ;; simple command
-     "x" 'helm-M-x        ; replace default M-x with helm backend
-     ;;"x" 'counsel-M-x        ; replace default M-x with ivy backend
+     "x" 'counsel-M-x        ; replace default M-x with ivy backend
      "TAB" '(mode-line-other-buffer :which-key "prev buffer")
      "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
      "C-'" 'avy-goto-word-1
      "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
      "RET" '(add-semicolon :which-key "Insert ; at eol")
      ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
-     "/" '(helm-swoop :which-key "Helm swoop")
+     "/" '(evil-search-forward :which-key "Swiper search")
      ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
      "'" '(popup-shell :which-key "popup shell")
 
@@ -467,8 +464,7 @@
 
      ;; Buffer
      "b" '(:ignore t :which-key "Buffer")
-     ;;"bb" '(ivy-switch-buffer :which-key "Change buffer")
-     "bb" '(helm-mini :which-key "Change buffer")
+     "bb" '(ivy-switch-buffer :which-key "Change buffer")
      "bd" '(kill-buffer :which-key "kill buffer")
      "bD" '(kill-some-buffers :which-key "kill some buffers")
      "bp" '(switch-to-prev-buffer :which-key "prev buffer")
@@ -490,13 +486,10 @@
 
      ;; Files
      "f" '(:ignore t :which-key "Files")
-     ;;"ff" '(counsel-find-file :which-key "find file")
-     ;;"fr"	'(counsel-recentf   :which-key "recent files")
-     "ff" '(helm-find-files :which-key "find file")
-     "fr"	'(helm-recentf   :which-key "recent files")
+     "ff" '(counsel-find-file :which-key "find file")
+     "fr"	'(counsel-recentf   :which-key "recent files")
      "fs" '(save-buffer :which-key "save file")
-     ;;"f/" '(swiper :which-key "search in file")
-     "f/" '(helm-swoop :which-key "search in file")
+     "f/" '(swiper :which-key "search in file")
      ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
      "ft" '(neotree-toggle :which-key "toggle sidebar")
 
@@ -514,8 +507,7 @@
 
      ;; Projects
      "p" '(:ignore t :which-key "Projects")
-     ;"pf" '(counsel-git :which-key "Find file in git project")
-     "pf" '(helm-ls-git-ls :which-key "Find file in git project")
+     "pf" '(counsel-git :which-key "Find file in git project")
      "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
      "pp" '(projectile-switch-project :which-key "Switch project")
 
@@ -574,7 +566,7 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   (setcdr evil-insert-state-map nil)
-  (define-key evil-insert-state-map (kbd "M-x") 'helm-M-x)
+  (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   (setq-default evil-shift-width 2)
   (setq evil-search-module 'evil-search)
@@ -934,6 +926,7 @@ Add org-bullets for nice icons instead of stars
 #+begin_src emacs-lisp
 (use-package ivy
   :defer t
+  :ensure t
   :commands (ivy-switch-buffer
              ivy-switch-buffer-other-window)
   :config
@@ -943,6 +936,7 @@ Add org-bullets for nice icons instead of stars
 ** Counsel
 #+begin_src emacs-lisp
 (use-package counsel
+  :ensure t
   :defer t
   :config
   ;;  (setq counsel-find-file-at-point t)
@@ -957,29 +951,12 @@ Add org-bullets for nice icons instead of stars
   :defer t
   :config
   (setq projectile-mode-line " foo")
-  (setq projectile-completion-system 'helm)
+  (setq projectile-completion-system 'ivy)
   (setq projectile-file-exists-local-cache-expire (* 5 60))
   (setq projectile-globally-ignored-directories (append projectile-globally-ignored-directories  "__pycache__" ".cquery_cached_index"))
   (projectile-global-mode t))
 #+end_src
 
-** Helm
-#+BEGIN_SRC emacs-lisp
-(use-package helm :ensure t
-:config
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-candidate-number-limit 50
-      helm-ff-skip-boring-files t
-      helm-linum-relative-mode t))
-
-(use-package helm-swoop :ensure t
-:config (setq helm-swoop-pre-input-function (lambda () ""))
-(setq helm-swoop-speed-or-color t)
-)
-(use-package helm-projectile :ensure t)
-(use-package helm-ls-git :ensure t)
-#+END_SRC
 ** Linum Relative
 #+begin_src emacs-lisp
   (use-package linum-relative :ensure t
