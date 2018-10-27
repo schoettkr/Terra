@@ -1395,6 +1395,30 @@ Maps numbers to windows on screen, allows switching windows by window number
   (use-package evil-goggles :ensure t)
 
 #+END_SRC
+** Language Server Protocol
+Generic LSP emacs implementation
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-mode
+  :ensure t
+  )
+#+END_SRC
+
+Provide as company backend
+#+BEGIN_SRC emacs-lisp
+(use-package company-lsp
+  :ensure t
+  :after company lsp-mode
+  :init
+  (push 'company-lsp company-backends))
+#+END_SRC
+*** C
+#+BEGIN_SRC emacs-lisp
+(use-package cquery :ensure t
+ :config
+(setq cquery-executable "/usr/bin/cquery"))
+#+END_SRC
+Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
+
 
 * ProgMode
 #+begin_src emacs-lisp
