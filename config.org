@@ -646,11 +646,11 @@ Add org-bullets for nice icons instead of stars
   (setq-default org-display-custom-times t)
   (setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
   (setq org-agenda-window-setup 'only-window)
-  (setq org-agenda-files '("~/personal/logbook.org"))
-  (setq org-default-notes-file '("~/personal/logbook.org"))
-  (setq org-capture-templates '(("t" "Add note [inbox]" entry
-                                 (file+headline "~/personal/logbook.org" "Inbox")
-                                 "*  %i%?")))
+;  (setq org-agenda-files '("~/personal/logbook.org"))
+;  (setq org-default-notes-file '("~/personal/logbook.org"))
+;  (setq org-capture-templates '(("t" "Add note [inbox]" entry
+;                                 (file+headline "~/personal/logbook.org" "Inbox")
+;                                 "*  %i%?")))
 
   ;; (setq org-agenda-files '("~/Dev/notes/inbox.org"
   ;;                          "~/Dev/notes/gtd.org"
