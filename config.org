@@ -188,20 +188,23 @@
 #+END_SRC
 ** Theme
 #+begin_src emacs-lisp
-    (use-package base16-theme :ensure t)
-    (setq dark-theme nil)
-    (use-package gruvbox-theme :ensure t)
+  ;; (use-package base16-theme :ensure t)
+  ;; (setq dark-theme nil)
+  ;; (use-package gruvbox-theme :ensure t)
 
-    (if dark-theme
-        ;; (load-theme 'base16-materia)
-        (load-theme 'gruvbox-dark-soft)
-      (load-theme 'gruvbox-light-medium))
-      ;; (load-theme 'base16-material-lighter))
+  ;; (if dark-theme
+      ;; (load-theme 'base16-materia)
+      ;; (load-theme 'gruvbox-dark-soft)
+    ;; (load-theme 'gruvbox-light-medium))
+    ;; (load-theme 'base16-material-lighter))
 
 
-    ;;(load-theme 'base16-material-lighter)
-    ;;(load-theme 'base16-one-light)
-    ;; (load-theme 'base16-harmonic-light)
+  ;;(load-theme 'base16-material-lighter)
+  ;;(load-theme 'base16-one-light)
+  ;; (load-theme 'base16-harmonic-light)
+
+  (use-package one-themes :ensure t
+   :init (load-theme 'one-light t))
 #+end_src
 
 
