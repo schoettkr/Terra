@@ -570,8 +570,6 @@
 (setq evil-want-Y-yank-to-eol t)
 (use-package evil
   :ensure t
-  :defer .1
-  ; maybe setq vars in :init
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
