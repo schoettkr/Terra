@@ -959,6 +959,7 @@ Add org-bullets for nice icons instead of stars
   (setq projectile-mode-line " foo")
   (setq projectile-completion-system 'helm)
   (setq projectile-file-exists-local-cache-expire (* 5 60))
+  (setq projectile-globally-ignored-directories (append projectile-globally-ignored-directories  "__pycache__" ".cquery_cached_index"))
   (projectile-global-mode t))
 #+end_src
 
