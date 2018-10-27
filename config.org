@@ -1035,7 +1035,8 @@ Display horizontal lines instead of ugly characters
 (use-package company :ensure t
       :defer t
       :config
-      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+      ;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+      (setq company-backends company-backends)
       (setq company-idle-delay 0.2)
       (add-hook 'company-mode-hook 'company-quickhelp-mode)
       (setq company-dabbrev-downcase nil)
