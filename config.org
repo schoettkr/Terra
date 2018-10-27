@@ -688,6 +688,10 @@ Add org-bullets for nice icons instead of stars
         "bibtex %b"
         "pdflatex -interaction nonstopmode -output-directory %o %f"
         "pdflatex -interaction nonstopmode -output-directory %o %f"))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (C . t)))
 #+end_src
 
 ** Emacs Speak Statistics (ESS)
