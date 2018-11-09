@@ -1142,11 +1142,12 @@ Maps numbers to windows on screen, allows switching windows by window number
 
 ** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
-(use-package eyebrowse :ensure t :defer 1
-:config (eyebrowse-mode t)
-(setq eyebrowse-mode-line-separator "|")
-;;(setq eyebrowse-mode-line-style t)
-)
+  (use-package eyebrowse :ensure t 
+  :config (eyebrowse-mode t)
+  ;(set-face-foreground 'eyebrowse-mode-line-active "medium turquoise")
+  (set-face-foreground 'eyebrowse-mode-line-active "purple")
+  (setq eyebrowse-mode-line-separator "|")
+  (setq eyebrowse-new-workspace "*dashboard*"))
 #+end_src
 
 ** Pdf Tools
