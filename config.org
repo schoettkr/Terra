@@ -777,13 +777,6 @@ Add org-bullets for nice icons instead of stars
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 #+end_src
 
-** Eshell
-#+BEGIN_SRC emacs-lisp
-(use-package eshell-git-prompt 
-:ensure t
-:config (eshell-git-prompt-use-theme 'powerline)
-)
-#+END_SRC
 ** Ediff
 #+BEGIN_SRC emacs-lisp
   (require 'ediff nil t)
@@ -1208,14 +1201,6 @@ Maps numbers to windows on screen, allows switching windows by window number
 ;    (kbd "<return>") 'pdf-occur-goto-occurrence)
 #+end_src
 
-** Org Reveal
-#+BEGIN_SRC emacs-lisp
-  (use-package ox-reveal
-    :ensure t
-    :config (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js")
-)
-#+END_SRC
-
 ** Org Noter
 #+begin_src emacs-lisp
   (use-package org-noter
@@ -1236,25 +1221,6 @@ Maps numbers to windows on screen, allows switching windows by window number
      (setq scroll-conservatively most-positive-fixnum)
 #+end_src
 
-** Beacon
-#+begin_src emacs-lisp
-  ;; (use-package beacon 
-  ;; :ensure t
-  ;; :config (beacon-mode 1))
-#+end_src
-** Color Identifiers
-#+begin_src emacs-lisp
-  (use-package color-identifiers-mode 
-  :ensure t
-  :config 
-;;  (add-hook 'after-init-hook 'global-color-identifiers-mode)
-  (add-to-list
-   'color-identifiers:modes-alist
-   `(typescript-mode . ("[^.][[:space:]]*"
-                "\\_<\\([a-zA-Z_$]\\(?:\\s_\\|\\sw\\)*\\)"
-                (nil font-lock-variable-name-face))))
-  )
-#+end_src
 ** Eshell Autosuggest
 #+begin_src emacs-lisp
 (use-package esh-autosuggest
@@ -1291,23 +1257,13 @@ Maps numbers to windows on screen, allows switching windows by window number
     (writeroom-mode)
     )
 #+END_SRC
-** Dired sidebar
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package dired-sidebar
-  ;;   :ensure t
-  ;;   :commands (dired-sidebar-toggle-sidebar)
-  ;;   :config
-  ;;   (setq dired-sidebar-theme 'vscode)
-  ;; )
-  (setq dired-dwim-target t)
-#+END_SRC
-
 ** Neotree
 #+BEGIN_SRC emacs-lisp
   (use-package neotree :ensure t
     :config 
     (setq neo-smart-open t)
-    (setq neo-theme 'ascii)
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
     (evil-set-initial-state 'neotree-mode 'normal) ;; Neotree start in normal by default.
 
     ;; (add-hook 'neotree-mode-hook
