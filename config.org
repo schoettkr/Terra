@@ -72,24 +72,27 @@
 
 ** General
 #+begin_src emacs-lisp
-  ;; (set-face-attribute 'default nil :height 120)
-  ;; (set-default-font "Noto Sans 12")
-  ;; (set-default-font "Fira Mono 12")
-;; DejaVuSansMono FTW!!!
-  (add-to-list 'default-frame-alist '(font . "DejaVuSansMono 11"))
-;;  (add-to-list 'default-frame-alist '(font . "Hack 12"))
-;;  (add-to-list 'default-frame-alist '(font . "Fira Mono 12"))
-  ;; (add-to-list 'default-frame-alist '(font . "Input Mono Light"))
-  ;; (set-default-font "Fira Code 12")
-  ;; (set-default-font "Hack 12")
-  ;; (set-default-font "Inconsolata 14")
-  ;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
-  ;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
-  (setq whitespace-line-column 999)
-  (set-face-bold-p 'bold nil)
-  ;;(set-window-fringes (selected-window) 0 0 nil)
-  ;; (setq whitespace-style '(faces spaces indentation))
+      (setq default-frame-alist '((internal-border-width . 40) (font . "Bront 13")))
+      (setq whitespace-line-column 999)
+      (set-face-bold-p 'bold nil)
 
+      ;; (set-face-attribute 'default nil :height 120)
+      ;; (set-default-font "Noto Sans 12")
+      ;; (set-default-font "Fira Mono 12")
+      ;; (add-to-list 'default-frame-alist '(font . "Overpass Mono 11"))
+      ;; DejaVuSansMono FTW!!!
+      ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono 11"))
+      ;; (add-to-list 'default-frame-alist '(font . "Bront 13")) ;; love dis font omfg! gives me apple vibes on linux
+      ;; (add-to-list 'default-frame-alist '(font . "Hack 12"))
+      ;; (add-to-list 'default-frame-alist '(font . "Fira Mono 12"))
+      ;; (add-to-list 'default-frame-alist '(font . "Input Mono Light"))
+      ;; (set-default-font "Fira Code 12")
+      ;; (set-default-font "Hack 12")
+      ;; (set-default-font "Inconsolata 14")
+      ;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
+      ;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+      ;; (set-window-fringes (selected-window) 0 0 nil)
+      ;; (setq whitespace-style '(faces spaces indentation))
 #+end_src
 
 ** Modeline
