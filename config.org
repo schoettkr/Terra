@@ -1534,10 +1534,18 @@ Rest of go settings
                           (company-mode)))
 
 (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
-(add-hook 'go-mode-hook #'load-env-vars)
+;(add-hook 'go-mode-hook #'load-env-vars)
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 (add-hook 'go-mode-hook (lambda () (whitespace-mode -1)))
 #+end_src
+
+** C
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-hook
+  (lambda ()
+    (set (make-local-variable 'compile-command)
+         (format "gcc -std=c99 -Wall -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
+#+END_SRC
 ** C++
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c++-mode-hook
@@ -1545,7 +1553,6 @@ Rest of go settings
     (set (make-local-variable 'compile-command)
          (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
 #+END_SRC
-
 
 ** Python
 #+BEGIN_SRC emacs-lisp
