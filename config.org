@@ -1352,6 +1352,11 @@ Provide as company backend
 #+END_SRC
 Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
+** Hackernews
+#+BEGIN_SRC emacs-lisp
+  (use-package hackernews :ensure t)
+#+END_SRC
+
 
 * ProgMode
 #+begin_src emacs-lisp
