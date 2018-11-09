@@ -253,72 +253,81 @@
 * Functions
 #+begin_src emacs-lisp
 
-;;(defun my-flymake-show-next-error()
-;;    (interactive)
-;;    (flymake-goto-next-error)
-;;    (flymake-popup-current-error-menu)
-;;    )
-(defun my/disable-scroll-bars (frame)
-  (modify-frame-parameters frame
-                           '((vertical-scroll-bars . nil)
-                             (horizontal-scroll-bars . nil))))
-(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
+  ;;(defun my-flymake-show-next-error()
+  ;;    (interactive)
+  ;;    (flymake-goto-next-error)
+  ;;    (flymake-popup-current-error-menu)
+  ;;    )
 
-(defun open-termite ()
-  (interactive "@")
-  (shell-command (concat "termite"
-                         " > /dev/null 2>&1 & disown") nil nil))
-(defun indent-buffer ()
-  "Apply indentation rule to the entire buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max)))
+  (defun popup-shell ()
+    (interactive)
+    (split-window-below)
+    (windmove-down)
+    (eshell)
+    (shrink-window 15)
+    )
 
-(defun setup-tide-mode ()
-  (interactive)
-  (setq tide-node-executable "/home/chinchi/.nvm/versions/node/v9.0.0/bin/node")
- (setq tide-tsserver-executable (expand-file-name tide--tsserver tide-tsserver-directory))
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode -1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+  (defun my/disable-scroll-bars (frame)
+    (modify-frame-parameters frame
+                             '((vertical-scroll-bars . nil)
+                               (horizontal-scroll-bars . nil))))
+  (add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
-(defun add-semicolon ()
-  (interactive)
-  (end-of-line)
-  (when (not (looking-back ";"))
-    (insert ";"))
-  (evil-first-non-blank))
+  (defun open-termite ()
+    (interactive "@")
+    (shell-command (concat "termite"
+                           " > /dev/null 2>&1 & disown") nil nil))
+  (defun indent-buffer ()
+    "Apply indentation rule to the entire buffer."
+    (interactive)
+    (delete-trailing-whitespace)
+    (indent-region (point-min) (point-max)))
 
-(defun insert-uuid ()
-  (interactive)
-  (let ((rnd (md5 (format "%s%s%s%s%s%s%s"
-                          (random)
-                          (current-time)
-                          (user-uid)
-                          (emacs-pid)
-                          (user-full-name)
-                          user-mail-address
-                          (recent-keys)))))
-    (insert (format "%s-%s-4%s-%s%s-%s"
-            (substring rnd 0 8)
-            (substring rnd 8 12)
-            (substring rnd 13 16)
-            (format "%x"
-                    (logior
-                     #b10000000
-                     (logand
-                      #b10111111
-                      (string-to-number
-                       (substring rnd 16 18) 16))))
-            (substring rnd 18 20)
-            (substring rnd 20 32)))
-    ))
+  (defun setup-tide-mode ()
+    (interactive)
+    (setq tide-node-executable "/home/chinchi/.nvm/versions/node/v9.0.0/bin/node")
+   (setq tide-tsserver-executable (expand-file-name tide--tsserver tide-tsserver-directory))
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode -1)
+    ;; company is an optional dependency. You have to
+    ;; install it separately via package-install
+    ;; `M-x package-install [ret] company`
+    (company-mode +1))
+
+  (defun add-semicolon ()
+    (interactive)
+    (end-of-line)
+    (when (not (looking-back ";"))
+      (insert ";"))
+    (evil-first-non-blank))
+
+  (defun insert-uuid ()
+    (interactive)
+    (let ((rnd (md5 (format "%s%s%s%s%s%s%s"
+                            (random)
+                            (current-time)
+                            (user-uid)
+                            (emacs-pid)
+                            (user-full-name)
+                            user-mail-address
+                            (recent-keys)))))
+      (insert (format "%s-%s-4%s-%s%s-%s"
+              (substring rnd 0 8)
+              (substring rnd 8 12)
+              (substring rnd 13 16)
+              (format "%x"
+                      (logior
+                       #b10000000
+                       (logand
+                        #b10111111
+                        (string-to-number
+                         (substring rnd 16 18) 16))))
+              (substring rnd 18 20)
+              (substring rnd 20 32)))
+      ))
 #+end_src
 ** Password Generator
 #+BEGIN_SRC emacs-lisp
