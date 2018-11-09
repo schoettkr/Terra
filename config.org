@@ -252,6 +252,25 @@
 
 * Functions
 #+begin_src emacs-lisp
+  ;; (defvar xrdb-master-file nil)
+  (defvar xrdb-master-file "~/.Xresources")
+  (defcustom xrdb-program "xrdb"
+    "*Program to run to load or merge resources in the X resource database."
+  )
+
+  (defcustom xrdb-program-args '("-merge")
+    "*List of string arguments to pass to `xrdb-program'."
+    )
+
+  (defun xrdb-database-merge ()
+    (interactive)
+    (let ((outbuf (get-buffer-create "*Shell Command Output*")))
+      (with-current-buffer outbuf (erase-buffer))
+      (apply 'call-process xrdb-program xrdb-master-file outbuf t
+             xrdb-program-args))
+    (if (not (zerop (with-current-buffer outbuf (buffer-size))))
+        (pop-to-buffer outbuf))
+    (message "Merging... done"))
 
   ;;(defun my-flymake-show-next-error()
   ;;    (interactive)
