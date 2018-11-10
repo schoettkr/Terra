@@ -108,6 +108,7 @@
     "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
     (let* ((available-width (- (window-width) (length left) 1)))
       (format (format "%%s %%%ds" available-width) left right)))
+
   (setq-default
    mode-line-format
    '((:eval
@@ -191,62 +192,73 @@
 #+END_SRC
 ** Theme
 #+begin_src emacs-lisp
-    (use-package base16-theme :ensure t
-      :config
-      (setq base16-distinct-fringe-background nil))
+  (use-package base16-theme :ensure t
+    :config
+    (setq base16-distinct-fringe-background nil))
 
-  ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
+                                          ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
 
-    (while (progn
-             (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
-             (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
+  (while (progn
+           (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
+           (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
 
-    ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
+  ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
   (cond ((string-equal answer "c")
-         (load-theme 'creamsody)
-         (creamsody-modeline-four))
-          ((string-equal answer "w")
-           (load-theme 'base16-solarized-light)
-           (set-face-background 'mode-line "#cfdeee")))
+         (progn (load-theme 'creamsody)
+                (creamsody-modeline-four)
+                (set-face-attribute 'mode-line-inactive nil
+                                    :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
+                                    :background (face-attribute 'creamsody-modeline-two-inactive :background)
+                                    :height 120
+                                    :inverse-video nil
+                                    :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
 
-    ;; (use-package base16-theme :ensure t)
-    ;; (setq dark-theme nil)
-    ;; (use-package gruvbox-theme :ensure t)
+                (set-face-attribute 'mode-line-inactive nil
+                                    :underline t
+                                    :background (face-background 'default))))
+        ((string-equal answer "w")
+         (load-theme 'base16-solarized-light)
+         (set-face-background 'mode-line "#cfdeee")))
 
-    ;; (if dark-theme
-    ;; (load-theme 'base16-materia)
-    ;; (load-theme 'gruvbox-dark-soft)
-    ;; (load-theme 'gruvbox-light-medium))
-    ;; (load-theme 'base16-material-lighter))
+  ;; (use-package base16-theme :ensure t)
+  ;; (setq dark-theme nil)
+  ;; (use-package gruvbox-theme :ensure t)
 
-
-    ;;(load-theme 'base16-material-lighter)
-    ;;(load-theme 'base16-one-light)
-    ;; (load-theme 'base16-harmonic-light)
-
-    ;; (use-package one-themes 
-    ;;  :init (load-theme 'one-light t))
-    ;; (load-theme 'base16-flat)
-                                            ;  (load-theme 'base16-harmonic-light)
-
-                                            ;   (load-theme 'base16-porple)
-    ;; (load-theme 'base16-material)
-    ;; (load-theme 'base16-material-palenight)
-                                            ;   (load-theme 'base16-one-light)
-                                            ;  (load-theme 'base16-unikitty-light)
+  ;; (if dark-theme
+  ;; (load-theme 'base16-materia)
+  ;; (load-theme 'gruvbox-dark-soft)
+  ;; (load-theme 'gruvbox-light-medium))
+  ;; (load-theme 'base16-material-lighter))
 
 
-                                            ;(use-package darktooth-theme :ensure t)
-                                            ;(load-theme 'darktooth)
+  ;;(load-theme 'base16-material-lighter)
+  ;;(load-theme 'base16-one-light)
+  ;; (load-theme 'base16-harmonic-light)
 
-                                            ;(set-face-foreground 'mode-line-buffer-id "purple")
-                                            ;(set-face-background 'mode-line "#44475a") ; for dark themes
+  ;; (use-package one-themes 
+  ;;  :init (load-theme 'one-light t))
+  ;; (load-theme 'base16-flat)
+                                          ;  (load-theme 'base16-harmonic-light)
+
+                                          ;   (load-theme 'base16-porple)
+  ;; (load-theme 'base16-material)
+  ;; (load-theme 'base16-material-palenight)
+                                          ;   (load-theme 'base16-one-light)
+                                          ;  (load-theme 'base16-unikitty-light)
 
 
-    ;; p(set-face-background 'mode-line "#cfdeee")
+                                          ;(use-package darktooth-theme :ensure t)
+                                          ;(load-theme 'darktooth)
 
-    ;; (load-theme 'base16-solarized-light)
-    ;; (set-face-background 'mode-line "#cfdeee") ; for light themes
+                                          ;(set-face-foreground 'mode-line-buffer-id "purple")
+                                          ;(set-face-background 'mode-line "#44475a") ; for dark themes
+
+
+  ;; p(set-face-background 'mode-line "#cfdeee")
+
+  ;; (load-theme 'base16-solarized-light)
+  ;; (set-face-background 'mode-line "#cfdeee") ; for light themes
+
 #+end_src
 
 
