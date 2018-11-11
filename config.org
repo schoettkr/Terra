@@ -1082,9 +1082,15 @@ Add org-bullets for nice icons instead of stars
 
 ** Lispyville
 #+BEGIN_SRC emacs-lisp
-(use-package lispyville :ensure t
-:config (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
-(add-hook 'lisp-mode-hook #'lispyville-mode))
+  (use-package lispyville :ensure t
+  :config (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
+  (add-hook 'lisp-mode-hook #'lispyville-mode)
+
+  (global-set-key (kbd "C-<left>") 'lispyville-slurp)
+  (global-set-key (kbd "C-<right>") 'lispyville-barf)
+  ;(global-set-key (kbd "C-<up>") 'lispyville-slurp)
+  (global-set-key (kbd "C-<down>") 'lispyville-wrap-round))
+
 #+END_SRC
 ** Dashboard
 #+begin_src emacs-lisp
