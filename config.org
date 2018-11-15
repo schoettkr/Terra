@@ -1372,7 +1372,7 @@ Display horizontal lines instead of ugly characters
 
 ** Htmlize
 #+BEGIN_SRC emacs-lisp
-(use-package htmlize :ensure t)
+(use-package htmlize :ensure t :defer t)
 #+END_SRC
 
 ** Goggles
@@ -1385,6 +1385,7 @@ Generic LSP emacs implementation
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
   :ensure t
+  :defer t
   )
 #+END_SRC
 
@@ -1406,7 +1407,7 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
 ** Hackernews
 #+BEGIN_SRC emacs-lisp
-  (use-package hackernews :ensure t)
+  (use-package hackernews :ensure t :defer t)
 #+END_SRC
 
 
@@ -1470,9 +1471,6 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 ;;(setq tide-basic-offset 2) ;
 
 #+end_src
-
-
-
 ** Typescript
 
 #+begin_src emacs-lisp
@@ -1516,12 +1514,10 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
 #+end_src
 
-
 ** Css
 #+begin_src emacs-lisp
 (setq css-indent-offset 2) ; css-mode
 #+end_src
-
 
 ** Go
 The code below worked to load everything from .zshrc
@@ -1616,7 +1612,6 @@ Rest of go settings
 (use-package elpy :defer t :config (elpy-enable))
 #+END_SRC
 
-
 ** C#
 If it doesnt work start C# project with vs code, it will get the dependecies.
 Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
@@ -1646,7 +1641,6 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
     (add-hook 'csharp-mode-hook (lambda () (whitespace-mode -1)))
     (add-to-list 'company-backends 'company-omnisharp))
 #+END_SRC
-
 
 ** Markdown
 #+BEGIN_SRC emacs-lisp
