@@ -1433,9 +1433,14 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
 * WebMode
 #+begin_src emacs-lisp
-(setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-(setq web-mode-css-indent-offset 2) ; web-mode, css in html file
-(setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
+  (use-package web-mode :ensure t
+    :defer t
+    :config
+    (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+    (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+    (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
+    ())
+(add-to-list 'auto-mode-alist '("\\.vue" . web-mode))
 #+end_src
 
 
