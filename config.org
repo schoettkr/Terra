@@ -468,7 +468,6 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
   (setcdr evil-insert-state-map nil)
-  (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   (setq-default evil-shift-width 2)
   (setq evil-search-module 'evil-search)
@@ -481,6 +480,21 @@
   (define-key evil-visual-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-visual-state-map (kbd "k") 'evil-previous-visual-line)
   )
+#+end_src
+
+** Counsel
+#+begin_src emacs-lisp
+  (use-package counsel
+    :ensure t
+    :defer t
+    :config
+    ;;  (setq counsel-find-file-at-point t)
+    ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
+    (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
+    (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
+  (setq ivy-initial-inputs-alist nil)
+
+  (use-package smex :ensure t)
 #+end_src
 
 ** Org
@@ -901,20 +915,6 @@ Add org-bullets for nice icons instead of stars
         (if (symbolp icon)
             (all-the-icons-icon-for-mode 'fundamental-mode)
           icon))))
-#+end_src
-
-** Counsel
-#+begin_src emacs-lisp
-  (use-package counsel
-    :ensure t
-    :defer t
-    :config
-    ;;  (setq counsel-find-file-at-point t)
-    ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
-    (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
-  (setq ivy-initial-inputs-alist nil)
-
-  (use-package smex :ensure t)
 #+end_src
 
 ** Projectile
