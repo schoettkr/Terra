@@ -15,10 +15,10 @@
   ;; for new packages.
   ;; when facing problems with package installation delete ~/.emacs.d/elpa/archives/melpa/archive-contents and `M-x package-refresh-contens` on next launch
   (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-			   ("gnu"       . "https://elpa.gnu.org/packages/")
-			   ("melpa"     . "https://melpa.org/packages/")
-			   ;;("marmalade" . "http://marmalade-repo.org/packages/")
-			   ))
+         ("gnu"       . "https://elpa.gnu.org/packages/")
+         ("melpa"     . "https://melpa.org/packages/")
+         ;;("marmalade" . "http://marmalade-repo.org/packages/")
+         ))
 
   ;;  (package-initialize) ; guess what this one does ?
 
