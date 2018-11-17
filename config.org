@@ -1605,21 +1605,39 @@ Rest of go settings
 (add-hook 'go-mode-hook (lambda () (whitespace-mode -1)))
 #+end_src
 
-** C
+** C/C++
+Look at this for debugging https://www.gnu.org/software/emacs/manual/html_node/emacs/GDB-Graphical-Interface.html
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c-mode-hook
-  (lambda ()
-    (set (make-local-variable 'compile-command)
-         (format "gcc -std=c99 -Wall -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
-#+END_SRC
-** C++
-#+BEGIN_SRC emacs-lisp
-(add-hook 'c++-mode-hook
-  (lambda ()
-    (set (make-local-variable 'compile-command)
-         (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
-#+END_SRC
+    (add-hook 'c-mode-hook
+      (lambda ()
+        (set (make-local-variable 'compile-command)
+             (format "gcc -std=c99 -Wall -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
 
+    (add-hook 'c++-mode-hook
+      (lambda ()
+        (set (make-local-variable 'compile-command)
+             (format "g++ -g %s -o %s" (buffer-name) (file-name-sans-extension (buffer-name))))))
+
+    ;; might want to activate gdb-many-windows by default
+    (setq gdb-many-windows t)
+
+  (general-define-key
+     :states '(normal motion)
+     :keymaps 'c-mode-base-map
+     :prefix "SPC"
+     "m" '(:ignore t :which-key "Major Mode[C/C++]")
+     "md" '(gdb :which-key "Debug")
+     )
+
+  ;; (defun compileAndDebug ()
+  ;;   (interactive)
+  ;;   (progn
+  ;;     (compile compile-command)
+      ;; (gdb (concat default-directory " -i=mi " (file-name-sans-extension (buffer-name))))
+      ;; (gdb (concat (file-name-sans-extension (buffer-name)) " -i=mi"))
+    ;;   )
+    ;; )
+#+END_SRC
 ** Python
 #+BEGIN_SRC emacs-lisp
 (use-package elpy :defer t :config (elpy-enable))
