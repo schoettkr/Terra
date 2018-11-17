@@ -459,162 +459,6 @@
 
 
 
-* Keybindings 
-#+begin_src emacs-lisp
-;;(global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
-;;(global-set-key (kbd "<escape>")      'keyboard-quit) ;; send quit signal with escape
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-
-;;(global-unset-key (kbd "SPC")) ;; hinders insertion of space in ins mode
-#+end_src
-
-** General.el
-#+begin_src emacs-lisp
-    (use-package general :ensure t
-      :config
-      (general-define-key
-       ;; replace default keybindings
-       :states '(normal emacs)
-       ;"C-s" 'swiper             ; search for string in current buffer
-       "C-s" 'evil-search-forward             ; search for string in current buffer
-       ;;   "C-p" 'company-select-previous             ; search for string in current buffer
-       ;;   "C-n" 'company-select-next             ; search for string in current buffer
-       ;"/" 'swiper             ; search for string in current buffer
-       "/" 'evil-search-forward             ; search for string in current buffer
-       ;"/" 'evil-search-forward             ; search for string in current buffer
-       "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
-       "N" 'evil-search-previous
-       "n" 'evil-search-next
-       "\\" 'evil-ex-nohighlight
-       ;; "C-w" 'evil-delete-buffer
-       )
-
-    (general-def :states '(normal motion emacs) "SPC" nil)
-    (general-def :keymaps '(compilation-mode-map ess-help-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
-    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
-
-      (general-define-key
-       :states '(normal motion emacs)
-       :prefix "SPC"
-
-       ;; simple command
-       "x" 'counsel-M-x        ; replace default M-x with ivy backend
-       "TAB" '(mode-line-other-buffer :which-key "prev buffer")
-       "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
-       "C-'" 'avy-goto-word-1
-       "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
-       "RET" '(add-semicolon :which-key "Insert ; at eol")
-       ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
-       ;"/" '(evil-search-forward :which-key "Swiper search")
-       "/" '(swiper :which-key "Swiper search")
-       ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
-       "'" '(popup-shell :which-key "popup shell")
-
-       ;; Applications
-       "a" '(:ignore t :which-key "Applications")
-       "aa" '(ag :which-key "Ag")
-       "ae" '(eshell :which-key "eshell")
-       "ah" '(hackernews :which-key "Hackernews")
-       "ar" '(ranger :which-key "Ranger")
-       "at" '(open-termite :which-key "Termite")
-       "ac" '(compile :which-key "compile")
-       "ar" '(recompile :which-key "recompile")
-       "ao" '(occur :which-key "occur") ;; example usage function\|var
-       "ad" 'dired
-
-       ;; Buffer
-       "b" '(:ignore t :which-key "Buffer")
-       "bb" '(ivy-switch-buffer :which-key "Change buffer")
-       "bd" '(kill-buffer :which-key "kill buffer")
-       "bD" '(kill-some-buffers :which-key "kill some buffers")
-       "bp" '(switch-to-prev-buffer :which-key "prev buffer")
-       "bn" '(switch-to-prev-buffer :which-key "next buffer")
-
-       "c" '(kill-this-buffer :which-key "kill current buffer")
-
-
-       "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
-
-       ;; ;; Flymake
-       ;; "m" '(:ignore t :which-key "Major Mode")
-
-       ;; Flymake
-       "e" '(:ignore t :which-key "Flymake")
-       "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
-       "en" '(flymake-goto-next-error :which-key "next error")
-       "ep" '(flymake-goto-prev-error :which-key "prev error")
-
-       ;; Files
-       "f" '(:ignore t :which-key "Files")
-       "ff" '(counsel-find-file :which-key "find file")
-       "fr"	'(counsel-recentf   :which-key "recent files")
-       "fs" '(save-buffer :which-key "save file")
-       "f/" '(swiper :which-key "search in file")
-       ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
-       "ft" '(neotree-toggle :which-key "toggle sidebar")
-
-       ;; Git
-       "g" '(:ignore t :which-key "Git")
-       "gs" '(magit-status :which-key "status")
-       "gu" '(smerge-keep-upper :which-key "keep upper")
-       "gl" '(smerge-keep-lower :which-key "keep lower")
-       "gb" '(smerge-keep-all :which-key "keep both")
-       "gn" '(smerge-next :which-key "next conflict")
-
-       ;; Help
-       "h" '(:ignore t :which-key "Help")
-       "hh" '(help-for-help-internal :which-key "open help")
-
-       ;; Projects
-       "p" '(:ignore t :which-key "Projects")
-       "pf" '(counsel-git :which-key "Find file in git project")
-       "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
-       "pp" '(projectile-switch-project :which-key "Switch project")
-
-       ;; Windows
-       "w" '(:ignore t :which-key "Windows")
-       "1" '(eyebrowse-switch-to-window-config-1 :which-key "workspace 1")
-       "2" '(eyebrowse-switch-to-window-config-2 :which-key "workspace 2")
-       "3" '(eyebrowse-switch-to-window-config-3 :which-key "workspace 3")
-       "4" '(eyebrowse-switch-to-window-config-4 :which-key "workspace 4")
-       "5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
-       "ws" '(split-window-below :which-key "Horizontal split")
-       "wv" '(split-window-right :which-key "Vertical split")
-       "wd" '(evil-window-delete :which-key "close window")
-       "wD" '(eyebrowse-close-window-config :which-key "close workspace")
-       "ww" '(ace-window :which-far-key "ace-window")
-       "wm" '(delete-other-windows :which-far-key "next window")
-       "wu" '(winner-undo :which-key "winner undo")
-       "wr" '(winner-redo :which-key "winner redo")
-       "wh" '(evil-window-left :which-key "left")
-       "wH" '(evil-window-move-far-left :which-key "move left")
-       "wj" '(evil-window-down :which-key "down")
-       "wJ" '(evil-window-move-very-bottom :which-key "move down")
-       "wk" '(evil-window-up :which-key "up")
-       "wK" '(evil-window-move-very-top :which-key "move up")
-       "wl" '(evil-window-right :which-key "right")
-       "wL" '(evil-window-move-far-right :which-key "move right")
-       "w+" '(evil-window-increase-height 30 :which-key "increase height")
-       "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
-       "wc" '(eyebrowse-create-window-config :which-key "create workspace")
-       "wn" '(eyebrowse-next-window-config :which-key "next workspace")
-       "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
-       ;; (enlarge-window 15)
-
-       ;; Org Mode
-       "o" '(:ignore t :which-key "Org")
-       "oa" '(org-agenda :which-key "agenda")
-       "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
-  ;     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
-       "oq" '(org-capture :which-key "quick capture")
-       )
-
-      )
-#+end_src
-
-
-
-
 * General Packages
 ** Evil
 #+begin_src emacs-lisp
@@ -1426,6 +1270,162 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 #+BEGIN_SRC emacs-lisp
   (use-package hackernews :ensure t :defer t)
 #+END_SRC
+
+
+* Keybindings 
+#+begin_src emacs-lisp
+;;(global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
+;;(global-set-key (kbd "<escape>")      'keyboard-quit) ;; send quit signal with escape
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+;;(global-unset-key (kbd "SPC")) ;; hinders insertion of space in ins mode
+#+end_src
+
+** General.el
+#+begin_src emacs-lisp
+    (use-package general :ensure t
+      :config
+      (general-define-key
+       ;; replace default keybindings
+       :states '(normal emacs)
+       ;"C-s" 'swiper             ; search for string in current buffer
+       "C-s" 'evil-search-forward             ; search for string in current buffer
+       ;;   "C-p" 'company-select-previous             ; search for string in current buffer
+       ;;   "C-n" 'company-select-next             ; search for string in current buffer
+       ;"/" 'swiper             ; search for string in current buffer
+       "/" 'evil-search-forward             ; search for string in current buffer
+       ;"/" 'evil-search-forward             ; search for string in current buffer
+       "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+       "N" 'evil-search-previous
+       "n" 'evil-search-next
+       "\\" 'evil-ex-nohighlight
+       ;; "C-w" 'evil-delete-buffer
+       )
+
+    (general-def :states '(normal motion emacs) "SPC" nil)
+    (general-def :keymaps '(compilation-mode-map ess-help-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
+    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
+
+      (general-define-key
+       :states '(normal motion emacs)
+       :prefix "SPC"
+
+       ;; simple command
+       "x" 'counsel-M-x        ; replace default M-x with ivy backend
+       "TAB" '(mode-line-other-buffer :which-key "prev buffer")
+       "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
+       "C-'" 'avy-goto-word-1
+       "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
+       "RET" '(add-semicolon :which-key "Insert ; at eol")
+       ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
+       ;"/" '(evil-search-forward :which-key "Swiper search")
+       "/" '(swiper :which-key "Swiper search")
+       ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
+       "'" '(popup-shell :which-key "popup shell")
+
+       ;; Applications
+       "a" '(:ignore t :which-key "Applications")
+       "aa" '(ag :which-key "Ag")
+       "ae" '(eshell :which-key "eshell")
+       "ah" '(hackernews :which-key "Hackernews")
+       "ar" '(ranger :which-key "Ranger")
+       "at" '(open-termite :which-key "Termite")
+       "ac" '(compile :which-key "compile")
+       "ar" '(recompile :which-key "recompile")
+       "ao" '(occur :which-key "occur") ;; example usage function\|var
+       "ad" 'dired
+
+       ;; Buffer
+       "b" '(:ignore t :which-key "Buffer")
+       "bb" '(ivy-switch-buffer :which-key "Change buffer")
+       "bd" '(kill-buffer :which-key "kill buffer")
+       "bD" '(kill-some-buffers :which-key "kill some buffers")
+       "bp" '(switch-to-prev-buffer :which-key "prev buffer")
+       "bn" '(switch-to-prev-buffer :which-key "next buffer")
+
+       "c" '(kill-this-buffer :which-key "kill current buffer")
+
+
+       "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
+
+       ;; ;; Flymake
+       ;; "m" '(:ignore t :which-key "Major Mode")
+
+       ;; Flymake
+       "e" '(:ignore t :which-key "Flymake")
+       "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
+       "en" '(flymake-goto-next-error :which-key "next error")
+       "ep" '(flymake-goto-prev-error :which-key "prev error")
+
+       ;; Files
+       "f" '(:ignore t :which-key "Files")
+       "ff" '(counsel-find-file :which-key "find file")
+       "fr"	'(counsel-recentf   :which-key "recent files")
+       "fs" '(save-buffer :which-key "save file")
+       "f/" '(swiper :which-key "search in file")
+       ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
+       "ft" '(neotree-toggle :which-key "toggle sidebar")
+
+       ;; Git
+       "g" '(:ignore t :which-key "Git")
+       "gs" '(magit-status :which-key "status")
+       "gu" '(smerge-keep-upper :which-key "keep upper")
+       "gl" '(smerge-keep-lower :which-key "keep lower")
+       "gb" '(smerge-keep-all :which-key "keep both")
+       "gn" '(smerge-next :which-key "next conflict")
+
+       ;; Help
+       "h" '(:ignore t :which-key "Help")
+       "hh" '(help-for-help-internal :which-key "open help")
+
+       ;; Projects
+       "p" '(:ignore t :which-key "Projects")
+       "pf" '(counsel-git :which-key "Find file in git project")
+       "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
+       "pp" '(projectile-switch-project :which-key "Switch project")
+
+       ;; Windows
+       "w" '(:ignore t :which-key "Windows")
+       "1" '(eyebrowse-switch-to-window-config-1 :which-key "workspace 1")
+       "2" '(eyebrowse-switch-to-window-config-2 :which-key "workspace 2")
+       "3" '(eyebrowse-switch-to-window-config-3 :which-key "workspace 3")
+       "4" '(eyebrowse-switch-to-window-config-4 :which-key "workspace 4")
+       "5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
+       "ws" '(split-window-below :which-key "Horizontal split")
+       "wv" '(split-window-right :which-key "Vertical split")
+       "wd" '(evil-window-delete :which-key "close window")
+       "wD" '(eyebrowse-close-window-config :which-key "close workspace")
+       "ww" '(ace-window :which-far-key "ace-window")
+       "wm" '(delete-other-windows :which-far-key "next window")
+       "wu" '(winner-undo :which-key "winner undo")
+       "wr" '(winner-redo :which-key "winner redo")
+       "wh" '(evil-window-left :which-key "left")
+       "wH" '(evil-window-move-far-left :which-key "move left")
+       "wj" '(evil-window-down :which-key "down")
+       "wJ" '(evil-window-move-very-bottom :which-key "move down")
+       "wk" '(evil-window-up :which-key "up")
+       "wK" '(evil-window-move-very-top :which-key "move up")
+       "wl" '(evil-window-right :which-key "right")
+       "wL" '(evil-window-move-far-right :which-key "move right")
+       "w+" '(evil-window-increase-height 30 :which-key "increase height")
+       "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+       "wc" '(eyebrowse-create-window-config :which-key "create workspace")
+       "wn" '(eyebrowse-next-window-config :which-key "next workspace")
+       "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
+       ;; (enlarge-window 15)
+
+       ;; Org Mode
+       "o" '(:ignore t :which-key "Org")
+       "oa" '(org-agenda :which-key "agenda")
+       "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
+  ;     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
+       "oq" '(org-capture :which-key "quick capture")
+       )
+
+      )
+#+end_src
+
+
 
 
 * ProgMode
