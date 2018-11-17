@@ -15,19 +15,33 @@
   ;; for new packages.
   ;; when facing problems with package installation delete ~/.emacs.d/elpa/archives/melpa/archive-contents and `M-x package-refresh-contens` on next launch
   (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-                           ("gnu"       . "https://elpa.gnu.org/packages/")
-                           ("melpa"     . "https://melpa.org/packages/")
-                           ;;("marmalade" . "http://marmalade-repo.org/packages/")
-                           ))
+			   ("gnu"       . "https://elpa.gnu.org/packages/")
+			   ("melpa"     . "https://melpa.org/packages/")
+			   ;;("marmalade" . "http://marmalade-repo.org/packages/")
+			   ))
 
-;;  (package-initialize) ; guess what this one does ?
+  ;;  (package-initialize) ; guess what this one does ?
 
-  ;; Bootstrap `use-package'
-  (unless (package-installed-p 'use-package) ; unless it is already installed
-    (package-refresh-contents) ; updage packages archive
-    (package-install 'use-package)) ; and install the most recent version of use-package
 
-  (require 'use-package) ; guess what this one does too ?
+
+  ;; -  ;; Bootstrap `use-package'
+  ;; -  (unless (package-installed-p 'use-package) ; unless it is already installed
+  ;; -    (package-refresh-contents) ; updage packages archive
+  ;; -    (package-install 'use-package)) ; and install the most recent version of use-package
+  ;; -
+  ;; -  (require 'use-package) ; guess what this one does too ?
+  ;; Bootstrap `quelpa and use-package'
+  (unless (package-installed-p 'quelpa)
+    (with-temp-buffer
+       (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+       (eval-buffer))
+     (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
+     )
+
+  ;; install use-package and the quelpa handler
+  (setq use-package-expand-minimally t)
+  (require 'quelpa-use-package)
+
 #+end_src
 
 
@@ -196,7 +210,7 @@
     :config
     (setq base16-distinct-fringe-background nil))
 
-                                          ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
+  ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
 
   (while (progn
            (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
