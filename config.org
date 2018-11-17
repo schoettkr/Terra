@@ -71,7 +71,7 @@
 (set-display-table-slot standard-display-table 0 ?\ ) 
 (set-display-table-slot standard-display-table 'wrap ?\ )
 (setq-default indent-tabs-mode nil)
-
+(setq abbrev-file-name "~/.emacs.d/abbrev_defs")
 (mapc
  (lambda (face)
    (set-face-attribute face nil :weight 'normal :underline nil))
