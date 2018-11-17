@@ -42,6 +42,9 @@
   (setq use-package-expand-minimally t)
   (require 'quelpa-use-package)
 
+  (unless (file-exists-p "~/.emacs.d/custom.el")
+    (with-temp-buffer (write-file "~/.emacs.d/custom.el")))
+
 #+end_src
 
 
