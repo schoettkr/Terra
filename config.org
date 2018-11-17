@@ -24,23 +24,14 @@
 
 
 
-  ;; -  ;; Bootstrap `use-package'
-  ;; -  (unless (package-installed-p 'use-package) ; unless it is already installed
-  ;; -    (package-refresh-contents) ; updage packages archive
-  ;; -    (package-install 'use-package)) ; and install the most recent version of use-package
-  ;; -
-  ;; -  (require 'use-package) ; guess what this one does too ?
-  ;; Bootstrap `quelpa and use-package'
-  (unless (package-installed-p 'quelpa)
-    (with-temp-buffer
-       (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-       (eval-buffer))
-     (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
-     )
+   ;; Bootstrap `use-package'
+  (unless (package-installed-p 'use-package) ; unless it is already installed
+    (package-refresh-contents) ; updage packages archive
+    (package-install 'use-package)) ; and install the most recent version of use-package
 
-  ;; install use-package and the quelpa handler
+  (require 'use-package) ; guess what this one does too ?
+
   (setq use-package-expand-minimally t)
-  (require 'quelpa-use-package)
 
 
 #+end_src
