@@ -817,18 +817,18 @@ Add org-bullets for nice icons instead of stars
 
 ** Polymode
 #+begin_src emacs-lisp
-(use-package polymode
-  :ensure t
-  :defer t
-  :config
-  (setq load-path
-        (append '("~/.emacs.d/elpa/polymode-20170307"  "~/.emacs.d/elpa/polymode-20170307/")
-                load-path))
-  (require 'poly-R)
-  (require 'poly-markdown)
-  (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-  (autoload 'r-mode "ess-site.el" "Major mode for editing R source." t)
-  )
+  ;; (use-package polymode
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :config
+  ;;   (setq load-path
+  ;;         (append '("~/.emacs.d/elpa/polymode-20170307"  "~/.emacs.d/elpa/polymode-20170307/")
+  ;;                 load-path))
+  ;;   (require 'poly-R)
+  ;;   (require 'poly-markdown)
+  ;;   (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+  ;;   (autoload 'r-mode "ess-site.el" "Major mode for editing R source." t)
+  ;;   )
 
 #+end_src
 
