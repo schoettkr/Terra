@@ -34,4 +34,6 @@ config.el
 /quelpa/build/quelpa-use-package/
 /quelpa/cache
 /quelpa/melpa/
+/quelpa/
 url/
+custom.el
