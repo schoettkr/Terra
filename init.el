@@ -9,6 +9,8 @@
 (toggle-scroll-bar -1)
 (package-initialize)
 
+(unless (file-exists-p "~/.emacs.d/custom.el")
+  (with-temp-buffer (write-file "~/.emacs.d/custom.el")))
 
 (require 'org)
 (let ((file-name-handler-alist nil))
