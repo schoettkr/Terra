@@ -3,7 +3,7 @@ elpa/
 export/
 ac-comphist.dat
 eproject.lst
-.smex-items
+smex-items
 \#*
 .places
 .cache
