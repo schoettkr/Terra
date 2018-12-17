@@ -1265,6 +1265,20 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
   (use-package hackernews :ensure t :defer t)
 #+END_SRC
 
+** Helpful
+#+BEGIN_SRC emacs-lisp
+(use-package helpful :ensure t
+:config 
+(global-set-key (kbd "C-h f") #'helpful-callable)
+
+(global-set-key (kbd "C-h v") #'helpful-variable)
+(global-set-key (kbd "C-h k") #'helpful-key)
+)
+(use-package elisp-demos :ensure t
+:config
+(advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
+)
+#+END_SRC
 
 * Keybindings 
 #+begin_src emacs-lisp
