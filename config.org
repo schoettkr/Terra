@@ -592,7 +592,7 @@ Add org-bullets for nice icons instead of stars
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;  (add-hook 'org-mode-hook (lambda () (linum-relative-mode -1)))
 
-
+(setq org-latex-caption-above '(image table))
                                           ; Force utf8 and then change todo symbols
   (setq locale-coding-system 'utf-8)
   (set-terminal-coding-system 'utf-8)
