@@ -306,6 +306,14 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
     (if (not (zerop (with-current-buffer outbuf (buffer-size))))
         (pop-to-buffer outbuf))
     (message "Merging... done"))
+    
+    (eval-after-load 'term
+'(progn
+  (define-key term-mode-map (kbd "C-j") 'term-char-mode)
+  (define-key term-mode-map (kbd "C-k") 'term-line-mode)
+  (define-key term-raw-map (kbd "C-j") 'term-char-mode)
+  (define-key term-raw-map (kbd "C-k") 'term-line-mode)
+  ))
 
   ;;(defun my-flymake-show-next-error()
   ;;    (interactive)
