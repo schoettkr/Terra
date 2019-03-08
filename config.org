@@ -971,16 +971,6 @@ Add org-bullets for nice icons instead of stars
   (projectile-global-mode t))
 #+end_src
 
-** Linum Relative
-#+begin_src emacs-lisp
-  (use-package linum-relative :ensure t
-    :defer t
-    :config
-    (setq linum-relative-current-symbol ""))
-  ;;   (global-linum-mode nil)
-  ;;   (linum-relative-toggle)
-#+end_src
-
 ** Lispyville
 #+BEGIN_SRC emacs-lisp
   (use-package lispyville :ensure t
