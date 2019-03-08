@@ -1844,5 +1844,76 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
    "<backtab>" 'outline-hide-body
    )
 
+;;   look into term (eshell replace)
+
+
+;; Incorporate later
+(defun my-change-number-at-point (change)
+ (let ((number (number-at-point))
+       (point (point)))
+   (when number
+     (progn
+       (forward-word)
+       (search-backward (number-to-string number))
+       (replace-match (number-to-string (funcall change number)))
+       (goto-char point)))))
+(defun my-increment-number-at-point ()
+ ;"Increment number at point like vim's C-a"
+ (interactive)
+ (my-change-number-at-point '1+))
+(defun my-decrement-number-at-point ()
+ "Decrement number at point like vim's C-x"
+ (interactive)
+ (my-change-number-at-point '1-))
+(global-set-key (kbd "C-c a") 'my-increment-number-at-point)
+(global-set-key (kbd "C-c x") 'my-decrement-number-at-point)
+
+;(use-package telephone-line
+  ;:ensure t
+  ;:config
+  ;; (setq telephone-line-primary-left-separator 'telephone-line-abs-left
+  ;; telephone-line-primary-right-separator 'telephone-line-abs-right)
+;
+  ;(telephone-line-defsegment my-vc-info ()
+  ;(when vc-mode
+  ;(cond
+  ;((string-match "Git[:-]" vc-mode)
+  ;(let ((branch (mapconcat 'concat (cdr (split-string vc-mode "[:-]")) "-")))
+  ;(concat "" (format " %s" branch))))
+  ;((string-match "SVN-" vc-mode)
+  ;(let ((revision (cadr (split-string vc-mode "-"))))
+  ;(concat "" (format "SVN-%s" revision))))
+  ;(t (format "%s" vc-mode)))))
+;
+  ;(telephone-line-defsegment* my-airline-position-segment (&optional lines columns)
+    ;(let* ((l (number-to-string (if lines lines 1)))
+           ;(c (number-to-string (if columns columns 2))))
+      ;(if (eq major-mode 'paradox-menu-mode)
+          ;(telephone-line-raw mode-line-front-space t)
+          ;(concat " " "%" l "l:%" c "c"))))
+;
+  ;(setq telephone-line-lhs
+        ;'((evil   . (telephone-line-evil-tag-segment))
+          ;(accent . (my-vc-info
+                     ;telephone-line-process-segment))
+          ;(nil    . (telephone-line-buffer-segment
+                     ;telephone-line-projectile-segment))))
+  ;(setq telephone-line-rhs
+        ;'((nil    . (telephone-line-flycheck-segment
+                     ;telephone-line-misc-info-segment))
+          ;(accent . (telephone-line-major-mode-segment))
+          ;(nil    . (telephone-line-hud-segment
+                     ;my-airline-position-segment))))
+;
+  ;(setq display-time-format "%b %d %a %R")
+  ;(setq display-time-default-load-average nil)
+  ;(setq display-time-use-mail-icon t)
+  ;(setq display-time-mail-file t)
+  ;(display-time-mode t)
+;
+  ;(telephone-line-mode 1))
 #+END_SRC
+  todo : work this in
+(add-hook 'comint-exec-hook 
+      (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 
