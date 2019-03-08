@@ -1325,6 +1325,7 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 
 ;;(global-unset-key (kbd "SPC")) ;; hinders insertion of space in ins mode
+(global-unset-key [f2])
 #+end_src
 
 ** General.el
@@ -1343,6 +1344,7 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
        "N" 'evil-search-previous
        "n" 'evil-search-next
        "\\" 'evil-ex-nohighlight
+       "<f2>" 'iedit-mode
        ;; "C-w" 'evil-delete-buffer
        )
 
