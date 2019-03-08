@@ -517,6 +517,23 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 (use-package general :ensure t)
 #+END_SRC
 ** Org
+** Nlinum Relative
+Todo: Compare with supposedly newly built-in line numbering
+# display-line-numbers-mode set to t and display-line-numbers-type to 'relative.
+# Native line numbers contain a space before and after the line numbers. I don't think this can be customized away. Evaluating (line-number-display-width 'pixelwise) will return the character pixel width of the line numbers (combined), plus one additional column/char-width on each side of the line numbers. – lawlist Jun 13 '18 at 0:35 
+# 1
+# You were both right! Part of the space was the fringe, and the other was the padding on each side of the line numbers (which can't be removed). I found a post on /r/emacs asking a similar question: reddit.com/r/emacs/comments/6noyxa/… – Federico Jun 13 '18 at 12:01
+#+begin_src emacs-lisp
+  (use-package nlinum-relative :ensure t
+    :defer t
+    :config
+    (setq nlinum-relative-redisplay-delay 0)      ;; delay
+    (setq nlinum-relative-current-symbol ""))
+  ;;   (global-linum-mode nil)
+  ;;   (linum-relative-toggle)
+#+end_src
+
+
 Part below can be used to get a more recent version of org mode
 #+begin_src emacs-lisp
   ;(unless (file-expand-wildcards (concat package-user-dir "/org-[0-9]*"))
