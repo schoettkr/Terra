@@ -1835,5 +1835,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
     (put 'narrow-to-page   'disabled nil)
     (put 'narrow-to-region 'disabled nil)
 
+(setq recentf-max-saved-items 150)
+
 #+END_SRC
 
