@@ -204,17 +204,18 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 #+begin_src emacs-lisp
   (use-package base16-theme :ensure t
     :config
-    (setq base16-distinct-fringe-background nil))
+    (setq base16-distinct-fringe-background nil)
+    (load-theme 'base16-materia))
 
   ;; (use-package srcery-theme :ensure t
   ;;   :init
   ;;   (setq srcery-org-height nil)
   ;;   (load-theme 'srcery t)
   ;;   )
-  (use-package kaolin-themes :ensure t
-    :config
-    (load-theme 'kaolin-valley-dark t)
-    )
+;  (use-package kaolin-themes :ensure t
+;    :config
+;    (load-theme 'kaolin-valley-dark t)
+;    )
 
   ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
   ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
