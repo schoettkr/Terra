@@ -206,33 +206,44 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
     :config
     (setq base16-distinct-fringe-background nil))
 
+  ;; (use-package srcery-theme :ensure t
+  ;;   :init
+  ;;   (setq srcery-org-height nil)
+  ;;   (load-theme 'srcery t)
+  ;;   )
+  (use-package kaolin-themes :ensure t
+    :config
+    (load-theme 'kaolin-valley-dark t)
+    )
+
   ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
-
-  (while (progn
-           (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
-           (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
-
   ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
-  (cond ((string-equal answer "c")
-         (progn
-           (use-package creamsody-theme :ensure t)
-           (load-theme 'creamsody)
-                (creamsody-modeline-four)
-                (set-face-attribute 'mode-line-inactive nil
-                                    :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
-                                    :background (face-attribute 'creamsody-modeline-two-inactive :background)
-                                    :height 120
-                                    :inverse-video nil
-                                    :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
 
-                (set-face-attribute 'mode-line-inactive nil
-                                    :underline t
-                                    :background (face-background 'default))))
-        ((string-equal answer "w")
-         (load-theme 'base16-solarized-light)
-         (set-face-background 'mode-line "#cfdeee")))
+  ; Deactivate Question on Boot (mainly so Emacs Daemon etc can be run)
+    ;; (while (progn
+    ;;          (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
+    ;;          (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
+    ;; (cond ((string-equal answer "c")
+    ;;        (progn
+    ;;          (use-package creamsody-theme :ensure t)
+    ;;          (load-theme 'creamsody)
+    ;;               (creamsody-modeline-four)
+    ;;               (set-face-attribute 'mode-line-inactive nil
+    ;;                                   :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
+    ;;                                   :background (face-attribute 'creamsody-modeline-two-inactive :background)
+    ;;                                   :height 120
+    ;;                                   :inverse-video nil
+    ;;                                   :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
+    ;;               ;;(setq default-frame-alist '((internal-border-width . 40) (font . "Bront 14")))
 
-  ;; (use-package base16-theme :ensure t)
+    ;;               (set-face-attribute 'mode-line-inactive nil
+    ;;                                   :underline t
+    ;;                                   :background (face-background 'default))))
+    ;;       ((string-equal answer "w")
+    ;;        (load-theme 'base16-solarized-light)
+    ;;        (set-face-background 'mode-line "#cfdeee")))
+
+    ;; (use-package base16-theme :ensure t)
   ;; (setq dark-theme nil)
   ;; (use-package gruvbox-theme :ensure t)
 
