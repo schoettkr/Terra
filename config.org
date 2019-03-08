@@ -107,40 +107,41 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 ** Modeline
 *** Customization
 #+BEGIN_SRC emacs-lisp
-  (defadvice vc-mode-line (after strip-backend () activate)
-    (when (stringp vc-mode)
-      (let ((noback (replace-regexp-in-string
-                     (format "^ %s:" (vc-backend buffer-file-name))
-                     " " vc-mode)))
-        (setq vc-mode noback))))
-  (defun simple-mode-line-render (left right)
-    "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
-    (let* ((available-width (- (window-width) (length left) 1)))
-      (format (format "%%s %%%ds" available-width) left right)))
+    (defadvice vc-mode-line (after strip-backend () activate)
+      (when (stringp vc-mode)
+        (let ((noback (replace-regexp-in-string
+                       (format "^ %s:" (vc-backend buffer-file-name))
+                       " " vc-mode)))
+          (setq vc-mode noback))))
 
-  (setq-default
-   mode-line-format
-   '((:eval
-      (simple-mode-line-render
-       ;; left
-       (format-mode-line
-        (quote
-         (" %e"
-          mode-line-modified
-          mode-line-frame-identification
-          mode-line-buffer-identification
-          (vc-mode vc-mode)
+    (defun simple-mode-line-render (left right)
+       "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
+       (let* ((available-width (+ (/ (length right) 2.3) (- (window-width) (length left)))))
+         (format (format "%%s %%%ds" available-width) left right)))
 
-          " [%l:%c] "
-          ;; evil-mode-line-tag
-          "%m"
-          mode-line-misc-info
-          )))
-       ;; right
-       (format-mode-line
-        (eval (format-time-string "%d.%m.%Y %H:%M")
-          ;; mode-line-modes
-          ))))))
+    (setq-default
+     mode-line-format
+     '((:eval
+        (simple-mode-line-render
+         ;; left
+         (format-mode-line
+          (quote
+           (" %e"
+            mode-line-modified
+            mode-line-frame-identification
+            mode-line-buffer-identification
+            (vc-mode vc-mode)
+
+            " [%l:%c] "
+            ;; evil-mode-line-tag
+            "%m"
+            mode-line-misc-info
+            )))
+         ;; right
+         (format-mode-line
+          (eval (format-time-string "%d.%m.%Y %H:%M")
+            ;; mode-line-modes
+            ))))))
 #+END_SRC
 *** Diminish
 #+BEGIN_SRC emacs-lisp
