@@ -1660,6 +1660,8 @@ Rest of go settings
 #+end_src
 
 ** C/C++
+Run =lsp-cquery-enable= when in a c/c++ file (or add hook).
+
 Look at this for debugging https://www.gnu.org/software/emacs/manual/html_node/emacs/GDB-Graphical-Interface.html
 #+BEGIN_SRC emacs-lisp
     (add-hook 'c-mode-hook
