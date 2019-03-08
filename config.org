@@ -589,8 +589,8 @@ Add org-bullets for nice icons instead of stars
   (add-hook 'org-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook 'company-mode)
   (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
-  (add-hook 'org-mode-hook (lambda () (linum-relative-mode -1)))
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;  (add-hook 'org-mode-hook (lambda () (linum-relative-mode -1)))
 
 
                                           ; Force utf8 and then change todo symbols
