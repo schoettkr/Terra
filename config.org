@@ -648,7 +648,7 @@ Add org-bullets for nice icons instead of stars
 ;  '("pdflatex %f" "biber %b" "pdflatex %f" "pdflatex %f"))
 (setq org-latex-pdf-process
       '("pdflatex -interaction nonstopmode -output-directory %o %f"
-        "bibtex %b"
+        "biber %b"
         "pdflatex -interaction nonstopmode -output-directory %o %f"
         "pdflatex -interaction nonstopmode -output-directory %o %f"))
 ;; Allows source code execution with C-C C-c
