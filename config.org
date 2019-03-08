@@ -519,11 +519,11 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 ** Org
 Part below can be used to get a more recent version of org mode
 #+begin_src emacs-lisp
-  (unless (file-expand-wildcards (concat package-user-dir "/org-[0-9]*"))
-    (package-install (elt (cdr (assoc 'org package-archive-contents)) 0))
-    (require 'org)
-    (require 'ox-extra)
-    (ox-extras-activate '(ignore-headlines)))
+  ;(unless (file-expand-wildcards (concat package-user-dir "/org-[0-9]*"))
+    ;(package-install (elt (cdr (assoc 'org package-archive-contents)) 0))
+    ;(require 'org)
+    ;(require 'ox-extra)
+    ;(ox-extras-activate '(ignore-headlines)))
 #+end_src
 
 Add org-bullets for nice icons instead of stars
