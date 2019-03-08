@@ -1837,5 +1837,12 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 (setq recentf-max-saved-items 150)
 
+(general-define-key
+   :states 'normal
+   :keymaps 'outline-minor-mode-map
+   "TAB" 'outline-toggle-children
+   "<backtab>" 'outline-hide-body
+   )
+
 #+END_SRC
 
