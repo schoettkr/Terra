@@ -1739,6 +1739,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "multimarkdown"))
+    ;; :config     (add-hook markdown-mode-hook 'outline-minor-mode))
 #+END_SRC
 
 
