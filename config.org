@@ -897,7 +897,7 @@ Add org-bullets for nice icons instead of stars
                ivy-switch-buffer-other-window)
     :config
     (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t))
+    (setq ivy-use-virtual-buffers nil)) ;; set to true to show recent files
 
   (use-package ivy-rich
     :ensure t
