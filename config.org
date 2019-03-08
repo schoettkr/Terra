@@ -76,10 +76,14 @@
 #+end_src
 
 ** General
+Note try (setq left-margin-width 20) and (set-window-margins (selected-window) 20 20)
+Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs.InternalBorder: 40 in .Xresources
 #+begin_src emacs-lisp
-      (setq default-frame-alist '((internal-border-width . 40) (font . "Bront 13")))
+      (setq default-frame-alist '((font . "Bront 13")))
       (setq whitespace-line-column 999)
       (set-face-bold-p 'bold nil)
+      (setq-default left-margin-width 4 right-margin-width 2) ; Define new widths.
+      (set-window-buffer nil (current-buffer)) 
 
       ;; (set-face-attribute 'default nil :height 120)
       ;; (set-default-font "Noto Sans 12")
