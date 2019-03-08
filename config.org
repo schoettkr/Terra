@@ -707,7 +707,8 @@ Add org-bullets for nice icons instead of stars
       (asb-ess-R-object-popup r-func))
 
     (add-hook 'ess-mode-hook 'company-mode)
-    (add-hook 'ess-mode-hook 'linum-relative-mode)
+    (add-hook 'ess-mode-hook 'nlinum-relative-mode)
+    (add-hook 'ess-mode-hook 'outline-minor-mode)
     )
   (use-package popup :ensure t)
 #+end_src
