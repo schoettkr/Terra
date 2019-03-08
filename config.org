@@ -315,19 +315,18 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
   (define-key term-raw-map (kbd "C-k") 'term-line-mode)
   ))
 
-  ;;(defun my-flymake-show-next-error()
-  ;;    (interactive)
-  ;;    (flymake-goto-next-error)
-  ;;    (flymake-popup-current-error-menu)
-  ;;    )
 
   (defun popup-shell ()
     (interactive)
-    (split-window-below)
-    (windmove-down)
-    (eshell)
-    (shrink-window 15)
-    )
+    (if (get-buffer-window "*terminal*")
+       (progn (setq popup-shell-open nil)
+        (delete-windows-on "*terminal*")
+        )
+      (split-window-below)
+      (windmove-down)
+      (term "/usr/bin/zsh")
+      (shrink-window 16)
+      ))
 
   (defun my/disable-scroll-bars (frame)
     (modify-frame-parameters frame
