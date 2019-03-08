@@ -1831,6 +1831,9 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
   ;(set-cursor-color "#7B1FA2")
 (global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
   
+    (put 'narrow-to-defun  'disabled nil)
+    (put 'narrow-to-page   'disabled nil)
+    (put 'narrow-to-region 'disabled nil)
 
 #+END_SRC
 
