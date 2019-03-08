@@ -1194,6 +1194,7 @@ Display horizontal lines instead of ugly characters
 #+BEGIN_SRC emacs-lisp
   (use-package neotree :ensure t
     :config 
+    (setq neo-window-position (quote right))
     (setq neo-smart-open t)
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
