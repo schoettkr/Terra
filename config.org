@@ -1193,38 +1193,38 @@ Display horizontal lines instead of ugly characters
 #+END_SRC
 ** Neotree
 #+BEGIN_SRC emacs-lisp
-  (use-package neotree :ensure t
-    :config 
-    (setq neo-window-position (quote right))
-    (setq neo-smart-open t)
-    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
-    (evil-set-initial-state 'neotree-mode 'normal) ;; Neotree start in normal by default.
-
-    ;; (add-hook 'neotree-mode-hook
-    ;;           (lambda ()
-                (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-quick-look)
-                (evil-define-key 'normal neotree-mode-map (kbd "SPC") nil)
-                (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-                (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-                (evil-define-key 'normal neotree-mode-map (kbd "+") 'neotree-create-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "F") 'neotree-create-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "Y") 'neotree-copy-filepath-to-yank-ring)
-                (evil-define-key 'normal neotree-mode-map (kbd "ff") 'neotree-create-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "yy") 'neotree-copy-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "gr") 'neotree-refresh)
-                (evil-define-key 'normal neotree-mode-map (kbd "dd") 'neotree-delete-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "cc") 'neotree-rename-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-                (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
-                (evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
-                (evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
-                (evil-define-key 'normal neotree-mode-map (kbd "L") 'neotree-change-root)
-                (evil-define-key 'normal neotree-mode-map (kbd "M") 'neotree-stretch-toggle)
-                (evil-define-key 'normal neotree-mode-map (kbd "m") 'neotree-stretch-toggle)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-rename-node)
-                (evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-refresh)
-                (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-select-up-node))
+  ;(use-package neotree :ensure t
+    ;:config 
+    ;(setq neo-window-position (quote right))
+    ;(setq neo-smart-open t)
+    ;(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+;
+    ;(evil-set-initial-state 'neotree-mode 'normal) ;; Neotree start in normal by default.
+;
+    ;;; (add-hook 'neotree-mode-hook
+    ;;;           (lambda ()
+                ;(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-quick-look)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "SPC") nil)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "+") 'neotree-create-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "F") 'neotree-create-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "Y") 'neotree-copy-filepath-to-yank-ring)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "ff") 'neotree-create-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "yy") 'neotree-copy-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "gr") 'neotree-refresh)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "dd") 'neotree-delete-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "cc") 'neotree-rename-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "L") 'neotree-change-root)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "M") 'neotree-stretch-toggle)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "m") 'neotree-stretch-toggle)
+                ;;(evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-rename-node)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-refresh)
+                ;(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-select-up-node))
 ;                (evil-define-key 'normal neotree-mode-map (kbd "D") 'neotree-delete-node)
 ;                (evil-define-key 'normal neotree-mode-map (kbd "X") 'neotree-delete-node))
   ;;)
@@ -1411,7 +1411,7 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
        "fs" '(save-buffer :which-key "save file")
        "f/" '(swiper :which-key "search in file")
        ;;"ft" '(treemacs-toggle :which-key "toggle treemacs")
-       "ft" '(neotree-toggle :which-key "toggle sidebar")
+       ;;"ft" '(neotree-toggle :which-key "toggle sidebar")
 
        ;; Git
        "g" '(:ignore t :which-key "Git")
