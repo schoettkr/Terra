@@ -1562,8 +1562,15 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
 #+end_src
 
-
-
+Keybindings for outline mode:
+#+BEGIN_SRC emacs-lisp
+(general-define-key
+   :states 'normal
+   :keymaps 'outline-minor-mode-map
+   "TAB" 'outline-toggle-children
+   "<backtab>" 'outline-hide-body
+   )
+#+END_SRC
 
 * ProgMode
 #+begin_src emacs-lisp
@@ -1929,12 +1936,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 (setq recentf-max-saved-items 150)
 
-(general-define-key
-   :states 'normal
-   :keymaps 'outline-minor-mode-map
-   "TAB" 'outline-toggle-children
-   "<backtab>" 'outline-hide-body
-   )
+
 
 ;;   look into term (eshell replace)
 
