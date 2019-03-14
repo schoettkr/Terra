@@ -287,6 +287,30 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 
 
 * Functions
+Function for vim-like increment/decrement
+#+BEGIN_SRC emacs-lisp
+(defun my-change-number-at-point (change)
+ (let ((number (number-at-point))
+       (point (point)))
+   (when number
+     (progn
+       (forward-word)
+       (search-backward (number-to-string number))
+       (replace-match (number-to-string (funcall change number)))
+       (goto-char point)))))
+(defun my-increment-number-at-point ()
+ ;"Increment number at point like vim's C-a"
+ (interactive)
+ (my-change-number-at-point '1+))
+(defun my-decrement-number-at-point ()
+ "Decrement number at point like vim's C-x"
+ (interactive)
+ (my-change-number-at-point '1-))
+(global-set-key (kbd "C-c a") 'my-increment-number-at-point)
+(global-set-key (kbd "C-c x") 'my-decrement-number-at-point)
+
+#+END_SRC
+Other functions
 #+begin_src emacs-lisp
   ;; (defvar xrdb-master-file nil)
   (defvar xrdb-master-file "~/.Xresources")
@@ -1913,28 +1937,6 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
    )
 
 ;;   look into term (eshell replace)
-
-
-;; Incorporate later
-(defun my-change-number-at-point (change)
- (let ((number (number-at-point))
-       (point (point)))
-   (when number
-     (progn
-       (forward-word)
-       (search-backward (number-to-string number))
-       (replace-match (number-to-string (funcall change number)))
-       (goto-char point)))))
-(defun my-increment-number-at-point ()
- ;"Increment number at point like vim's C-a"
- (interactive)
- (my-change-number-at-point '1+))
-(defun my-decrement-number-at-point ()
- "Decrement number at point like vim's C-x"
- (interactive)
- (my-change-number-at-point '1-))
-(global-set-key (kbd "C-c a") 'my-increment-number-at-point)
-(global-set-key (kbd "C-c x") 'my-decrement-number-at-point)
 
 ;(use-package telephone-line
   ;:ensure t
