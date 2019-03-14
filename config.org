@@ -528,6 +528,7 @@ Other functions
     :ensure t
     :defer t
     :config
+    (setq recentf-max-saved-items 150)
     ;;  (setq counsel-find-file-at-point t)
     ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
     (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
@@ -1934,7 +1935,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
     (put 'narrow-to-page   'disabled nil)
     (put 'narrow-to-region 'disabled nil)
 
-(setq recentf-max-saved-items 150)
+
 
 
 
