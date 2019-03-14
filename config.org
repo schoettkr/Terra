@@ -1885,7 +1885,10 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 #+END_SRC
 
 
-* Theme Test
+* Testing [Temp]
+  todo : work this in
+(add-hook 'comint-exec-hook 
+      (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 #+BEGIN_SRC emacs-lisp
     ;;  (defface special-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
       (defface extra-comment '((t (:background "#fbf8ef" :foreground "#fafafa"))) "Green")
@@ -1903,19 +1906,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
               (space-mark   160    [164]     [95]) ; hard space
               (newline-mark ?\n    [?\n]) ; remove $ to not display it
               (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
-
-   ;   (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
-
-   ;   (load-theme 'one-light t t)
-
-   ;   (enable-theme 'one-light)
-
-  ;; Regex to set color for single whitespaces
-    ;(mapc (lambda (mode)
-            ;(font-lock-add-keywords
-            ;mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
-          ;'(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
-            ;texinfo-mode))
+              
 
   (defvar my-prev-whitespace-mode nil)
   (make-variable-buffer-local 'my-prev-whitespace-mode)
@@ -1934,11 +1925,21 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
           (setq my-prev-whitespace-mode nil))))
   (advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
   (advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+
+
+   ;   (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
+
+   ;   (load-theme 'one-light t t)
+
+   ;   (enable-theme 'one-light)
+
+  ;; Regex to set color for single whitespaces
+    ;(mapc (lambda (mode)
+            ;(font-lock-add-keywords
+            ;mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
+          ;'(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
+            ;texinfo-mode))
   ;(set-cursor-color "#7B1FA2")
-
-
-
-
 
 ;;   look into term (eshell replace)
 
@@ -1987,7 +1988,4 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 ;
   ;(telephone-line-mode 1))
 #+END_SRC
-  todo : work this in
-(add-hook 'comint-exec-hook 
-      (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 
