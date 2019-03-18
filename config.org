@@ -573,94 +573,94 @@ Part below can be used to get a more recent version of org mode
 
 Add org-bullets for nice icons instead of stars
 #+begin_src emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :defer t
-    :init 
-    (setq org-bullets-bullet-list
-          '("◉" "◎" "⚫" "○" "►" "◇")))
+  ;  (use-package org-bullets
+  ;    :ensure t
+  ;    :defer t
+  ;    :init 
+  ;    (setq org-bullets-bullet-list
+  ;          '("◉" "◎" "⚫" "○" "►" "◇")))
 
 
 
-  ;; org-hide-emphasis-markers t)
-  ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
-  (setq org-format-latex-options
-        (quote(:foreground default :background default :scale 1.7 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-                           ("begin" "$1" "$" "$$" "\\(" "\\["))))
-                                          ;(require 'epa-file)
-                                          ;(epa-file-enable)
-  (require 'org-crypt) 
-  (org-crypt-use-before-save-magic)
-  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-  ;; GPG key to use for encryption
-  ;; Either the Key ID or set to nil to use symmetric encryption.
-  (setq org-crypt-key "B489EB34B4E6E154")
-  (setq org-src-window-setup 'current-window)
+    ;; org-hide-emphasis-markers t)
+    ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
+    (setq org-format-latex-options
+          (quote(:foreground default :background default :scale 1.7 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                             ("begin" "$1" "$" "$$" "\\(" "\\["))))
+                                            ;(require 'epa-file)
+                                            ;(epa-file-enable)
+    (require 'org-crypt) 
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    ;; GPG key to use for encryption
+    ;; Either the Key ID or set to nil to use symmetric encryption.
+    (setq org-crypt-key "B489EB34B4E6E154")
+    (setq org-src-window-setup 'current-window)
 
-  (general-define-key
-   :states '(normal motion)
-   :keymaps 'org-mode-map
-   :prefix "SPC"
-   "m" '(:ignore :which-key "Major Mode[Org]")
-   "mp" '(org-latex-export-to-pdf :which-key "Export to Pdf")
-   "ms" '(org-edit-special :which-key "Edit source code")
-   )
+    (general-define-key
+     :states '(normal motion)
+     :keymaps 'org-mode-map
+     :prefix "SPC"
+     "m" '(:ignore :which-key "Major Mode[Org]")
+     "mp" '(org-latex-export-to-pdf :which-key "Export to Pdf")
+     "ms" '(org-edit-special :which-key "Edit source code")
+     )
 
-  (general-define-key
-   :states '(normal motion)
-   :keymaps 'org-src-mode-map
-   :prefix "SPC"
-   "m" '(:ignore :which-key "Major Mode[Org Source]")
-   "ms" '(org-edit-src-exit :which-key "Save source and exit")
-   "mq" '(org-edit-src-abort :which-key "Abort source code")
-   )
-  (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook 'company-mode)
-  (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-;  (add-hook 'org-mode-hook (lambda () (linum-relative-mode -1)))
+    (general-define-key
+     :states '(normal motion)
+     :keymaps 'org-src-mode-map
+     :prefix "SPC"
+     "m" '(:ignore :which-key "Major Mode[Org Source]")
+     "ms" '(org-edit-src-exit :which-key "Save source and exit")
+     "mq" '(org-edit-src-abort :which-key "Abort source code")
+     )
+    (add-hook 'org-mode-hook 'visual-line-mode)
+    (add-hook 'org-mode-hook 'company-mode)
+    (add-hook 'org-mode-hook (lambda () (blink-cursor-mode -1)))
+  ;  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+   (add-hook 'org-mode-hook 'display-line-numbers-mode)
 
-(setq org-latex-caption-above '(image table))
-                                          ; Force utf8 and then change todo symbols
-  (setq locale-coding-system 'utf-8)
-  (set-terminal-coding-system 'utf-8)
-  (set-keyboard-coding-system 'utf-8)
-  (set-selection-coding-system 'utf-8)
-  (prefer-coding-system 'utf-8)
-  (when (display-graphic-p)
-    (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
+  (setq org-latex-caption-above '(image table))
+                                            ; Force utf8 and then change todo symbols
+    (setq locale-coding-system 'utf-8)
+    (set-terminal-coding-system 'utf-8)
+    (set-keyboard-coding-system 'utf-8)
+    (set-selection-coding-system 'utf-8)
+    (prefer-coding-system 'utf-8)
+    (when (display-graphic-p)
+      (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 
-  (setq org-todo-keywords (quote((sequence "⚑ Todo" "⚐ In Progress | Waiting" "|" "✔ Done" "✘ Canceled"))))
-  (setq org-todo-keyword-faces
-        '(("⚑ Todo" . "deep sky blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
-  (setq org-adapt-indentation nil)
-  (setq-default org-display-custom-times t)
-  (setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
-  (setq org-agenda-window-setup 'only-window)
-                                          ;  (setq org-agenda-files '("~/personal/logbook.org"))
-                                          ;  (setq org-default-notes-file '("~/personal/logbook.org"))
-                                          ;  (setq org-capture-templates '(("t" "Add note [inbox]" entry
-                                          ;                                 (file+headline "~/personal/logbook.org" "Inbox")
-                                          ;                                 "*  %i%?")))
+    (setq org-todo-keywords (quote((sequence "⚑ Todo" "⚐ In Progress | Waiting" "|" "✔ Done" "✘ Canceled"))))
+    (setq org-todo-keyword-faces
+          '(("⚑ Todo" . "deep sky blue") ("⚐ In Progress | Waiting" . "orange") ("✘ Canceled" . (:foreground "red"))))
+    (setq org-adapt-indentation nil)
+    (setq-default org-display-custom-times t)
+    (setq org-time-stamp-custom-formats '("<%a %d.%m.%Y>" . "<%a %d.%m.%Y %H:%M>"))
+    (setq org-agenda-window-setup 'only-window)
+                                            ;  (setq org-agenda-files '("~/personal/logbook.org"))
+                                            ;  (setq org-default-notes-file '("~/personal/logbook.org"))
+                                            ;  (setq org-capture-templates '(("t" "Add note [inbox]" entry
+                                            ;                                 (file+headline "~/personal/logbook.org" "Inbox")
+                                            ;                                 "*  %i%?")))
 
-  ;; (setq org-agenda-files '("~/Dev/notes/inbox.org"
-  ;;                          "~/Dev/notes/gtd.org"
-  ;;                          "~/Dev/notes/tickler.org"))
+    ;; (setq org-agenda-files '("~/Dev/notes/inbox.org"
+    ;;                          "~/Dev/notes/gtd.org"
+    ;;                          "~/Dev/notes/tickler.org"))
 
-  ;; (setq org-capture-templates '(("t" "Todo [inbox]" entry
-  ;;                                (file+headline "~/Dev/notes/inbox.org" "Tasks")
-  ;;                                "* TODO %i%?")
-  ;;                               ("T" "Tickler" entry
-  ;;                                (file+headline "~/Dev/notes/tickler.org" "Tickler")
-  ;;                                "* %i%? \n %U")))
-  ;; (setq org-refile-targets '(("~/Dev/notes/gtd.org" :maxlevel . 3)
-  ;;                            ("~/Dev/notes/someday.org" :level . 1)
-  ;;                            ("~/Dev/notes/tickler.org" :maxlevel . 2)))
-  ;; Latex preview for .tex only
-  ;; (use-package latex-preview-pane
-  ;;   :ensure t
-  ;;   :config
-  ;;   (add-hook 'org-mode-hook (lambda () (latex-preview-pane-mode 1))))
+    ;; (setq org-capture-templates '(("t" "Todo [inbox]" entry
+    ;;                                (file+headline "~/Dev/notes/inbox.org" "Tasks")
+    ;;                                "* TODO %i%?")
+    ;;                               ("T" "Tickler" entry
+    ;;                                (file+headline "~/Dev/notes/tickler.org" "Tickler")
+    ;;                                "* %i%? \n %U")))
+    ;; (setq org-refile-targets '(("~/Dev/notes/gtd.org" :maxlevel . 3)
+    ;;                            ("~/Dev/notes/someday.org" :level . 1)
+    ;;                            ("~/Dev/notes/tickler.org" :maxlevel . 2)))
+    ;; Latex preview for .tex only
+    ;; (use-package latex-preview-pane
+    ;;   :ensure t
+    ;;   :config
+    ;;   (add-hook 'org-mode-hook (lambda () (latex-preview-pane-mode 1))))
 #+end_src
 
 # Add org ref for citation management
