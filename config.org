@@ -39,37 +39,36 @@
 
 * General
 #+begin_src emacs-lisp
-(setq delete-old-versions -1 )		; delete excess backup versions silently
-(setq version-control t )		; use version control
-(setq vc-make-backup-files t )		; make backups file even when in version controlled dir
-(setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq vc-follow-symlinks t )				       ; don't ask for confirmation when opening symlinked file
-(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
-(setq inhibit-startup-screen t )	; inhibit useless and old-school startup screen
-(setq ring-bell-function 'ignore )	; silent bell when you make a mistake
-(setq coding-system-for-read 'utf-8 )	; use utf-8 by default
-(setq coding-system-for-write 'utf-8 )
-(setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
-(setq default-fill-column 80)		; toggle wrapping text at the 80th character
-(setq-default tab-width 2)                    ; tab are 2 spaces large
-(setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
-(setq tab-stop-list (number-sequence 2 120 2)) ;; set tab length
-(setq evil-want-C-u-scroll t) ;; scroll with C-u like in vim
-;;(set-display-table-slot standard-display-table 'wrap ?\ )
-(set-display-table-slot standard-display-table 0 ?\ ) 
-(set-display-table-slot standard-display-table 'wrap ?\ )
-(setq-default indent-tabs-mode nil)
-(mapc
- (lambda (face)
-   (set-face-attribute face nil :weight 'normal :underline nil))
- (face-list))
+  (setq delete-old-versions -1 )		; delete excess backup versions silently
+  (setq version-control t )		; use version control
+  (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
+  (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (setq vc-follow-symlinks t )				       ; don't ask for confirmation when opening symlinked file
+  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
+  (setq inhibit-startup-screen t )	; inhibit useless and old-school startup screen
+  (setq ring-bell-function 'ignore )	; silent bell when you make a mistake
+  (setq coding-system-for-read 'utf-8 )	; use utf-8 by default
+  (setq coding-system-for-write 'utf-8 )
+  (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
+  (setq default-fill-column 80)		; toggle wrapping text at the 80th character
+  (setq-default tab-width 2)                    ; tab are 2 spaces large
+  (setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
+  (setq tab-stop-list (number-sequence 2 120 2)) ;; set tab length
+  (setq evil-want-C-u-scroll t) ;; scroll with C-u like in vim
+  ;;(set-display-table-slot standard-display-table 'wrap ?\ )
+  (set-display-table-slot standard-display-table 0 ?\ ) 
+  (set-display-table-slot standard-display-table 'wrap ?\ )
+  (setq-default indent-tabs-mode nil)
+  (mapc
+   (lambda (face) (set-face-attribute face nil :weight 'normal :underline nil)) (face-list))
    
-(put 'narrow-to-defun  'disabled nil)
-(put 'narrow-to-page   'disabled nil)
-(put 'narrow-to-region 'disabled nil)
+  (put 'narrow-to-defun  'disabled nil)
+  (put 'narrow-to-page   'disabled nil)
+  (put 'narrow-to-region 'disabled nil)
 
-(global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
+  (global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
+  (setq font-lock-maximum-decoration t)
 #+end_src
 
 
