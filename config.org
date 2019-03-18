@@ -580,7 +580,7 @@ Add org-bullets for nice icons instead of stars
   ;    (setq org-bullets-bullet-list
   ;          '("◉" "◎" "⚫" "○" "►" "◇")))
 
-
+(setq org-edit-src-content-indentation 0)
 
     ;; org-hide-emphasis-markers t)
     ;; (add-hook 'post-command-hook 'kk/org-latex-fragment-toggle t)
