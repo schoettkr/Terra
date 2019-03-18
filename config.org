@@ -693,20 +693,21 @@ Todo: Compare with supposedly newly built-in line numbering
 # 1
 # You were both right! Part of the space was the fringe, and the other was the padding on each side of the line numbers (which can't be removed). I found a post on /r/emacs asking a similar question: reddit.com/r/emacs/comments/6noyxa/… – Federico Jun 13 '18 at 12:01
 #+begin_src emacs-lisp
-  ;  (use-package nlinum-relative :ensure t
-  ;    :defer t
-  ;    :config
-  ;    (setq nlinum-relative-redisplay-delay 0)      ;; delay
-  ;    (setq nlinum-relative-current-symbol ""))
-    ;;   (global-linum-mode nil)
-    ;;   (linum-relative-toggle)
-    (setq display-line-numbers-type 'relative)
-    ;(global-display-line-numbers-mode) 
-  ;; (use-package linum-relative
-  ;;   :ensure t
-  ;;   :config
-  ;;   (linum-relative-mode)
-  ;;   (setq linum-relative-backend 'display-line-numbers-mode))
+;  (use-package nlinum-relative :ensure t
+;    :defer t
+;    :config
+;    (setq nlinum-relative-redisplay-delay 0)      ;; delay
+;    (setq nlinum-relative-current-symbol ""))
+;;   (global-linum-mode nil)
+;;   (linum-relative-toggle)
+(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-current-absolute nil)
+                                        ;(global-display-line-numbers-mode) 
+;; (use-package linum-relative
+;;   :ensure t
+;;   :config
+;;   (linum-relative-mode)
+;;   (setq linum-relative-backend 'display-line-numbers-mode))
 #+end_src
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
