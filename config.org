@@ -685,74 +685,81 @@ Add org-bullets for nice icons instead of stars
  '((python . t)
    (C . t)))
 #+end_src
-** Nlinum Relative
+** Line Numbers
 Todo: Compare with supposedly newly built-in line numbering
 # display-line-numbers-mode set to t and display-line-numbers-type to 'relative.
 # Native line numbers contain a space before and after the line numbers. I don't think this can be customized away. Evaluating (line-number-display-width 'pixelwise) will return the character pixel width of the line numbers (combined), plus one additional column/char-width on each side of the line numbers. – lawlist Jun 13 '18 at 0:35 
 # 1
 # You were both right! Part of the space was the fringe, and the other was the padding on each side of the line numbers (which can't be removed). I found a post on /r/emacs asking a similar question: reddit.com/r/emacs/comments/6noyxa/… – Federico Jun 13 '18 at 12:01
 #+begin_src emacs-lisp
-  (use-package nlinum-relative :ensure t
-    :defer t
-    :config
-    (setq nlinum-relative-redisplay-delay 0)      ;; delay
-    (setq nlinum-relative-current-symbol ""))
-  ;;   (global-linum-mode nil)
-  ;;   (linum-relative-toggle)
+  ;  (use-package nlinum-relative :ensure t
+  ;    :defer t
+  ;    :config
+  ;    (setq nlinum-relative-redisplay-delay 0)      ;; delay
+  ;    (setq nlinum-relative-current-symbol ""))
+    ;;   (global-linum-mode nil)
+    ;;   (linum-relative-toggle)
+    (setq display-line-numbers-type 'relative)
+    ;(global-display-line-numbers-mode) 
+  ;; (use-package linum-relative
+  ;;   :ensure t
+  ;;   :config
+  ;;   (linum-relative-mode)
+  ;;   (setq linum-relative-backend 'display-line-numbers-mode))
 #+end_src
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
-(use-package julia-mode :ensure t) ;; dependency for ess-site
-  (use-package ess
-    :ensure t
-    :defer t
-    :init 
-    (require 'ess-site)
-    :config 
-    (general-define-key
-     :states '(normal motion)
-     :keymaps 'ess-mode-map
-     :prefix "SPC"
-     "m" '(:ignore :which-key "Major Mode[ESS]")
-     "mb" '(ess-eval-buffer :which-key "Eval buffer")
-     "ml" '(ess-eval-line-and-step :which-key "Eval line")
-     "mr" '(ess-eval-region :which-key "Eval region")
-     "mi" '(asb-ess-R-object-popup-str :which-key "String inspect")
-     "mI" '(asb-ess-R-object-popup-interactive :which-key "Interactive inspect")
-     )
-    (defun asb-read-into-string (buffer)
-      (with-current-buffer buffer
-        (buffer-string)))
+  (use-package julia-mode :ensure t) ;; dependency for ess-site
+    (use-package ess
+      :ensure t
+      :defer t
+      :init 
+      (require 'ess-site)
+      :config 
+      (general-define-key
+       :states '(normal motion)
+       :keymaps 'ess-mode-map
+       :prefix "SPC"
+       "m" '(:ignore :which-key "Major Mode[ESS]")
+       "mb" '(ess-eval-buffer :which-key "Eval buffer")
+       "ml" '(ess-eval-line-and-step :which-key "Eval line")
+       "mr" '(ess-eval-region :which-key "Eval region")
+       "mi" '(asb-ess-R-object-popup-str :which-key "String inspect")
+       "mI" '(asb-ess-R-object-popup-interactive :which-key "Interactive inspect")
+       )
+      (defun asb-read-into-string (buffer)
+        (with-current-buffer buffer
+          (buffer-string)))
 
-    (defun asb-ess-R-object-popup (r-func)
-      "R-FUNC: The R function to use on the object.
-    Run R-FUN for object at point, and display results in a popup."
-      (let ((objname (current-word))
-            (tmpbuf (get-buffer-create "**ess-R-object-popup**")))
-        (if objname
-            (progn
-              (ess-command (concat "class(" objname ")\n") tmpbuf)
-              (let ((bs (asb-read-into-string tmpbuf)))
-                (if (not(string-match "\(object .* not found\)\|unexpected" bs))
-                    (progn
-                      (ess-command (concat r-func "(" objname ")\n") tmpbuf)
-                      (let ((bs (asb-read-into-string tmpbuf)))
-                        (popup-tip bs)))))))
-        (kill-buffer tmpbuf)))
+      (defun asb-ess-R-object-popup (r-func)
+        "R-FUNC: The R function to use on the object.
+      Run R-FUN for object at point, and display results in a popup."
+        (let ((objname (current-word))
+              (tmpbuf (get-buffer-create "**ess-R-object-popup**")))
+          (if objname
+              (progn
+                (ess-command (concat "class(" objname ")\n") tmpbuf)
+                (let ((bs (asb-read-into-string tmpbuf)))
+                  (if (not(string-match "\(object .* not found\)\|unexpected" bs))
+                      (progn
+                        (ess-command (concat r-func "(" objname ")\n") tmpbuf)
+                        (let ((bs (asb-read-into-string tmpbuf)))
+                          (popup-tip bs)))))))
+          (kill-buffer tmpbuf)))
 
-    (defun asb-ess-R-object-popup-str ()
-      (interactive)
-      (asb-ess-R-object-popup "str"))
+      (defun asb-ess-R-object-popup-str ()
+        (interactive)
+        (asb-ess-R-object-popup "str"))
 
-    (defun asb-ess-R-object-popup-interactive (r-func)
-      (interactive "sR function to execute: ")
-      (asb-ess-R-object-popup r-func))
+      (defun asb-ess-R-object-popup-interactive (r-func)
+        (interactive "sR function to execute: ")
+        (asb-ess-R-object-popup r-func))
 
-    (add-hook 'ess-mode-hook 'company-mode)
-    (add-hook 'ess-mode-hook 'nlinum-relative-mode)
-    (add-hook 'ess-mode-hook 'outline-minor-mode)
-    )
-  (use-package popup :ensure t)
+      (add-hook 'ess-mode-hook 'company-mode)
+      (add-hook 'ess-mode-hook 'display-line-numbers-mode)
+      (add-hook 'ess-mode-hook 'outline-minor-mode)
+      )
+    (use-package popup :ensure t)
 #+end_src
 
 ** Polymode
@@ -1593,21 +1600,21 @@ Keybindings for outline mode:
 
 * ProgMode
 #+begin_src emacs-lisp
-(add-hook 'prog-mode-hook 'company-mode)
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-(add-hook 'prog-mode-hook 'evil-commentary-mode)
-(add-hook 'prog-mode-hook 'column-number-mode)
-;;(add-hook 'prog-mode-hook 'yas-global-mode)
-;(add-hook 'prog-mode-hook 'yas-minor-mode)
-(add-hook 'prog-mode-hook 'indent-guide-mode)
-;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
-(add-hook 'prog-mode-hook 'winner-mode)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'prog-mode-hook 'nlinum-relative-mode)
-;;(add-hook 'prog-mode-hook 'whitespace-mode)
-(add-hook 'prog-mode-hook 'show-paren-mode)
-(add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'prog-mode-hook 'evil-goggles-mode)
+  (add-hook 'prog-mode-hook 'company-mode)
+  (add-hook 'prog-mode-hook 'electric-pair-mode)
+  (add-hook 'prog-mode-hook 'evil-commentary-mode)
+  (add-hook 'prog-mode-hook 'column-number-mode)
+  ;;(add-hook 'prog-mode-hook 'yas-global-mode)
+  ;(add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'prog-mode-hook 'indent-guide-mode)
+  ;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
+  (add-hook 'prog-mode-hook 'winner-mode)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  ;;(add-hook 'prog-mode-hook 'whitespace-mode)
+  (add-hook 'prog-mode-hook 'show-paren-mode)
+  (add-hook 'prog-mode-hook 'hl-line-mode)
+  (add-hook 'prog-mode-hook 'evil-goggles-mode)
 #+end_src
 
 
