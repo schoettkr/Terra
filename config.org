@@ -1027,23 +1027,24 @@ Todo: Compare with supposedly newly built-in line numbering
 #+END_SRC
 ** Dashboard
 #+begin_src emacs-lisp
-(use-package dashboard :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-banner-logo-title "“A good programmer is someone who always looks both ways before crossing a one-way street.” (Yoda)")
-  ;(setq dashboard-startup-banner (expand-file-name "emacs-logo.png"
-                                                   ;user-emacs-directory))
-  (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          ;;(registers . 5)
-                          ;;(agenda . 5)
-                          (projects . 5)))
-  (set-face-attribute 'widget-button nil :underline nil)
-  )
-;; (add-hook 'dashboard-mode-hook
-;; 	    (lambda ()
-;; 	       (set-display-table-slot buffer-display-table 'wrap ?\ )))
+  (use-package dashboard :ensure t
+    :config
+    (display-line-numbers-mode) ; doesnt work to toggle..
+    (dashboard-setup-startup-hook)
+    (setq dashboard-startup-banner 'logo)
+    (setq dashboard-banner-logo-title "“A good programmer is someone who always looks both ways before crossing a one-way street.” (Yoda)")
+    ;(setq dashboard-startup-banner (expand-file-name "emacs-logo.png"
+                                                     ;user-emacs-directory))
+    (setq dashboard-items '((recents  . 5)
+                            (bookmarks . 5)
+                            ;;(registers . 5)
+                            ;;(agenda . 5)
+                            (projects . 5)))
+    (set-face-attribute 'widget-button nil :underline nil)
+    )
+  ;; (add-hook 'dashboard-mode-hook
+  ;; 	    (lambda ()
+  ;; 	       (set-display-table-slot buffer-display-table 'wrap ?\ )))
 #+end_src
 
 ** Page Break Lines
