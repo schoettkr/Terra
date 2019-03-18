@@ -562,8 +562,6 @@ Other functions
 (use-package general :ensure t)
 #+END_SRC
 ** Org
-
-
 Part below can be used to get a more recent version of org mode
 #+begin_src emacs-lisp
   ;(unless (file-expand-wildcards (concat package-user-dir "/org-[0-9]*"))
