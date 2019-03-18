@@ -1579,6 +1579,7 @@ Keybindings for outline mode:
    )
 #+END_SRC
 
+
 * ProgMode
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook 'company-mode)
@@ -1846,6 +1847,17 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
            ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "multimarkdown"))
     ;; :config     (add-hook markdown-mode-hook 'outline-minor-mode))
+#+END_SRC
+
+** Lua
+#+BEGIN_SRC emacs-lisp
+  (use-package lua-mode
+    :ensure t
+    :config
+    (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+    (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+    (add-to-list 'interpreter-mode-alist '("lua" . lua-mode)))
+
 #+END_SRC
 
 
