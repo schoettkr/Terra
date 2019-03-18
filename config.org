@@ -206,87 +206,101 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 
 #+END_SRC
 ** Theme
+Best light theme by far (for real!):
+#+BEGIN_SRC emacs-lisp
+;(use-package base16-theme
+  ;:ensure t
+  ;:config
+;(load-theme 'base16-one-light))
+#+END_SRC
+Nice dark theme(s):
+#+BEGIN_SRC emacs-lisp
+;(load-theme 'base16-materia)
+(use-package one-themes
+  :ensure t
+  :config
+  (load-theme 'one-dark t)
+)
+#+END_SRC
+
 #+begin_src emacs-lisp
-  (use-package base16-theme :ensure t
-    :config
-    (setq base16-distinct-fringe-background nil)
-    (load-theme 'base16-materia))
-
-  ;; (use-package srcery-theme :ensure t
-  ;;   :init
-  ;;   (setq srcery-org-height nil)
-  ;;   (load-theme 'srcery t)
-  ;;   )
-;  (use-package kaolin-themes :ensure t
-;    :config
-;    (load-theme 'kaolin-valley-dark t)
-;    )
-
-  ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
-  ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
-
-  ; Deactivate Question on Boot (mainly so Emacs Daemon etc can be run)
-    ;; (while (progn
-    ;;          (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
-    ;;          (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
-    ;; (cond ((string-equal answer "c")
-    ;;        (progn
-    ;;          (use-package creamsody-theme :ensure t)
-    ;;          (load-theme 'creamsody)
-    ;;               (creamsody-modeline-four)
-    ;;               (set-face-attribute 'mode-line-inactive nil
-    ;;                                   :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
-    ;;                                   :background (face-attribute 'creamsody-modeline-two-inactive :background)
-    ;;                                   :height 120
-    ;;                                   :inverse-video nil
-    ;;                                   :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
-    ;;               ;;(setq default-frame-alist '((internal-border-width . 40) (font . "Bront 14")))
-
-    ;;               (set-face-attribute 'mode-line-inactive nil
-    ;;                                   :underline t
-    ;;                                   :background (face-background 'default))))
-    ;;       ((string-equal answer "w")
-    ;;        (load-theme 'base16-solarized-light)
-    ;;        (set-face-background 'mode-line "#cfdeee")))
-
-    ;; (use-package base16-theme :ensure t)
-  ;; (setq dark-theme nil)
-  ;; (use-package gruvbox-theme :ensure t)
-
-  ;; (if dark-theme
-  ;; (load-theme 'base16-materia)
-  ;; (load-theme 'gruvbox-dark-soft)
-  ;; (load-theme 'gruvbox-light-medium))
-  ;; (load-theme 'base16-material-lighter))
+  ;(use-package doom-themes
+  ;  :ensure t
+  ;  :config
+  ;  (load-theme 'doom-spacegrey t)
+  ;  )
 
 
-  ;;(load-theme 'base16-material-lighter)
-  ;;(load-theme 'base16-one-light)
-  ;; (load-theme 'base16-harmonic-light)
+    ;; (use-package base16-theme :ensure t
+    ;;   :config
+    ;;   (setq base16-distinct-fringe-background nil)
+    ;;   (load-theme 'base16-materia))
 
-  ;; (use-package one-themes 
-  ;;  :init (load-theme 'one-light t))
-  ;; (load-theme 'base16-flat)
-                                          ;  (load-theme 'base16-harmonic-light)
+  ;  (use-package kaolin-themes :ensure t
+  ;    :config
+  ;    (load-theme 'kaolin-valley-dark t)
+  ;    )
 
-                                          ;   (load-theme 'base16-porple)
-  ;; (load-theme 'base16-material)
-  ;; (load-theme 'base16-material-palenight)
-                                          ;   (load-theme 'base16-one-light)
-                                          ;  (load-theme 'base16-unikitty-light)
+    ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
+    ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
+
+    ; Deactivate Question on Boot (mainly so Emacs Daemon etc can be run)
+      ;; (while (progn
+      ;;          (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
+      ;;          (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
+      ;; (cond ((string-equal answer "c")
+      ;;        (progn
+      ;;          (use-package creamsody-theme :ensure t)
+      ;;          (load-theme 'creamsody)
+      ;;               (creamsody-modeline-four)
+      ;;               (set-face-attribute 'mode-line-inactive nil
+      ;;                                   :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
+      ;;                                   :background (face-attribute 'creamsody-modeline-two-inactive :background)
+      ;;                                   :height 120
+      ;;                                   :inverse-video nil
+      ;;                                   :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
+      ;;               ;;(setq default-frame-alist '((internal-border-width . 40) (font . "Bront 14")))
+
+      ;;               (set-face-attribute 'mode-line-inactive nil
+      ;;                                   :underline t
+      ;;                                   :background (face-background 'default))))
+      ;;       ((string-equal answer "w")
+      ;;        (load-theme 'base16-solarized-light)
+      ;;        (set-face-background 'mode-line "#cfdeee")))
+
+      ;; (use-package base16-theme :ensure t)
+    ;; (setq dark-theme nil)
+    ;; (use-package gruvbox-theme :ensure t)
+
+    ;; (if dark-theme
+    ;; (load-theme 'base16-materia)
+    ;; (load-theme 'gruvbox-dark-soft)
+    ;; (load-theme 'gruvbox-light-medium))
+    ;; (load-theme 'base16-material-lighter))
 
 
-                                          ;(use-package darktooth-theme :ensure t)
-                                          ;(load-theme 'darktooth)
+    ;;(load-theme 'base16-material-lighter)
+    ;;(load-theme 'base16-one-light)
+    ;; (load-theme 'base16-harmonic-light)
 
-                                          ;(set-face-foreground 'mode-line-buffer-id "purple")
-                                          ;(set-face-background 'mode-line "#44475a") ; for dark themes
+    ;; (use-package one-themes 
+    ;;  :init (load-theme 'one-light t))
+    ;; (load-theme 'base16-flat)
+                                            ;  (load-theme 'base16-harmonic-light)
+
+                                            ;   (load-theme 'base16-porple)
+    ;; (load-theme 'base16-material)
+    ;; (load-theme 'base16-material-palenight)
+                                            ;  (load-theme 'base16-unikitty-light)
+
+                                            ;(set-face-foreground 'mode-line-buffer-id "purple")
+                                            ;(set-face-background 'mode-line "#44475a") ; for dark themes
 
 
-  ;; p(set-face-background 'mode-line "#cfdeee")
+    ;; p(set-face-background 'mode-line "#cfdeee")
 
-  ;; (load-theme 'base16-solarized-light)
-  ;; (set-face-background 'mode-line "#cfdeee") ; for light themes
+    ;; (load-theme 'base16-solarized-light)
+    ;; (set-face-background 'mode-line "#cfdeee") ; for light themes
 
 #+end_src
 
