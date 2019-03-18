@@ -8,30 +8,30 @@
 
 * Package Manager Setup
 #+begin_src emacs-lisp
-  (require 'package)
-  (setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
+(require 'package)
+(setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
 
-  ;; the following lines tell emacs where on the internet to look up
-  ;; for new packages.
-  ;; when facing problems with package installation delete ~/.emacs.d/elpa/archives/melpa/archive-contents and `M-x package-refresh-contens` on next launch
-  (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-         ("gnu"       . "https://elpa.gnu.org/packages/")
-         ("melpa"     . "https://melpa.org/packages/")
-         ;;("marmalade" . "http://marmalade-repo.org/packages/")
-         ))
+;; the following lines tell emacs where on the internet to look up
+;; for new packages.
+;; when facing problems with package installation delete ~/.emacs.d/elpa/archives/melpa/archive-contents and `M-x package-refresh-contens` on next launch
+(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
+                         ("gnu"       . "https://elpa.gnu.org/packages/")
+                         ("melpa"     . "https://melpa.org/packages/")
+                         ;;("marmalade" . "http://marmalade-repo.org/packages/")
+                         ))
 
-  ;;  (package-initialize) ; guess what this one does ?
+;;  (package-initialize) ; guess what this one does ?
 
 
 
-   ;; Bootstrap `use-package'
-  (unless (package-installed-p 'use-package) ; unless it is already installed
-    (package-refresh-contents) ; updage packages archive
-    (package-install 'use-package)) ; and install the most recent version of use-package
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package) ; unless it is already installed
+  (package-refresh-contents) ; updage packages archive
+  (package-install 'use-package)) ; and install the most recent version of use-package
 
-  (require 'use-package) ; guess what this one does too ?
+(require 'use-package) ; guess what this one does too ?
 
-  (setq use-package-expand-minimally t)
+(setq use-package-expand-minimally t)
 
 
 #+end_src
@@ -39,184 +39,184 @@
 
 * General
 #+begin_src emacs-lisp
-  (setq delete-old-versions -1 )		; delete excess backup versions silently
-  (setq version-control t )		; use version control
-  (setq vc-make-backup-files t )		; make backups file even when in version controlled dir
-  (setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
-  (fset 'yes-or-no-p 'y-or-n-p)
-  (setq vc-follow-symlinks t )				       ; don't ask for confirmation when opening symlinked file
-  (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
-  (setq inhibit-startup-screen t )	; inhibit useless and old-school startup screen
-  (setq ring-bell-function 'ignore )	; silent bell when you make a mistake
-  (setq coding-system-for-read 'utf-8 )	; use utf-8 by default
-  (setq coding-system-for-write 'utf-8 )
-  (setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
-  (setq default-fill-column 80)		; toggle wrapping text at the 80th character
-  (setq-default tab-width 2)                    ; tab are 2 spaces large
-  (setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
-  (setq tab-stop-list (number-sequence 2 120 2)) ;; set tab length
-  (setq evil-want-C-u-scroll t) ;; scroll with C-u like in vim
-  ;;(set-display-table-slot standard-display-table 'wrap ?\ )
-  (set-display-table-slot standard-display-table 0 ?\ ) 
-  (set-display-table-slot standard-display-table 'wrap ?\ )
-  (setq-default indent-tabs-mode nil)
-  (mapc
-   (lambda (face) (set-face-attribute face nil :weight 'normal :underline nil)) (face-list))
-   
-  (put 'narrow-to-defun  'disabled nil)
-  (put 'narrow-to-page   'disabled nil)
-  (put 'narrow-to-region 'disabled nil)
+(setq delete-old-versions -1 )		; delete excess backup versions silently
+(setq version-control t )		; use version control
+(setq vc-make-backup-files t )		; make backups file even when in version controlled dir
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")) ) ; which directory to put backups file
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq vc-follow-symlinks t )				       ; don't ask for confirmation when opening symlinked file
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)) ) ;transform backups file name
+(setq inhibit-startup-screen t )	; inhibit useless and old-school startup screen
+(setq ring-bell-function 'ignore )	; silent bell when you make a mistake
+(setq coding-system-for-read 'utf-8 )	; use utf-8 by default
+(setq coding-system-for-write 'utf-8 )
+(setq sentence-end-double-space nil)	; sentence SHOULD end with only a point.
+(setq default-fill-column 80)		; toggle wrapping text at the 80th character
+(setq-default tab-width 2)                    ; tab are 2 spaces large
+(setq initial-scratch-message "Welcome to Emacs") ; print a default message in the empty scratch buffer opened at startup
+(setq tab-stop-list (number-sequence 2 120 2)) ;; set tab length
+(setq evil-want-C-u-scroll t) ;; scroll with C-u like in vim
+;;(set-display-table-slot standard-display-table 'wrap ?\ )
+(set-display-table-slot standard-display-table 0 ?\ ) 
+(set-display-table-slot standard-display-table 'wrap ?\ )
+(setq-default indent-tabs-mode nil)
+(mapc
+ (lambda (face) (set-face-attribute face nil :weight 'normal :underline nil)) (face-list))
 
-  (global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
-  (setq font-lock-maximum-decoration t)
+(put 'narrow-to-defun  'disabled nil)
+(put 'narrow-to-page   'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
+(global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
+(setq font-lock-maximum-decoration t)
 #+end_src
 
 
 * Appearance
 ** All the icons
 #+begin_src emacs-lisp
-  (setq load-prefer-newer t)
-  (use-package all-the-icons :ensure t :defer t)
-  ;; dont forget to M-x all-the-icons-install-fonts
+(setq load-prefer-newer t)
+(use-package all-the-icons :ensure t :defer t)
+;; dont forget to M-x all-the-icons-install-fonts
 #+end_src
 
 ** General
 Note try (setq left-margin-width 20) and (set-window-margins (selected-window) 20 20)
 Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs.InternalBorder: 40 in .Xresources
 #+begin_src emacs-lisp
-  (setq default-frame-alist '((font . "Bront 13")))
-  (setq whitespace-line-column 999)
-  (set-face-bold-p 'bold nil)
-  ;; (setq-default left-margin-width 4 right-margin-width 2) ; Set down because to much margin with built-in linums
-  (setq-default left-margin-width 0 right-margin-width 0) ; Define new widths.
-  (set-window-buffer nil (current-buffer)) 
+(setq default-frame-alist '((font . "Bront 13")))
+(setq whitespace-line-column 999)
+(set-face-bold-p 'bold nil)
+;; (setq-default left-margin-width 4 right-margin-width 2) ; Set down because to much margin with built-in linums
+(setq-default left-margin-width 0 right-margin-width 0) ; Define new widths.
+(set-window-buffer nil (current-buffer)) 
 
-  ;; (set-face-attribute 'default nil :height 120)
-  ;; (set-default-font "Noto Sans 12")
-  ;; (set-default-font "Fira Mono 12")
-  ;; (add-to-list 'default-frame-alist '(font . "Overpass Mono 11"))
-  ;; DejaVuSansMono FTW!!!
-  ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono 11"))
-  ;; (add-to-list 'default-frame-alist '(font . "Bront 13")) ;; love dis font omfg! gives me apple vibes on linux
-  ;; (add-to-list 'default-frame-alist '(font . "Hack 12"))
-  ;; (add-to-list 'default-frame-alist '(font . "Fira Mono 12"))
-  ;; (add-to-list 'default-frame-alist '(font . "Input Mono Light"))
-  ;; (set-default-font "Fira Code 12")
-  ;; (set-default-font "Hack 12")
-  ;; (set-default-font "Inconsolata 14")
-  ;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
-  ;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
-  ;; (set-window-fringes (selected-window) 0 0 nil)
-  ;; (setq whitespace-style '(faces spaces indentation))
+;; (set-face-attribute 'default nil :height 120)
+;; (set-default-font "Noto Sans 12")
+;; (set-default-font "Fira Mono 12")
+;; (add-to-list 'default-frame-alist '(font . "Overpass Mono 11"))
+;; DejaVuSansMono FTW!!!
+;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono 11"))
+;; (add-to-list 'default-frame-alist '(font . "Bront 13")) ;; love dis font omfg! gives me apple vibes on linux
+;; (add-to-list 'default-frame-alist '(font . "Hack 12"))
+;; (add-to-list 'default-frame-alist '(font . "Fira Mono 12"))
+;; (add-to-list 'default-frame-alist '(font . "Input Mono Light"))
+;; (set-default-font "Fira Code 12")
+;; (set-default-font "Hack 12")
+;; (set-default-font "Inconsolata 14")
+;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
+;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+;; (set-window-fringes (selected-window) 0 0 nil)
+;; (setq whitespace-style '(faces spaces indentation))
 #+end_src
 
 ** Modeline
 *** Customization
 #+BEGIN_SRC emacs-lisp
-    (defadvice vc-mode-line (after strip-backend () activate)
-      (when (stringp vc-mode)
-        (let ((noback (replace-regexp-in-string
-                       (format "^ %s:" (vc-backend buffer-file-name))
-                       " " vc-mode)))
-          (setq vc-mode noback))))
+(defadvice vc-mode-line (after strip-backend () activate)
+  (when (stringp vc-mode)
+    (let ((noback (replace-regexp-in-string
+                   (format "^ %s:" (vc-backend buffer-file-name))
+                   " " vc-mode)))
+      (setq vc-mode noback))))
 
-    (defun simple-mode-line-render (left right)
-       "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
-       (let* ((available-width (+ (/ (length right) 2.3) (- (window-width) (length left)))))
-         (format (format "%%s %%%ds" available-width) left right)))
+(defun simple-mode-line-render (left right)
+  "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
+  (let* ((available-width (+ (/ (length right) 2.3) (- (window-width) (length left)))))
+    (format (format "%%s %%%ds" available-width) left right)))
 
-    (setq-default
-     mode-line-format
-     '((:eval
-        (simple-mode-line-render
-         ;; left
-         (format-mode-line
-          (quote
-           (" %e"
-            mode-line-modified
-            mode-line-frame-identification
-            mode-line-buffer-identification
-            (vc-mode vc-mode)
+(setq-default
+ mode-line-format
+ '((:eval
+    (simple-mode-line-render
+     ;; left
+     (format-mode-line
+      (quote
+       (" %e"
+        mode-line-modified
+        mode-line-frame-identification
+        mode-line-buffer-identification
+        (vc-mode vc-mode)
 
-            " [%l:%c] "
-            ;; evil-mode-line-tag
-            "%m"
-            mode-line-misc-info
-            )))
-         ;; right
-         (format-mode-line
-          (eval (format-time-string "%d.%m.%Y %H:%M")
+        " [%l:%c] "
+        ;; evil-mode-line-tag
+        "%m"
+        mode-line-misc-info
+        )))
+     ;; right
+     (format-mode-line
+      (eval (format-time-string "%d.%m.%Y %H:%M")
             ;; mode-line-modes
             ))))))
 #+END_SRC
 *** Diminish
 #+BEGIN_SRC emacs-lisp
-  (eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl))
 
-  (defvar diminish-must-not-copy-minor-mode-alist nil
-    "Non-nil means loading diminish.el won't (copy-alist minor-mode-alist).
-  Normally `minor-mode-alist' is setq to that copy on loading diminish because
-  at least one of its cons cells, that for abbrev-mode, is read-only (see
-  ELisp Info on \"pure storage\").  If you setq this variable to t & then
-  try to diminish abbrev-mode under GNU Emacs 19.34, you'll get the error
-  message \"Attempt to modify read-only object\".")
+(defvar diminish-must-not-copy-minor-mode-alist nil
+  "Non-nil means loading diminish.el won't (copy-alist minor-mode-alist).
+Normally `minor-mode-alist' is setq to that copy on loading diminish because
+at least one of its cons cells, that for abbrev-mode, is read-only (see
+ELisp Info on \"pure storage\").  If you setq this variable to t & then
+try to diminish abbrev-mode under GNU Emacs 19.34, you'll get the error
+message \"Attempt to modify read-only object\".")
 
-  (or diminish-must-not-copy-minor-mode-alist
-      (callf copy-alist minor-mode-alist))
+(or diminish-must-not-copy-minor-mode-alist
+    (callf copy-alist minor-mode-alist))
 
-  (defvar diminished-mode-alist nil
-    "The original `minor-mode-alist' value of all (diminish)ed modes.")
+(defvar diminished-mode-alist nil
+  "The original `minor-mode-alist' value of all (diminish)ed modes.")
 
-  (defvar diminish-history-symbols nil
-    "Command history for symbols of diminished modes.")
+(defvar diminish-history-symbols nil
+  "Command history for symbols of diminished modes.")
 
-  (defvar diminish-history-names nil
-    "Command history for names of diminished modes.")
+(defvar diminish-history-names nil
+  "Command history for names of diminished modes.")
 
 
-  (defun diminish (mode &optional to-what)
-    "Diminish mode-line display of minor mode MODE to TO-WHAT (default \"\").
-  Interactively, enter (with completion) the name of any minor mode, followed
-  on the next line by what you want it diminished to (default empty string).
-  The response to neither prompt should be quoted.  However, in Lisp code,
-  both args must be quoted, the first as a symbol, the second as a string,
-  as in (diminish 'jiggle-mode \" Jgl\").
-  The mode-line displays of minor modes usually begin with a space, so
-  the modes' names appear as separate words on the mode line.  However, if
-  you're having problems with a cramped mode line, you may choose to use single
-  letters for some modes, without leading spaces.  Capitalizing them works
-  best; if you then diminish some mode to \"X\" but have abbrev-mode enabled as
-  well, you'll get a display like \"AbbrevX\".  This function prepends a space
-  to TO-WHAT if it's > 1 char long & doesn't already begin with a space."
-    (interactive (list (read (completing-read
-                              "Diminish what minor mode: "
-                              (mapcar (lambda (x) (list (symbol-name (car x))))
-                                      minor-mode-alist)
-                              nil t nil 'diminish-history-symbols))
-                       ))
-    (let ((minor (assq mode minor-mode-alist)))
-      (when minor
-        (progn (callf or to-what "")
-               (when (and (stringp to-what)
-                          (> (length to-what) 1))
-                 (or (= (string-to-char to-what) ?\ )
-                     (callf2 concat " " to-what)))
-               (or (assq mode diminished-mode-alist)
-                   (push (copy-sequence minor) diminished-mode-alist))
-                 (setcdr minor (list to-what))))))
+(defun diminish (mode &optional to-what)
+  "Diminish mode-line display of minor mode MODE to TO-WHAT (default \"\").
+Interactively, enter (with completion) the name of any minor mode, followed
+on the next line by what you want it diminished to (default empty string).
+The response to neither prompt should be quoted.  However, in Lisp code,
+both args must be quoted, the first as a symbol, the second as a string,
+as in (diminish 'jiggle-mode \" Jgl\").
+The mode-line displays of minor modes usually begin with a space, so
+the modes' names appear as separate words on the mode line.  However, if
+you're having problems with a cramped mode line, you may choose to use single
+letters for some modes, without leading spaces.  Capitalizing them works
+best; if you then diminish some mode to \"X\" but have abbrev-mode enabled as
+well, you'll get a display like \"AbbrevX\".  This function prepends a space
+to TO-WHAT if it's > 1 char long & doesn't already begin with a space."
+  (interactive (list (read (completing-read
+                            "Diminish what minor mode: "
+                            (mapcar (lambda (x) (list (symbol-name (car x))))
+                                    minor-mode-alist)
+                            nil t nil 'diminish-history-symbols))
+                     ))
+  (let ((minor (assq mode minor-mode-alist)))
+    (when minor
+      (progn (callf or to-what "")
+             (when (and (stringp to-what)
+                        (> (length to-what) 1))
+               (or (= (string-to-char to-what) ?\ )
+                   (callf2 concat " " to-what)))
+             (or (assq mode diminished-mode-alist)
+                 (push (copy-sequence minor) diminished-mode-alist))
+             (setcdr minor (list to-what))))))
 
 #+END_SRC
 ** Theme
 Best light theme by far (for real!):
 #+BEGIN_SRC emacs-lisp
-;(use-package base16-theme
-  ;:ensure t
-  ;:config
-;(load-theme 'base16-one-light))
+;; (use-package base16-theme
+;;   :ensure t
+;;   :config
+;; (load-theme 'base16-one-light))
 #+END_SRC
 Nice dark theme(s):
 #+BEGIN_SRC emacs-lisp
-;(load-theme 'base16-materia)
+;; (load-theme 'base16-materia)
 (use-package one-themes
   :ensure t
   :config
@@ -225,83 +225,83 @@ Nice dark theme(s):
 #+END_SRC
 
 #+begin_src emacs-lisp
-  ;(use-package doom-themes
-  ;  :ensure t
-  ;  :config
-  ;  (load-theme 'doom-spacegrey t)
-  ;  )
+                                        ;(use-package doom-themes
+                                        ;  :ensure t
+                                        ;  :config
+                                        ;  (load-theme 'doom-spacegrey t)
+                                        ;  )
 
 
-    ;; (use-package base16-theme :ensure t
-    ;;   :config
-    ;;   (setq base16-distinct-fringe-background nil)
-    ;;   (load-theme 'base16-materia))
+;; (use-package base16-theme :ensure t
+;;   :config
+;;   (setq base16-distinct-fringe-background nil)
+;;   (load-theme 'base16-materia))
 
-  ;  (use-package kaolin-themes :ensure t
-  ;    :config
-  ;    (load-theme 'kaolin-valley-dark t)
-  ;    )
+                                        ;  (use-package kaolin-themes :ensure t
+                                        ;    :config
+                                        ;    (load-theme 'kaolin-valley-dark t)
+                                        ;    )
 
-    ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
-    ;; (cond ((string-equal answer "c") (load-theme 'base16-material))
+                                        ;  (use-package creamsody-theme :ensure t) ;; overwrites stuff so only execute once manually and then comment out again..
+;; (cond ((string-equal answer "c") (load-theme 'base16-material))
 
-    ; Deactivate Question on Boot (mainly so Emacs Daemon etc can be run)
-      ;; (while (progn
-      ;;          (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
-      ;;          (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
-      ;; (cond ((string-equal answer "c")
-      ;;        (progn
-      ;;          (use-package creamsody-theme :ensure t)
-      ;;          (load-theme 'creamsody)
-      ;;               (creamsody-modeline-four)
-      ;;               (set-face-attribute 'mode-line-inactive nil
-      ;;                                   :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
-      ;;                                   :background (face-attribute 'creamsody-modeline-two-inactive :background)
-      ;;                                   :height 120
-      ;;                                   :inverse-video nil
-      ;;                                   :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
-      ;;               ;;(setq default-frame-alist '((internal-border-width . 40) (font . "Bront 14")))
+                                        ; Deactivate Question on Boot (mainly so Emacs Daemon etc can be run)
+;; (while (progn
+;;          (setq answer (downcase (char-to-string (read-char "Do you want to code [c] or write [w] "))))
+;;          (not (or (string-equal answer "c") (string-equal answer "w") (string-equal answer "x")))))
+;; (cond ((string-equal answer "c")
+;;        (progn
+;;          (use-package creamsody-theme :ensure t)
+;;          (load-theme 'creamsody)
+;;               (creamsody-modeline-four)
+;;               (set-face-attribute 'mode-line-inactive nil
+;;                                   :foreground (face-attribute 'creamsody-modeline-two-inactive :foreground)
+;;                                   :background (face-attribute 'creamsody-modeline-two-inactive :background)
+;;                                   :height 120
+;;                                   :inverse-video nil
+;;                                   :box `(:line-width 6 :color ,(face-attribute 'creamsody-modeline-two-inactive :background) :style nil))
+;;               ;;(setq default-frame-alist '((internal-border-width . 40) (font . "Bront 14")))
 
-      ;;               (set-face-attribute 'mode-line-inactive nil
-      ;;                                   :underline t
-      ;;                                   :background (face-background 'default))))
-      ;;       ((string-equal answer "w")
-      ;;        (load-theme 'base16-solarized-light)
-      ;;        (set-face-background 'mode-line "#cfdeee")))
+;;               (set-face-attribute 'mode-line-inactive nil
+;;                                   :underline t
+;;                                   :background (face-background 'default))))
+;;       ((string-equal answer "w")
+;;        (load-theme 'base16-solarized-light)
+;;        (set-face-background 'mode-line "#cfdeee")))
 
-      ;; (use-package base16-theme :ensure t)
-    ;; (setq dark-theme nil)
-    ;; (use-package gruvbox-theme :ensure t)
+;; (use-package base16-theme :ensure t)
+;; (setq dark-theme nil)
+;; (use-package gruvbox-theme :ensure t)
 
-    ;; (if dark-theme
-    ;; (load-theme 'base16-materia)
-    ;; (load-theme 'gruvbox-dark-soft)
-    ;; (load-theme 'gruvbox-light-medium))
-    ;; (load-theme 'base16-material-lighter))
-
-
-    ;;(load-theme 'base16-material-lighter)
-    ;;(load-theme 'base16-one-light)
-    ;; (load-theme 'base16-harmonic-light)
-
-    ;; (use-package one-themes 
-    ;;  :init (load-theme 'one-light t))
-    ;; (load-theme 'base16-flat)
-                                            ;  (load-theme 'base16-harmonic-light)
-
-                                            ;   (load-theme 'base16-porple)
-    ;; (load-theme 'base16-material)
-    ;; (load-theme 'base16-material-palenight)
-                                            ;  (load-theme 'base16-unikitty-light)
-
-                                            ;(set-face-foreground 'mode-line-buffer-id "purple")
-                                            ;(set-face-background 'mode-line "#44475a") ; for dark themes
+;; (if dark-theme
+;; (load-theme 'base16-materia)
+;; (load-theme 'gruvbox-dark-soft)
+;; (load-theme 'gruvbox-light-medium))
+;; (load-theme 'base16-material-lighter))
 
 
-    ;; p(set-face-background 'mode-line "#cfdeee")
+;;(load-theme 'base16-material-lighter)
+;;(load-theme 'base16-one-light)
+;; (load-theme 'base16-harmonic-light)
 
-    ;; (load-theme 'base16-solarized-light)
-    ;; (set-face-background 'mode-line "#cfdeee") ; for light themes
+;; (use-package one-themes 
+;;  :init (load-theme 'one-light t))
+;; (load-theme 'base16-flat)
+                                        ;  (load-theme 'base16-harmonic-light)
+
+                                        ;   (load-theme 'base16-porple)
+;; (load-theme 'base16-material)
+;; (load-theme 'base16-material-palenight)
+                                        ;  (load-theme 'base16-unikitty-light)
+
+                                        ;(set-face-foreground 'mode-line-buffer-id "purple")
+                                        ;(set-face-background 'mode-line "#44475a") ; for dark themes
+
+
+;; p(set-face-background 'mode-line "#cfdeee")
+
+;; (load-theme 'base16-solarized-light)
+;; (set-face-background 'mode-line "#cfdeee") ; for light themes
 
 #+end_src
 
@@ -310,130 +310,130 @@ Nice dark theme(s):
 Function for vim-like increment/decrement
 #+BEGIN_SRC emacs-lisp
 (defun my-change-number-at-point (change)
- (let ((number (number-at-point))
-       (point (point)))
-   (when number
-     (progn
-       (forward-word)
-       (search-backward (number-to-string number))
-       (replace-match (number-to-string (funcall change number)))
-       (goto-char point)))))
+  (let ((number (number-at-point))
+        (point (point)))
+    (when number
+      (progn
+        (forward-word)
+        (search-backward (number-to-string number))
+        (replace-match (number-to-string (funcall change number)))
+        (goto-char point)))))
 (defun my-increment-number-at-point ()
- ;"Increment number at point like vim's C-a"
- (interactive)
- (my-change-number-at-point '1+))
+                                        ;"Increment number at point like vim's C-a"
+  (interactive)
+  (my-change-number-at-point '1+))
 (defun my-decrement-number-at-point ()
- "Decrement number at point like vim's C-x"
- (interactive)
- (my-change-number-at-point '1-))
+  "Decrement number at point like vim's C-x"
+  (interactive)
+  (my-change-number-at-point '1-))
 (global-set-key (kbd "C-c a") 'my-increment-number-at-point)
 (global-set-key (kbd "C-c x") 'my-decrement-number-at-point)
 
 #+END_SRC
 Other functions
 #+begin_src emacs-lisp
-  ;; (defvar xrdb-master-file nil)
-  (defvar xrdb-master-file "~/.Xresources")
-  (defcustom xrdb-program "xrdb"
-    "*Program to run to load or merge resources in the X resource database."
+;; (defvar xrdb-master-file nil)
+(defvar xrdb-master-file "~/.Xresources")
+(defcustom xrdb-program "xrdb"
+  "*Program to run to load or merge resources in the X resource database."
   )
 
-  (defcustom xrdb-program-args '("-merge")
-    "*List of string arguments to pass to `xrdb-program'."
-    )
+(defcustom xrdb-program-args '("-merge")
+  "*List of string arguments to pass to `xrdb-program'."
+  )
 
-  (defun xrdb-database-merge ()
-    (interactive)
-    (let ((outbuf (get-buffer-create "*Shell Command Output*")))
-      (with-current-buffer outbuf (erase-buffer))
-      (apply 'call-process xrdb-program xrdb-master-file outbuf t
-             xrdb-program-args))
-    (if (not (zerop (with-current-buffer outbuf (buffer-size))))
-        (pop-to-buffer outbuf))
-    (message "Merging... done"))
-    
-    (eval-after-load 'term
-'(progn
-  (define-key term-mode-map (kbd "C-j") 'term-char-mode)
-  (define-key term-mode-map (kbd "C-k") 'term-line-mode)
-  (define-key term-raw-map (kbd "C-j") 'term-char-mode)
-  (define-key term-raw-map (kbd "C-k") 'term-line-mode)
-  ))
+(defun xrdb-database-merge ()
+  (interactive)
+  (let ((outbuf (get-buffer-create "*Shell Command Output*")))
+    (with-current-buffer outbuf (erase-buffer))
+    (apply 'call-process xrdb-program xrdb-master-file outbuf t
+           xrdb-program-args))
+  (if (not (zerop (with-current-buffer outbuf (buffer-size))))
+      (pop-to-buffer outbuf))
+  (message "Merging... done"))
+
+(eval-after-load 'term
+  '(progn
+     (define-key term-mode-map (kbd "C-j") 'term-char-mode)
+     (define-key term-mode-map (kbd "C-k") 'term-line-mode)
+     (define-key term-raw-map (kbd "C-j") 'term-char-mode)
+     (define-key term-raw-map (kbd "C-k") 'term-line-mode)
+     ))
 
 
-  (defun popup-shell ()
-    (interactive)
-    (if (get-buffer-window "*terminal*")
-       (progn (setq popup-shell-open nil)
-        (delete-windows-on "*terminal*")
-        )
-      (split-window-below)
-      (windmove-down)
-      (term "/usr/bin/zsh")
-      (shrink-window 16)
-      ))
+(defun popup-shell ()
+  (interactive)
+  (if (get-buffer-window "*terminal*")
+      (progn (setq popup-shell-open nil)
+             (delete-windows-on "*terminal*")
+             )
+    (split-window-below)
+    (windmove-down)
+    (term "/usr/bin/zsh")
+    (shrink-window 16)
+    ))
 
-  (defun my/disable-scroll-bars (frame)
-    (modify-frame-parameters frame
-                             '((vertical-scroll-bars . nil)
-                               (horizontal-scroll-bars . nil))))
-  (add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
+(defun my/disable-scroll-bars (frame)
+  (modify-frame-parameters frame
+                           '((vertical-scroll-bars . nil)
+                             (horizontal-scroll-bars . nil))))
+(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
-  (defun open-termite ()
-    (interactive "@")
-    (shell-command (concat "termite"
-                           " > /dev/null 2>&1 & disown") nil nil))
-  (defun indent-buffer ()
-    "Apply indentation rule to the entire buffer."
-    (interactive)
-    (delete-trailing-whitespace)
-    (indent-region (point-min) (point-max)))
+(defun open-termite ()
+  (interactive "@")
+  (shell-command (concat "termite"
+                         " > /dev/null 2>&1 & disown") nil nil))
+(defun indent-buffer ()
+  "Apply indentation rule to the entire buffer."
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max)))
 
-  (defun setup-tide-mode ()
-    (interactive)
-    (setq tide-node-executable "/home/chinchi/.nvm/versions/node/v9.0.0/bin/node")
-   (setq tide-tsserver-executable (expand-file-name tide--tsserver tide-tsserver-directory))
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode -1)
-    ;; company is an optional dependency. You have to
-    ;; install it separately via package-install
-    ;; `M-x package-install [ret] company`
-    (company-mode +1))
+(defun setup-tide-mode ()
+  (interactive)
+  (setq tide-node-executable "/home/chinchi/.nvm/versions/node/v9.0.0/bin/node")
+  (setq tide-tsserver-executable (expand-file-name tide--tsserver tide-tsserver-directory))
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode -1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
 
-  (defun add-semicolon ()
-    (interactive)
-    (end-of-line)
-    (when (not (looking-back ";"))
-      (insert ";"))
-    (evil-first-non-blank))
+(defun add-semicolon ()
+  (interactive)
+  (end-of-line)
+  (when (not (looking-back ";"))
+    (insert ";"))
+  (evil-first-non-blank))
 
-  (defun insert-uuid ()
-    (interactive)
-    (let ((rnd (md5 (format "%s%s%s%s%s%s%s"
-                            (random)
-                            (current-time)
-                            (user-uid)
-                            (emacs-pid)
-                            (user-full-name)
-                            user-mail-address
-                            (recent-keys)))))
-      (insert (format "%s-%s-4%s-%s%s-%s"
-              (substring rnd 0 8)
-              (substring rnd 8 12)
-              (substring rnd 13 16)
-              (format "%x"
-                      (logior
-                       #b10000000
-                       (logand
-                        #b10111111
-                        (string-to-number
-                         (substring rnd 16 18) 16))))
-              (substring rnd 18 20)
-              (substring rnd 20 32)))
-      ))
+(defun insert-uuid ()
+  (interactive)
+  (let ((rnd (md5 (format "%s%s%s%s%s%s%s"
+                          (random)
+                          (current-time)
+                          (user-uid)
+                          (emacs-pid)
+                          (user-full-name)
+                          user-mail-address
+                          (recent-keys)))))
+    (insert (format "%s-%s-4%s-%s%s-%s"
+                    (substring rnd 0 8)
+                    (substring rnd 8 12)
+                    (substring rnd 13 16)
+                    (format "%x"
+                            (logior
+                             #b10000000
+                             (logand
+                              #b10111111
+                              (string-to-number
+                               (substring rnd 16 18) 16))))
+                    (substring rnd 18 20)
+                    (substring rnd 20 32)))
+    ))
 #+end_src
 ** Password Generator
 #+BEGIN_SRC emacs-lisp
@@ -1449,143 +1449,143 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
 ** General.el
 #+begin_src emacs-lisp
-      (general-define-key
-       ;; replace default keybindings
-       :states '(normal emacs)
-       ;"C-s" 'swiper             ; search for string in current buffer
-       "C-s" 'evil-search-forward             ; search for string in current buffer
-       ;;   "C-p" 'company-select-previous             ; search for string in current buffer
-       ;;   "C-n" 'company-select-next             ; search for string in current buffer
-       ;"/" 'swiper             ; search for string in current buffer
-       "/" 'evil-search-forward             ; search for string in current buffer
-       ;"/" 'evil-search-forward             ; search for string in current buffer
-       "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
-       "N" 'evil-search-previous
-       "n" 'evil-search-next
-       "\\" 'evil-ex-nohighlight
-       "<f2>" 'iedit-mode
-       ;; "C-w" 'evil-delete-buffer
-       )
+(general-define-key
+ ;; replace default keybindings
+ :states '(normal emacs)
+                                        ;"C-s" 'swiper             ; search for string in current buffer
+ "C-s" 'evil-search-forward             ; search for string in current buffer
+ ;;   "C-p" 'company-select-previous             ; search for string in current buffer
+ ;;   "C-n" 'company-select-next             ; search for string in current buffer
+                                        ;"/" 'swiper             ; search for string in current buffer
+ "/" 'evil-search-forward             ; search for string in current buffer
+                                        ;"/" 'evil-search-forward             ; search for string in current buffer
+ "M-x" 'counsel-M-x        ; replace default M-x with ivy backend
+ "N" 'evil-search-previous
+ "n" 'evil-search-next
+ "\\" 'evil-ex-nohighlight
+ "<f2>" 'iedit-mode
+ ;; "C-w" 'evil-delete-buffer
+ )
 
-    (general-def :states '(normal motion emacs) "SPC" nil)
-    (general-def :keymaps '(compilation-mode-map ess-help-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
-    (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
+(general-def :states '(normal motion emacs) "SPC" nil)
+(general-def :keymaps '(compilation-mode-map ess-help-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
+(general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
 
-      (general-define-key
-       :states '(normal motion emacs)
-       :prefix "SPC"
+(general-define-key
+ :states '(normal motion emacs)
+ :prefix "SPC"
 
-       ;; simple command
-       "x" 'counsel-M-x        ; replace default M-x with ivy backend
-       "TAB" '(mode-line-other-buffer :which-key "prev buffer")
-       "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
-       "C-'" 'avy-goto-word-1
-       "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
-       "RET" '(add-semicolon :which-key "Insert ; at eol")
-       ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
-       ;"/" '(evil-search-forward :which-key "Swiper search")
-       "/" '(swiper :which-key "Swiper search")
-       ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
-       "'" '(popup-shell :which-key "popup shell")
+ ;; simple command
+ "x" 'counsel-M-x        ; replace default M-x with ivy backend
+ "TAB" '(mode-line-other-buffer :which-key "prev buffer")
+ "SPC" '(avy-goto-word-or-subword-1  :which-key "go to char")
+ "C-'" 'avy-goto-word-1
+ "qq"  '(save-buffers-kill-terminal :which-key "Save all & quit")
+ "RET" '(add-semicolon :which-key "Insert ; at eol")
+ ;;"/" '(counsel-ag :which-key "Counsel ag search [everywhere]")
+                                        ;"/" '(evil-search-forward :which-key "Swiper search")
+ "/" '(swiper :which-key "Swiper search")
+ ;; "'" '(ansi-term "/usr/bin/zsh" :which-key "popup shell")
+ "'" '(popup-shell :which-key "popup shell")
 
-       ;; Applications
-       "a" '(:ignore t :which-key "Applications")
-       "aa" '(ag :which-key "Ag")
-       "ae" '(eshell :which-key "eshell")
-       "ah" '(hackernews :which-key "Hackernews")
-       "ar" '(ranger :which-key "Ranger")
-       "at" '(open-termite :which-key "Termite")
-       "ac" '(compile :which-key "compile")
-       "ar" '(recompile :which-key "recompile")
-       "ao" '(occur :which-key "occur") ;; example usage function\|var
-       "ad" 'dired
+ ;; Applications
+ "a" '(:ignore t :which-key "Applications")
+ "aa" '(ag :which-key "Ag")
+ "ae" '(eshell :which-key "eshell")
+ "ah" '(hackernews :which-key "Hackernews")
+ "ar" '(ranger :which-key "Ranger")
+ "at" '(open-termite :which-key "Termite")
+ "ac" '(compile :which-key "compile")
+ "ar" '(recompile :which-key "recompile")
+ "ao" '(occur :which-key "occur") ;; example usage function\|var
+ "ad" 'dired
 
-       ;; Buffer
-       "b" '(:ignore t :which-key "Buffer")
-       "bb" '(ivy-switch-buffer :which-key "Change buffer")
-       "bd" '(kill-buffer :which-key "kill buffer")
-       "bD" '(kill-some-buffers :which-key "kill some buffers")
-       "bp" '(switch-to-prev-buffer :which-key "prev buffer")
-       "bn" '(switch-to-prev-buffer :which-key "next buffer")
+ ;; Buffer
+ "b" '(:ignore t :which-key "Buffer")
+ "bb" '(ivy-switch-buffer :which-key "Change buffer")
+ "bd" '(kill-buffer :which-key "kill buffer")
+ "bD" '(kill-some-buffers :which-key "kill some buffers")
+ "bp" '(switch-to-prev-buffer :which-key "prev buffer")
+ "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
-       "c" '(kill-this-buffer :which-key "kill current buffer")
+ "c" '(kill-this-buffer :which-key "kill current buffer")
 
 
-       "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
+ "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
 
-       ;; ;; Flymake
-       ;; "m" '(:ignore t :which-key "Major Mode")
+ ;; ;; Flymake
+ ;; "m" '(:ignore t :which-key "Major Mode")
 
-       ;; Flymake
-       "e" '(:ignore t :which-key "Flymake")
-       "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
-       "en" '(flymake-goto-next-error :which-key "next error")
-       "ep" '(flymake-goto-prev-error :which-key "prev error")
+ ;; Flymake
+ "e" '(:ignore t :which-key "Flymake")
+ "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
+ "en" '(flymake-goto-next-error :which-key "next error")
+ "ep" '(flymake-goto-prev-error :which-key "prev error")
 
-       ;; Files
-       "f" '(:ignore t :which-key "Files")
-       "ff" '(counsel-find-file :which-key "find file")
-       "fr"	'(counsel-recentf   :which-key "recent files")
-       "fs" '(save-buffer :which-key "save file")
-       "f/" '(swiper :which-key "search in file")
-       "ft" '(treemacs :which-key "toggle treemacs")
-       ;;"ft" '(neotree-toggle :which-key "toggle sidebar")
+ ;; Files
+ "f" '(:ignore t :which-key "Files")
+ "ff" '(counsel-find-file :which-key "find file")
+ "fr"	'(counsel-recentf   :which-key "recent files")
+ "fs" '(save-buffer :which-key "save file")
+ "f/" '(swiper :which-key "search in file")
+ "ft" '(treemacs :which-key "toggle treemacs")
+ ;;"ft" '(neotree-toggle :which-key "toggle sidebar")
 
-       ;; Git
-       "g" '(:ignore t :which-key "Git")
-       "gs" '(magit-status :which-key "status")
-       "gu" '(smerge-keep-upper :which-key "keep upper")
-       "gl" '(smerge-keep-lower :which-key "keep lower")
-       "gb" '(smerge-keep-all :which-key "keep both")
-       "gn" '(smerge-next :which-key "next conflict")
+ ;; Git
+ "g" '(:ignore t :which-key "Git")
+ "gs" '(magit-status :which-key "status")
+ "gu" '(smerge-keep-upper :which-key "keep upper")
+ "gl" '(smerge-keep-lower :which-key "keep lower")
+ "gb" '(smerge-keep-all :which-key "keep both")
+ "gn" '(smerge-next :which-key "next conflict")
 
-       ;; Help
-       "h" '(:ignore t :which-key "Help")
-       "hh" '(help-for-help-internal :which-key "open help")
+ ;; Help
+ "h" '(:ignore t :which-key "Help")
+ "hh" '(help-for-help-internal :which-key "open help")
 
-       ;; Projects
-       "p" '(:ignore t :which-key "Projects")
-       "pf" '(counsel-git :which-key "Find file in git project")
-       "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
-       "pp" '(projectile-switch-project :which-key "Switch project")
+ ;; Projects
+ "p" '(:ignore t :which-key "Projects")
+ "pf" '(counsel-git :which-key "Find file in git project")
+ "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
+ "pp" '(projectile-switch-project :which-key "Switch project")
 
-       ;; Windows
-       "w" '(:ignore t :which-key "Windows")
-       "1" '(eyebrowse-switch-to-window-config-1 :which-key "workspace 1")
-       "2" '(eyebrowse-switch-to-window-config-2 :which-key "workspace 2")
-       "3" '(eyebrowse-switch-to-window-config-3 :which-key "workspace 3")
-       "4" '(eyebrowse-switch-to-window-config-4 :which-key "workspace 4")
-       "5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
-       "ws" '(split-window-below :which-key "Horizontal split")
-       "wv" '(split-window-right :which-key "Vertical split")
-       "wd" '(evil-window-delete :which-key "close window")
-       "wD" '(eyebrowse-close-window-config :which-key "close workspace")
-       "ww" '(ace-window :which-far-key "ace-window")
-       "wm" '(delete-other-windows :which-far-key "next window")
-       "wu" '(winner-undo :which-key "winner undo")
-       "wr" '(winner-redo :which-key "winner redo")
-       "wh" '(evil-window-left :which-key "left")
-       "wH" '(evil-window-move-far-left :which-key "move left")
-       "wj" '(evil-window-down :which-key "down")
-       "wJ" '(evil-window-move-very-bottom :which-key "move down")
-       "wk" '(evil-window-up :which-key "up")
-       "wK" '(evil-window-move-very-top :which-key "move up")
-       "wl" '(evil-window-right :which-key "right")
-       "wL" '(evil-window-move-far-right :which-key "move right")
-       "w+" '(evil-window-increase-height 30 :which-key "increase height")
-       "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
-       "wc" '(eyebrowse-create-window-config :which-key "create workspace")
-       "wn" '(eyebrowse-next-window-config :which-key "next workspace")
-       "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
-       ;; (enlarge-window 15)
+ ;; Windows
+ "w" '(:ignore t :which-key "Windows")
+ "1" '(eyebrowse-switch-to-window-config-1 :which-key "workspace 1")
+ "2" '(eyebrowse-switch-to-window-config-2 :which-key "workspace 2")
+ "3" '(eyebrowse-switch-to-window-config-3 :which-key "workspace 3")
+ "4" '(eyebrowse-switch-to-window-config-4 :which-key "workspace 4")
+ "5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
+ "ws" '(split-window-below :which-key "Horizontal split")
+ "wv" '(split-window-right :which-key "Vertical split")
+ "wd" '(evil-window-delete :which-key "close window")
+ "wD" '(eyebrowse-close-window-config :which-key "close workspace")
+ "ww" '(ace-window :which-far-key "ace-window")
+ "wm" '(delete-other-windows :which-far-key "next window")
+ "wu" '(winner-undo :which-key "winner undo")
+ "wr" '(winner-redo :which-key "winner redo")
+ "wh" '(evil-window-left :which-key "left")
+ "wH" '(evil-window-move-far-left :which-key "move left")
+ "wj" '(evil-window-down :which-key "down")
+ "wJ" '(evil-window-move-very-bottom :which-key "move down")
+ "wk" '(evil-window-up :which-key "up")
+ "wK" '(evil-window-move-very-top :which-key "move up")
+ "wl" '(evil-window-right :which-key "right")
+ "wL" '(evil-window-move-far-right :which-key "move right")
+ "w+" '(evil-window-increase-height 30 :which-key "increase height")
+ "w-" '(evil-window-decrease-height 30 :which-key "decrease height")
+ "wc" '(eyebrowse-create-window-config :which-key "create workspace")
+ "wn" '(eyebrowse-next-window-config :which-key "next workspace")
+ "wp" '(eyebrowse-prev-window-config :which-key "prev workspace")
+ ;; (enlarge-window 15)
 
-       ;; Org Mode
-       "o" '(:ignore t :which-key "Org")
-       "oa" '(org-agenda :which-key "agenda")
-       "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
-  ;     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
-       "oq" '(org-capture :which-key "quick capture")
-       )
+ ;; Org Mode
+ "o" '(:ignore t :which-key "Org")
+ "oa" '(org-agenda :which-key "agenda")
+ "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
+                                        ;     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
+ "oq" '(org-capture :which-key "quick capture")
+ )
 
 #+end_src
 
@@ -1602,33 +1602,33 @@ Keybindings for outline mode:
 
 * ProgMode
 #+begin_src emacs-lisp
-  (add-hook 'prog-mode-hook 'company-mode)
-  (add-hook 'prog-mode-hook 'electric-pair-mode)
-  (add-hook 'prog-mode-hook 'evil-commentary-mode)
-  (add-hook 'prog-mode-hook 'column-number-mode)
-  ;;(add-hook 'prog-mode-hook 'yas-global-mode)
-  ;(add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'prog-mode-hook 'indent-guide-mode)
-  ;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
-  (add-hook 'prog-mode-hook 'winner-mode)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-  ;;(add-hook 'prog-mode-hook 'whitespace-mode)
-  (add-hook 'prog-mode-hook 'show-paren-mode)
-  (add-hook 'prog-mode-hook 'hl-line-mode)
-  (add-hook 'prog-mode-hook 'evil-goggles-mode)
+(add-hook 'prog-mode-hook 'company-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'evil-commentary-mode)
+(add-hook 'prog-mode-hook 'column-number-mode)
+;;(add-hook 'prog-mode-hook 'yas-global-mode)
+                                        ;(add-hook 'prog-mode-hook 'yas-minor-mode)
+(add-hook 'prog-mode-hook 'indent-guide-mode)
+;;(add-hook 'prog-mode-hook 'highlight-indentation-mode)
+(add-hook 'prog-mode-hook 'winner-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;;(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'prog-mode-hook 'show-paren-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'prog-mode-hook 'evil-goggles-mode)
 #+end_src
 
 
 * WebMode
 #+begin_src emacs-lisp
-  (use-package web-mode :ensure t
-    :defer t
-    :config
-    (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-    (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
-    (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
-    ())
+(use-package web-mode :ensure t
+  :defer t
+  :config
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
+  ())
 (add-to-list 'auto-mode-alist '("\\.vue" . web-mode))
 #+end_src
 
@@ -1883,141 +1883,141 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 * Misc
 #+BEGIN_SRC emacs-lisp
-  (setq dired-dwim-target t)
-    (diminish 'company-mode)
-    (diminish 'abbrev-mode)
-    (diminish 'yas-minor-mode)
-    (diminish 'line-number-mode)
-    (diminish 'nlinum-relative-mode)
-    (diminish 'undo-tree-mode)
-    (diminish 'eldoc-mode)
-    (diminish 'tide-mode)
-    (diminish 'flycheck-mode)
-    (diminish 'evil-commentary-mode)
-    (diminish 'page-break-lines-mode)
-    (diminish 'ivy-mode)
-    (diminish 'which-key-mode)
-    (diminish 'visual-line-mode)
-    (diminish 'indent-guide-mode)
-    (diminish 'auto-revert-mode)
-    (diminish 'projectile-mode)
+(setq dired-dwim-target t)
+(diminish 'company-mode)
+(diminish 'abbrev-mode)
+(diminish 'yas-minor-mode)
+(diminish 'line-number-mode)
+(diminish 'nlinum-relative-mode)
+(diminish 'undo-tree-mode)
+(diminish 'eldoc-mode)
+(diminish 'tide-mode)
+(diminish 'flycheck-mode)
+(diminish 'evil-commentary-mode)
+(diminish 'page-break-lines-mode)
+(diminish 'ivy-mode)
+(diminish 'which-key-mode)
+(diminish 'visual-line-mode)
+(diminish 'indent-guide-mode)
+(diminish 'auto-revert-mode)
+(diminish 'projectile-mode)
 
-  (define-key global-map [(S-return)] 'add-semicolon)
+(define-key global-map [(S-return)] 'add-semicolon)
 
 (evil-add-command-properties #'tide-jump-to-definition :jump t)
 (evil-add-command-properties #'omnisharp-go-to-definition :jump t)
 ;;(evil-add-command-properties #'evil-previous-line :jump t)
 ;;(evil-add-command-properties #'evil-next-line :jump t)
 
-;(set-face-bold-p 'bold nil) ; disable bold font (didnt work)
+                                        ;(set-face-bold-p 'bold nil) ; disable bold font (didnt work)
 (mapc ; disable bold font
-  (lambda (face)
-    (set-face-attribute face nil :weight 'normal :underline nil))
-  (face-list))
+ (lambda (face)
+   (set-face-attribute face nil :weight 'normal :underline nil))
+ (face-list))
 #+END_SRC
 
 
 * Testing [Temp]
-  todo : work this in
+todo : work this in
 (add-hook 'comint-exec-hook 
-      (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
+(lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 #+BEGIN_SRC emacs-lisp
-    ;;  (defface special-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
-      (defface extra-comment '((t (:background "#fbf8ef" :foreground "#fafafa"))) "Green")
+;;  (defface special-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
+(defface extra-comment '((t (:background "#fbf8ef" :foreground "#fafafa"))) "Green")
 
-      ;;(defface extra-comment '((t (:foreground "#ffffff"))) "Cyan")
+;;(defface extra-comment '((t (:foreground "#ffffff"))) "Cyan")
 
-      (font-lock-add-keywords
-       'prog-mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t))))
-       ;'typescript-mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t))))
+(font-lock-add-keywords
+ 'prog-mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t))))
+                                        ;'typescript-mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t))))
 
-      (setq whitespace-space-regexp "\\(^ +\\| +$\\)") ; defines what should be matched as space, whitespaces that are not matched get default styling..
+(setq whitespace-space-regexp "\\(^ +\\| +$\\)") ; defines what should be matched as space, whitespaces that are not matched get default styling..
 
-      (setq whitespace-display-mappings
-            '((space-mark   32     [183]     [46]) ; space
-              (space-mark   160    [164]     [95]) ; hard space
-              (newline-mark ?\n    [?\n]) ; remove $ to not display it
-              (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
-              
-
-  (defvar my-prev-whitespace-mode nil)
-  (make-variable-buffer-local 'my-prev-whitespace-mode)
-  (defun pre-popup-draw ()
-    "Turn off whitespace mode before showing company complete tooltip"
-    (if whitespace-mode
-        (progn
-          (setq my-prev-whitespace-mode t)
-          (whitespace-mode -1)
-          (setq my-prev-whitespace-mode t))))
-  (defun post-popup-draw ()
-    "Restore previous whitespace mode after showing company tooltip"
-    (if my-prev-whitespace-mode
-        (progn
-          (whitespace-mode 1)
-          (setq my-prev-whitespace-mode nil))))
-  (advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
-  (advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
+(setq whitespace-display-mappings
+      '((space-mark   32     [183]     [46]) ; space
+        (space-mark   160    [164]     [95]) ; hard space
+        (newline-mark ?\n    [?\n]) ; remove $ to not display it
+        (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
 
 
-   ;   (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
+(defvar my-prev-whitespace-mode nil)
+(make-variable-buffer-local 'my-prev-whitespace-mode)
+(defun pre-popup-draw ()
+  "Turn off whitespace mode before showing company complete tooltip"
+  (if whitespace-mode
+      (progn
+        (setq my-prev-whitespace-mode t)
+        (whitespace-mode -1)
+        (setq my-prev-whitespace-mode t))))
+(defun post-popup-draw ()
+  "Restore previous whitespace mode after showing company tooltip"
+  (if my-prev-whitespace-mode
+      (progn
+        (whitespace-mode 1)
+        (setq my-prev-whitespace-mode nil))))
+(advice-add 'company-pseudo-tooltip-unhide :before #'pre-popup-draw)
+(advice-add 'company-pseudo-tooltip-hide :after #'post-popup-draw)
 
-   ;   (load-theme 'one-light t t)
 
-   ;   (enable-theme 'one-light)
+                                        ;   (add-to-list 'custom-theme-load-path (file-name-as-directory "~/Dev/one-light-theme/"))
 
-  ;; Regex to set color for single whitespaces
-    ;(mapc (lambda (mode)
-            ;(font-lock-add-keywords
-            ;mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
-          ;'(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
-            ;texinfo-mode))
-  ;(set-cursor-color "#7B1FA2")
+                                        ;   (load-theme 'one-light t t)
+
+                                        ;   (enable-theme 'one-light)
+
+;; Regex to set color for single whitespaces
+                                        ;(mapc (lambda (mode)
+                                        ;(font-lock-add-keywords
+                                        ;mode '(("\\(\\b\\|[[:graph:]]\\)\\( \\)" (1 'extr-comment -1) (2 'extra-comment t)))))
+                                        ;'(text-mode latex-mode mhtml-mode html-mode emacs-lisp-mode typescript-mode js2-mode  js-mode css-mode scss-mode go-mode
+                                        ;texinfo-mode))
+                                        ;(set-cursor-color "#7B1FA2")
 
 ;;   look into term (eshell replace)
 
-;(use-package telephone-line
-  ;:ensure t
-  ;:config
-  ;; (setq telephone-line-primary-left-separator 'telephone-line-abs-left
-  ;; telephone-line-primary-right-separator 'telephone-line-abs-right)
-;
-  ;(telephone-line-defsegment my-vc-info ()
-  ;(when vc-mode
-  ;(cond
-  ;((string-match "Git[:-]" vc-mode)
-  ;(let ((branch (mapconcat 'concat (cdr (split-string vc-mode "[:-]")) "-")))
-  ;(concat "" (format " %s" branch))))
-  ;((string-match "SVN-" vc-mode)
-  ;(let ((revision (cadr (split-string vc-mode "-"))))
-  ;(concat "" (format "SVN-%s" revision))))
-  ;(t (format "%s" vc-mode)))))
-;
-  ;(telephone-line-defsegment* my-airline-position-segment (&optional lines columns)
-    ;(let* ((l (number-to-string (if lines lines 1)))
-           ;(c (number-to-string (if columns columns 2))))
-      ;(if (eq major-mode 'paradox-menu-mode)
-          ;(telephone-line-raw mode-line-front-space t)
-          ;(concat " " "%" l "l:%" c "c"))))
-;
-  ;(setq telephone-line-lhs
-        ;'((evil   . (telephone-line-evil-tag-segment))
-          ;(accent . (my-vc-info
-                     ;telephone-line-process-segment))
-          ;(nil    . (telephone-line-buffer-segment
-                     ;telephone-line-projectile-segment))))
-  ;(setq telephone-line-rhs
-        ;'((nil    . (telephone-line-flycheck-segment
-                     ;telephone-line-misc-info-segment))
-          ;(accent . (telephone-line-major-mode-segment))
-          ;(nil    . (telephone-line-hud-segment
-                     ;my-airline-position-segment))))
-;
-  ;(setq display-time-format "%b %d %a %R")
-  ;(setq display-time-default-load-average nil)
-  ;(setq display-time-use-mail-icon t)
-  ;(setq display-time-mail-file t)
-  ;(display-time-mode t)
-;
-  ;(telephone-line-mode 1))
+                                        ;(use-package telephone-line
+                                        ;:ensure t
+                                        ;:config
+;; (setq telephone-line-primary-left-separator 'telephone-line-abs-left
+;; telephone-line-primary-right-separator 'telephone-line-abs-right)
+                                        ;
+                                        ;(telephone-line-defsegment my-vc-info ()
+                                        ;(when vc-mode
+                                        ;(cond
+                                        ;((string-match "Git[:-]" vc-mode)
+                                        ;(let ((branch (mapconcat 'concat (cdr (split-string vc-mode "[:-]")) "-")))
+                                        ;(concat "" (format " %s" branch))))
+                                        ;((string-match "SVN-" vc-mode)
+                                        ;(let ((revision (cadr (split-string vc-mode "-"))))
+                                        ;(concat "" (format "SVN-%s" revision))))
+                                        ;(t (format "%s" vc-mode)))))
+                                        ;
+                                        ;(telephone-line-defsegment* my-airline-position-segment (&optional lines columns)
+                                        ;(let* ((l (number-to-string (if lines lines 1)))
+                                        ;(c (number-to-string (if columns columns 2))))
+                                        ;(if (eq major-mode 'paradox-menu-mode)
+                                        ;(telephone-line-raw mode-line-front-space t)
+                                        ;(concat " " "%" l "l:%" c "c"))))
+                                        ;
+                                        ;(setq telephone-line-lhs
+                                        ;'((evil   . (telephone-line-evil-tag-segment))
+                                        ;(accent . (my-vc-info
+                                        ;telephone-line-process-segment))
+                                        ;(nil    . (telephone-line-buffer-segment
+                                        ;telephone-line-projectile-segment))))
+                                        ;(setq telephone-line-rhs
+                                        ;'((nil    . (telephone-line-flycheck-segment
+                                        ;telephone-line-misc-info-segment))
+                                        ;(accent . (telephone-line-major-mode-segment))
+                                        ;(nil    . (telephone-line-hud-segment
+                                        ;my-airline-position-segment))))
+                                        ;
+                                        ;(setq display-time-format "%b %d %a %R")
+                                        ;(setq display-time-default-load-average nil)
+                                        ;(setq display-time-use-mail-icon t)
+                                        ;(setq display-time-mail-file t)
+                                        ;(display-time-mode t)
+                                        ;
+                                        ;(telephone-line-mode 1))
 #+END_SRC
 
