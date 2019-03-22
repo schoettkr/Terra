@@ -210,19 +210,23 @@ to TO-WHAT if it's > 1 char long & doesn't already begin with a space."
 ** Theme
 Best light theme by far (for real!):
 #+BEGIN_SRC emacs-lisp
-;; (use-package base16-theme
-;;   :ensure t
-;;   :config
-;; (load-theme 'base16-one-light))
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-one-light)
+  (set-face-attribute 'line-number-current-line nil
+                      :background "#808e95"
+                      :foreground "#f0f0f1"
+                      :bold nil))
 #+END_SRC
 Nice dark theme(s):
 #+BEGIN_SRC emacs-lisp
 ;; (load-theme 'base16-materia)
-(use-package one-themes
-  :ensure t
-  :config
-  (load-theme 'one-dark t)
-)
+;; (use-package one-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'one-dark t)
+;; )
 #+END_SRC
 
 #+begin_src emacs-lisp
