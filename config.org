@@ -121,9 +121,10 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
       (setq vc-mode noback))))
 
 (defun simple-mode-line-render (left right)
-  "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
-  (let* ((available-width (+ (/ (length right) 2.3) (- (window-width) (length left)))))
-    (format (format "%%s %%%ds" available-width) left right)))
+  "Return a string of `window-width' length containing LEFT, and RIGHT
+ aligned respectively."
+  (let* ((available-width (- (window-width) (length left) 2)))
+    (format (format " %%s %%%ds " available-width) left right)))
 
 (setq-default
  mode-line-format
@@ -145,7 +146,7 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
         )))
      ;; right
      (format-mode-line
-      (eval (format-time-string "%d.%m.%Y %H:%M")
+      (eval (format-time-string "%H:%M %d.%m.%y")
             ;; mode-line-modes
             ))))))
 #+END_SRC
