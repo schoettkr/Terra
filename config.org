@@ -730,59 +730,125 @@ Todo: Compare with supposedly newly built-in line numbering
 ;;   (linum-relative-mode)
 ;;   (setq linum-relative-backend 'display-line-numbers-mode))
 #+end_src
+** Dired
+Todo: Write "sired" or "sidered" :D
+#+BEGIN_SRC emacs-lisp
+;; (use-package all-the-icons-dired
+;;   :ensure t)
+
+;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+;; (use-package treemacs-icons-dired
+;;   :after dired
+;;   :ensure t
+;;   :config (treemacs-icons-dired-mode))
+
+(setq auto-revert-verbose nil)
+(setq dired-dwim-target t)
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+
+(put 'dired-find-alternate-file 'disabled nil)
+
+(general-define-key
+     :states '(normal motion)
+     :keymaps 'dired-mode-map
+     "H" '(dired-up-directory :which-key "Go up directory")
+     "G" '(end-of-buffer :which-key "Go to end of buffer")
+     "M" '(dired-mark-files-regexp :which-key "Makr files with regex")
+     "gg" '(beginning-of-buffer :which-key "Go to start of buffer")
+     "L" '(dired-find-alternate-file :which-key "Enter and kill current dired buffer")
+     "f" '(find-file :which-key "Find/create file")
+     ;; "RET" '(dired-find-alternate-file :which-key "Enter and kill current dired buffer")
+     )
+#+END_SRC
+*** Dired Subtree
+#+BEGIN_SRC emacs-lisp
+(use-package dired-subtree :ensure t
+  :after dired
+  :config
+  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
+#+END_SRC
+*** Dired Subtree Faces
+#+BEGIN_SRC emacs-lisp
+(defun shade-color (color percent)
+  (let ((R (min 255 (/  (* (+ 100 percent) (string-to-number (substring background-color 1 3) 16)) 100)))
+        (G (min 255 (/  (* (+ 100 percent) (string-to-number (substring background-color 3 5) 16)) 100)))
+        (B (min 255 (/  (* (+ 100 percent) (string-to-number (substring background-color 5 7) 16)) 100))))
+    (concat "#" (format "%X" R) (format "%X" G) (format "%X" B))))
+
+(eval-after-load "dired-subtree" '(progn
+                            (let ((background-color (face-attribute 'default :background)))
+                              (set-face-background 'dired-subtree-depth-1-face 
+                                                   (shade-color background-color -5))
+                              (set-face-background 'dired-subtree-depth-2-face 
+                                                   (shade-color background-color -10))
+                              (set-face-background 'dired-subtree-depth-3-face 
+                                                   (shade-color background-color -15))
+                              (set-face-background 'dired-subtree-depth-4-face 
+                                                   (shade-color background-color -20))
+                              (set-face-background 'dired-subtree-depth-5-face 
+                                                   (shade-color background-color -25))
+                              (set-face-background 'dired-subtree-depth-6-face 
+                                                   (shade-color background-color -30)))))
+
+
+
+#+END_SRC
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
-  (use-package julia-mode :ensure t) ;; dependency for ess-site
-    (use-package ess
-      :ensure t
-      :defer t
-      :init 
-      (require 'ess-site)
-      :config 
-      (general-define-key
-       :states '(normal motion)
-       :keymaps 'ess-mode-map
-       :prefix "SPC"
-       "m" '(:ignore :which-key "Major Mode[ESS]")
-       "mb" '(ess-eval-buffer :which-key "Eval buffer")
-       "ml" '(ess-eval-line-and-step :which-key "Eval line")
-       "mr" '(ess-eval-region :which-key "Eval region")
-       "mi" '(asb-ess-R-object-popup-str :which-key "String inspect")
-       "mI" '(asb-ess-R-object-popup-interactive :which-key "Interactive inspect")
-       )
-      (defun asb-read-into-string (buffer)
-        (with-current-buffer buffer
-          (buffer-string)))
+;; (use-package julia-mode :ensure t :defer t) ;; dependency for ess-site
+  ;; (use-package ess
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :init 
+  ;;   (require 'ess-site)
+  ;;   :config 
+  ;;   (general-define-key
+  ;;    :states '(normal motion)
+  ;;    :keymaps 'ess-mode-map
+  ;;    :prefix "SPC"
+  ;;    "m" '(:ignore :which-key "Major Mode[ESS]")
+  ;;    "mb" '(ess-eval-buffer :which-key "Eval buffer")
+  ;;    "ml" '(ess-eval-line-and-step :which-key "Eval line")
+  ;;    "mr" '(ess-eval-region :which-key "Eval region")
+  ;;    "mi" '(asb-ess-R-object-popup-str :which-key "String inspect")
+  ;;    "mI" '(asb-ess-R-object-popup-interactive :which-key "Interactive inspect")
+  ;;    )
+  ;;   (defun asb-read-into-string (buffer)
+  ;;     (with-current-buffer buffer
+  ;;       (buffer-string)))
 
-      (defun asb-ess-R-object-popup (r-func)
-        "R-FUNC: The R function to use on the object.
-      Run R-FUN for object at point, and display results in a popup."
-        (let ((objname (current-word))
-              (tmpbuf (get-buffer-create "**ess-R-object-popup**")))
-          (if objname
-              (progn
-                (ess-command (concat "class(" objname ")\n") tmpbuf)
-                (let ((bs (asb-read-into-string tmpbuf)))
-                  (if (not(string-match "\(object .* not found\)\|unexpected" bs))
-                      (progn
-                        (ess-command (concat r-func "(" objname ")\n") tmpbuf)
-                        (let ((bs (asb-read-into-string tmpbuf)))
-                          (popup-tip bs)))))))
-          (kill-buffer tmpbuf)))
+  ;;   (defun asb-ess-R-object-popup (r-func)
+  ;;     "R-FUNC: The R function to use on the object.
+  ;;   Run R-FUN for object at point, and display results in a popup."
+  ;;     (let ((objname (current-word))
+  ;;           (tmpbuf (get-buffer-create "**ess-R-object-popup**")))
+  ;;       (if objname
+  ;;           (progn
+  ;;             (ess-command (concat "class(" objname ")\n") tmpbuf)
+  ;;             (let ((bs (asb-read-into-string tmpbuf)))
+  ;;               (if (not(string-match "\(object .* not found\)\|unexpected" bs))
+  ;;                   (progn
+  ;;                     (ess-command (concat r-func "(" objname ")\n") tmpbuf)
+  ;;                     (let ((bs (asb-read-into-string tmpbuf)))
+  ;;                       (popup-tip bs)))))))
+  ;;       (kill-buffer tmpbuf)))
 
-      (defun asb-ess-R-object-popup-str ()
-        (interactive)
-        (asb-ess-R-object-popup "str"))
+  ;;   (defun asb-ess-R-object-popup-str ()
+  ;;     (interactive)
+  ;;     (asb-ess-R-object-popup "str"))
 
-      (defun asb-ess-R-object-popup-interactive (r-func)
-        (interactive "sR function to execute: ")
-        (asb-ess-R-object-popup r-func))
+  ;;   (defun asb-ess-R-object-popup-interactive (r-func)
+  ;;     (interactive "sR function to execute: ")
+  ;;     (asb-ess-R-object-popup r-func))
 
-      (add-hook 'ess-mode-hook 'company-mode)
-      (add-hook 'ess-mode-hook 'display-line-numbers-mode)
-      (add-hook 'ess-mode-hook 'outline-minor-mode)
-      )
-    (use-package popup :ensure t)
+  ;;   (add-hook 'ess-mode-hook 'company-mode)
+  ;;   (add-hook 'ess-mode-hook 'display-line-numbers-mode)
+  ;;   (add-hook 'ess-mode-hook 'outline-minor-mode)
+  ;;   )
+  (use-package popup :ensure t)
 #+end_src
 
 ** Polymode
