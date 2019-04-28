@@ -2033,6 +2033,22 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
  (lambda (face)
    (set-face-attribute face nil :weight 'normal :underline nil))
  (face-list))
+ 
+(use-package google-translate :ensure t :defer t
+  :config
+  )
+;; Doesnt work inside :config
+(setq google-translate-default-target-language "en")
+(setq google-translate-default-source-language "de")
+(defun google-translate--search-tkk () (list 430675 2721866130))
+
+  
+;; (with-eval-after-load "google-translate"
+;;   )
+;; (advice-add 'google-translate--search-tkk :override
+;;               (lambda () (list 430675 2721866130)))
+
+
 #+END_SRC
 
 
