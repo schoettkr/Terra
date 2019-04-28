@@ -2053,6 +2053,16 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 
 * Testing [Temp]
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :ensure t
+  ;; :init
+  :config
+  (yas-global-mode 1)
+  )
+(use-package yasnippet-snippets :ensure t)
+
+#+end_src
 todo : work this in
 (add-hook 'comint-exec-hook 
 (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
