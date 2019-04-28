@@ -1536,6 +1536,13 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 #+BEGIN_SRC emacs-lisp
 (use-package restclient :ensure t)
 #+END_SRC
+** Hugo
+#+BEGIN_SRC emacs-lisp
+(use-package ox-hugo
+  :ensure t            ;Auto-install the package from Melpa (optional)
+  :after ox)
+#+END_SRC
+
 
 * Keybindings 
 #+begin_src emacs-lisp
