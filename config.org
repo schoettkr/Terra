@@ -531,7 +531,6 @@ Other functions
         (list bits number))))
 #+END_SRC
 
-
 * General Packages
 ** Evil
 #+begin_src emacs-lisp
@@ -808,6 +807,28 @@ Todo: Write "sired" or "sidered" :D
 
 
 #+END_SRC
+*** Dired Toggle
+#+begin_src emacs-lisp
+(use-package dired-toggle
+  :ensure t
+  :defer t
+  :bind (:map dired-mode-map
+         ("q" . #'dired-toggle-quit)
+         ([remap dired-find-file] . #'dired-toggle-find-file)
+         ([remap dired-up-directory] . #'dired-toggle-up-directory)
+         ("C-c C-u" . #'dired-toggle-up-directory))
+  :config
+  ;; (setq dired-toggle-window-size 32)
+  (setq dired-toggle-window-side 'left)
+
+  ;; Optional, enable =visual-line-mode= for our narrow dired buffer:
+  ;; (add-hook 'dired-toggle-mode-hook
+  ;;           (lambda () (interactive)
+  ;;             (visual-line-mode 1)
+  ;;             (setq-local visual-line-fringe-indicators '(nil right-curly-arrow))
+  ;;             (setq-local word-wrap nil)))
+  )
+#+end_src
 ** Emacs Speak Statistics (ESS)
 #+begin_src emacs-lisp
 ;; (use-package julia-mode :ensure t :defer t) ;; dependency for ess-site
@@ -2030,9 +2051,11 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 (diminish 'indent-guide-mode)
 (diminish 'auto-revert-mode)
 (diminish 'projectile-mode)
-
 (define-key global-map [(S-return)] 'add-semicolon)
+#+END_SRC
 
+* Temporary
+#+begin_src emacs-lisp
 (evil-add-command-properties #'tide-jump-to-definition :jump t)
 (evil-add-command-properties #'omnisharp-go-to-definition :jump t)
 ;;(evil-add-command-properties #'evil-previous-line :jump t)
@@ -2050,20 +2073,15 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 ;; Doesnt work inside :config
 (setq google-translate-default-target-language "en")
 (setq google-translate-default-source-language "de")
-(defun google-translate--search-tkk () (list 430675 2721866130))
-
-  
+; Replace the function below in source code for now..
+;; (defun google-translate--search-tkk () (list 430675 2721866130))
 ;; (with-eval-after-load "google-translate"
-;;   )
 ;; (advice-add 'google-translate--search-tkk :override
 ;;               (lambda () (list 430675 2721866130)))
+;;   )
+#+end_src
 
-
-#+END_SRC
-
-* Temporary
-* Experimental
-** Testing [Temp]
+Yasnippet
 #+begin_src emacs-lisp
 (use-package yasnippet
   :ensure t
@@ -2074,6 +2092,9 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 (use-package yasnippet-snippets :ensure t)
 
 #+end_src
+
+* Experimental
+** Testing
 todo : work this in
 (add-hook 'comint-exec-hook 
 (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
@@ -2177,28 +2198,11 @@ todo : work this in
                                         ;
                                         ;(telephone-line-mode 1))
 #+END_SRC
+** Sidered/Dired-Toggle
 Dired as file tree experiment 
 =(display-buffer-in-side-window (get-buffer "dired") '((side . left)))=
 #+BEGIN_SRC emacs-lisp
-(use-package dired-toggle
-  :ensure t
-  :defer t
-  :bind (:map dired-mode-map
-         ("q" . #'dired-toggle-quit)
-         ([remap dired-find-file] . #'dired-toggle-find-file)
-         ([remap dired-up-directory] . #'dired-toggle-up-directory)
-         ("C-c C-u" . #'dired-toggle-up-directory))
-  :config
-  ;; (setq dired-toggle-window-size 32)
-  (setq dired-toggle-window-side 'left)
 
-  ;; Optional, enable =visual-line-mode= for our narrow dired buffer:
-  ;; (add-hook 'dired-toggle-mode-hook
-  ;;           (lambda () (interactive)
-  ;;             (visual-line-mode 1)
-  ;;             (setq-local visual-line-fringe-indicators '(nil right-curly-arrow))
-  ;;             (setq-local word-wrap nil)))
-  )
 
 ;; Replace in dired-toggle.el
 ;; (defun dired-toggle-find-file ()
@@ -2281,6 +2285,7 @@ Dired as file tree experiment
 ;; ((dired-noselect  (file-name-directory buffer-file-name)))
 #+END_SRC
 
+** Nikola to Hugo
 Helper Functions to export nikola blog posts to hugo blog post format
 #+BEGIN_SRC emacs-lisp :tangle no
 (defun export-files-to-hugo-misc-section ()
@@ -2379,11 +2384,5 @@ Helper Functions to export nikola blog posts to hugo blog post format
   (search-backward "#")
   (open-line 1)
   (next-line 1))
-  
-
-
-;; (with-eval-after-load 'google-translate-tk)
-;; (setq funvar "jawollek")
 #+END_SRC
-
 
