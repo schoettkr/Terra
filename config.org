@@ -2171,6 +2171,109 @@ todo : work this in
                                         ;
                                         ;(telephone-line-mode 1))
 #+END_SRC
+Dired as file tree experiment 
+=(display-buffer-in-side-window (get-buffer "dired") '((side . left)))=
+#+BEGIN_SRC emacs-lisp
+(use-package dired-toggle
+  :ensure t
+  :defer t
+  :bind (:map dired-mode-map
+         ("q" . #'dired-toggle-quit)
+         ([remap dired-find-file] . #'dired-toggle-find-file)
+         ([remap dired-up-directory] . #'dired-toggle-up-directory)
+         ("C-c C-u" . #'dired-toggle-up-directory))
+  :config
+  ;; (setq dired-toggle-window-size 32)
+  (setq dired-toggle-window-side 'left)
+
+  ;; Optional, enable =visual-line-mode= for our narrow dired buffer:
+  ;; (add-hook 'dired-toggle-mode-hook
+  ;;           (lambda () (interactive)
+  ;;             (visual-line-mode 1)
+  ;;             (setq-local visual-line-fringe-indicators '(nil right-curly-arrow))
+  ;;             (setq-local word-wrap nil)))
+  )
+
+;; Replace in dired-toggle.el
+;; (defun dired-toggle-find-file ()
+;;   "Wraper for `dired-find-file', use `find-alternate-file' instead so will not
+;; create new buffer when changing directory, and will keep `dired-toggle-mode' and
+;; `dired-hide-details-mode' states after opening new direcoty."
+;;   (interactive)
+;;   (let* ((dired-toggle-enabled (if dired-toggle-mode 1 0))
+;;          (dired-hide-details-enabled (if dired-hide-details-mode 1 0))
+;;          (buffer (current-buffer))
+;;          (file (dired-get-file-for-visit))
+;;          (dir-p (file-directory-p file)))
+;;     (if dir-p                           ;open a directory
+;;         ;; (dired-toggle-list-dir buffer (file-name-as-directory file))
+;;         (find-alternate-file file)
+;;       ;; open a file, and delete the referred window firstly
+;;       (if (and (window-live-p dired-toggle-refwin)
+;;                (not (window-minibuffer-p dired-toggle-refwin))
+;;                ;; Some times `dired-toggle-refwin' maybe dired-toggle
+;;                ;; window itself, so just ignore it.
+;;                (not (equal (selected-window) dired-toggle-refwin)))
+;;           (delete-window dired-toggle-refwin))
+;;       (dired-find-file)
+;;       (dired-toggle)
+;;       (windmove-right))
+;;     (when (eq major-mode 'dired-mode)
+;;       (dired-toggle-mode dired-toggle-enabled)
+;;       (dired-hide-details-mode dired-hide-details-enabled))))
+
+;; OR
+;; ...
+      ;; (dired-find-file)
+      ;; ...
+      
+;; and
+        ;; (setq target-window (display-buffer-in-side-window (current-buffer) '((side . left))))
+        ;; (select-window target-window)
+        ;; (switch-to-buffer target-buf)
+        ;; (set-window-dedicated-p target-window t)
+        ;; (let ((dired-window-width 30))
+        ;;   (cond ((> (window-width) dired-window-width)
+        ;;          (shrink-window-horizontally  (- (window-width) dired-window-width)))
+        ;;         ((> (window-width) dired-window-width)
+        ;;          (enlarge-window-horizontally  (- dired-window-width (window-width))))
+        ;;         ))
+        ;; in dired-toggle
+
+
+      
+
+  
+
+;; (defun sired ()
+;;   "Invoke Sired"
+;;   (interactive)
+;;   (if (bound-and-true-p  sired-showing)
+;;       (progn (delete-window (get-buffer-window sired-buffer-name))
+;;              (setq sired-showing nil))
+;;     (sired-init))
+;;   )
+;; (defun sired-init ()
+;;   "Initialize sired buffer"
+;;   (select-window (display-buffer-in-side-window (dired-noselect (file-name-directory (buffer-file-name)))'((side . left))))
+;;   (setq sired-buffer-name 
+;;         (rename-buffer (concat "sired-" (buffer-name))))
+;;   (set-window-dedicated-p (selected-window) t)
+;;   (let ((sired-window-width 30))
+;;     (cond ((> (window-width) sired-window-width)
+;;            (shrink-window-horizontally  (- (window-width) sired-window-width)))
+;;           ((> (window-width) sired-window-width)
+;;            (enlarge-window-horizontally  (- sired-window-width (window-width))))
+;;           )
+;;     (setq sired-showing t)
+;;     )
+;;   )
+;; (expand-file-name (buffer-file-name))
+;; (direc)
+
+
+;; ((dired-noselect  (file-name-directory buffer-file-name)))
+#+END_SRC
 
 Helper Functions to export nikola blog posts to hugo blog post format
 #+BEGIN_SRC emacs-lisp :tangle no
