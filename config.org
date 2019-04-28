@@ -1575,7 +1575,7 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
  )
 
 (general-def :states '(normal motion emacs) "SPC" nil)
-(general-def :keymaps '(compilation-mode-map ess-help-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
+(general-def :keymaps '(compilation-mode-map ess-help-mode-map info-mode-map magit-diff-mode-map magit-status-mode-map dired-mode-map) "SPC" nil)
 (general-def :keymaps '(compilation-mode-map magit-diff-mode-map magit-status-mode-map) "$" nil)
 
 (general-define-key
