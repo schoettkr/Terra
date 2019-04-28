@@ -591,6 +591,19 @@ Part below can be used to get a more recent version of org mode
     ;(require 'ox-extra)
     ;(ox-extras-activate '(ignore-headlines)))
 #+end_src
+Get back easy templates
+#+begin_src emacs-lisp
+(require 'org-tempo)
+#+end_src
+Disable <> auto pairing in org mode
+#+begin_src emacs-lisp
+(add-hook
+ 'org-mode-hook
+ (lambda ()
+   (setq-local electric-pair-inhibit-predicate
+               `(lambda (c)
+                  (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+#+end_src
 
 Add org-bullets for nice icons instead of stars
 #+begin_src emacs-lisp
