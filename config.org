@@ -1556,6 +1556,11 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
   :after ox)
 #+END_SRC
 
+** Fzf
+#+begin_src emacs-lisp
+(use-package "fzf" :ensure t :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f") '(add-to-list 'load-path "~/.fzf"))
+#+end_src
+
 
 * Keybindings 
 #+begin_src emacs-lisp
