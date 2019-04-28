@@ -230,13 +230,19 @@ Best light theme by far (for real!):
 #+END_SRC
 Nice dark theme(s):
 #+BEGIN_SRC emacs-lisp
-;; (load-theme 'base16-materia)
+;; (progn
+;;   (load-theme 'base16-materia)
+;;   (set-face-attribute 'line-number-current-line nil
+;;                       :background "#707880"
+;;                       :foreground "f0f0f1"))
 ;; (use-package one-themes
 ;;   :ensure t
 ;;   :config
 ;;   (load-theme 'one-dark t)
 ;; )
+;; (load-theme 'doom-dracula t)
 #+END_SRC
+Doom-Dracula is also nice
 
 #+begin_src emacs-lisp
                                         ;(use-package doom-themes
