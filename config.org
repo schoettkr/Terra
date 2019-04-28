@@ -624,6 +624,7 @@ Add org-bullets for nice icons instead of stars
      :prefix "SPC"
      "m" '(:ignore :which-key "Major Mode[Org]")
      "mp" '(org-latex-export-to-pdf :which-key "Export to Pdf")
+     "mb" '(org-hugo-export-to-md :which-key "Export to Hugo Markdown")
      "ms" '(org-edit-special :which-key "Edit source code")
      )
 
