@@ -216,14 +216,34 @@ to TO-WHAT if it's > 1 char long & doesn't already begin with a space."
 ** Theme
 Best light theme by far (for real!):
 #+BEGIN_SRC emacs-lisp
-(use-package base16-theme
-  :ensure t
-  :config
-  (load-theme 'base16-one-light)
-  (set-face-attribute 'line-number-current-line nil
-                      :background "#808e95"
-                      :foreground "#f0f0f1"
-                      :bold nil))
+;; (load-theme 'misterioso)
+(use-package moe-theme :ensure t
+  ;; :config (load-theme 'moe-theme)
+  :config (moe-dark)
+   (set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default))
+   (set-face-attribute 'vertical-border nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default))
+   (set-face-attribute 'line-number nil
+                      :background (face-background 'default))
+)
+#+END_SRC
+Insert/replace in moe dark.el:
+      Terminal Dark Style: (black-1 "#636b7e") (black-2 "#4f5665") (black-2-5 "#3f4551") (black-3 "#546e7a") (black-4 "#323741") (black-5 "#282c34") (black-6 "#20232a")
+      Lighter Blue/Metallic/Material Style: (black-1 "#90a4ae") (black-2 "#78909c") (black-2-5 "#607d8b") (black-3 "#546e7a") (black-4 "#455a64") (black-5 "#37474f") (black-6 "#263238")
+      Original: (black-1 "#a8a8a8") (black-2 "#8a8a8a") (black-2-5 "#6c6c6c") (black-3 "#4e4e4e") (black-4 "#3a3a3a") (black-5 "#303030") (black-6 "#000000")
+
+#+begin_src emacs-lisp
+;; (use-package base16-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'base16-one-light)
+;;   (set-face-attribute 'line-number-current-line nil
+;;                       :background "#808e95"
+;;                       :foreground "#f0f0f1"
+;;                       :bold nil))
 #+END_SRC
 Nice dark theme(s):
 #+BEGIN_SRC emacs-lisp
@@ -2389,25 +2409,26 @@ Helper Functions to export nikola blog posts to hugo blog post format
 
 ** Eshell Customization
 #+begin_src emacs-lisp
-  (defmacro with-face (str &rest properties)
-    `(propertize ,str 'face (list ,@properties)))
-  
-  (defun shk-eshell-prompt ()
-    (let ((header-bg "#fff"))
-      (concat
-       (with-face (concat (eshell/pwd) " ") :background header-bg)
-       (with-face (format-time-string "(%Y-%m-%d %H:%M) " (current-time)) :background header-bg :foreground "#888")
-       (with-face
-        (or (ignore-errors (format "(%s)" (vc-responsible-backend default-directory))) "")
-        :background header-bg)
-       (with-face "\n" :background header-bg)
-       (with-face user-login-name :foreground "#0184bc")
-       "@"
-       (with-face "gaia" :foreground "#d75f00")
-       (if (= (user-uid) 0)
-           (with-face " #" :foreground "red")
-         " $")
-       " ")))
-  (setq eshell-prompt-function 'shk-eshell-prompt)
-  (setq eshell-highlight-prompt nil)
+(defmacro with-face (str &rest properties)
+  `(propertize ,str 'face (list ,@properties)))
+
+(defun shk-eshell-prompt ()
+  ;; (let ((header-bg "#fff"))
+  (let ((header-bg (face-attribute 'default :background)))
+    (concat
+     (with-face (concat (eshell/pwd) " ") :background header-bg)
+     (with-face (format-time-string "(%Y-%m-%d %H:%M) " (current-time)) :background header-bg :foreground "#888")
+     (with-face
+      (or (ignore-errors (format "(%s)" (vc-responsible-backend default-directory))) "")
+      :background header-bg)
+     (with-face "\n" :background header-bg)
+     (with-face user-login-name :foreground "#0184bc")
+     "@"
+     (with-face "gaia" :foreground "#d75f00")
+     (if (= (user-uid) 0)
+         (with-face " #" :foreground "red")
+       " $")
+     " ")))
+(setq eshell-prompt-function 'shk-eshell-prompt)
+(setq eshell-highlight-prompt nil)
 #+end_src
