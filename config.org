@@ -5,7 +5,6 @@
 (setq gc-cons-threshold 100000000)
 #+end_src
 
-
 * Package Manager Setup
 #+begin_src emacs-lisp
 (require 'package)
@@ -35,7 +34,6 @@
 
 
 #+end_src
-
 
 * General
 #+begin_src emacs-lisp
@@ -70,7 +68,6 @@
 (global-set-key [mouse-3] 'mouse-popup-menubar-stuff)
 (setq font-lock-maximum-decoration t)
 #+end_src
-
 
 * Appearance
 ** All the icons
@@ -325,7 +322,6 @@ Doom-Dracula is also nice
 
 #+end_src
 
-
 * Functions
 Function for vim-like increment/decrement
 #+BEGIN_SRC emacs-lisp
@@ -534,7 +530,6 @@ Other functions
     (message "number of combinations is 10^%d with a bit equivalence of %d" (round number) (round bits))
         (list bits number))))
 #+END_SRC
-
 
 
 * General Packages
@@ -1567,7 +1562,6 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 (use-package "fzf" :ensure t :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f") '(add-to-list 'load-path "~/.fzf"))
 #+end_src
 
-
 * Keybindings 
 #+begin_src emacs-lisp
 ;;(global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
@@ -1739,7 +1733,6 @@ Keybindings for outline mode:
    )
 #+END_SRC
 
-
 * ProgMode
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook 'company-mode)
@@ -1759,7 +1752,6 @@ Keybindings for outline mode:
 (add-hook 'prog-mode-hook 'evil-goggles-mode)
 #+end_src
 
-
 * WebMode
 #+begin_src emacs-lisp
 (use-package web-mode :ensure t
@@ -1771,7 +1763,6 @@ Keybindings for outline mode:
   ())
 (add-to-list 'auto-mode-alist '("\\.vue" . web-mode))
 #+end_src
-
 
 * Languages
 ** JavaScript
@@ -2020,7 +2011,6 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 #+END_SRC
 
-
 * Misc
 #+BEGIN_SRC emacs-lisp
 (diminish 'company-mode)
@@ -2071,8 +2061,9 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 #+END_SRC
 
-
-* Testing [Temp]
+* Temporary
+* Experimental
+** Testing [Temp]
 #+begin_src emacs-lisp
 (use-package yasnippet
   :ensure t
