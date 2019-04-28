@@ -1653,8 +1653,10 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
  "fr"	'(counsel-recentf   :which-key "recent files")
  "fs" '(save-buffer :which-key "save file")
  "f/" '(swiper :which-key "search in file")
- "ft" '(treemacs :which-key "toggle treemacs")
+ ;; "ft" '(treemacs :which-key "toggle treemacs")
  ;;"ft" '(neotree-toggle :which-key "toggle sidebar")
+ ;; "ft" '(sired :which-key "toggle sidebar")
+ "ft" '(dired-toggle :which-key "toggle sidebar")
 
  ;; Git
  "g" '(:ignore t :which-key "Git")
