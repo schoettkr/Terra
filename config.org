@@ -2003,7 +2003,6 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 * Misc
 #+BEGIN_SRC emacs-lisp
-(setq dired-dwim-target t)
 (diminish 'company-mode)
 (diminish 'abbrev-mode)
 (diminish 'yas-minor-mode)
