@@ -1465,7 +1465,8 @@ Display horizontal lines instead of ugly characters
                                                 ;; iso-8859-1))
 
   (setq ispell-program-name "hunspell"          ; Use hunspell to correct mistakes
-        ispell-dictionary   "deutsch") ; Default dictionary to use -> ispell-hunspell-dictionary-alist
+        ispell-dictionary   "english") ; Default dictionary to use -> ispell-hunspell-dictionary-alist
+        ;; ispell-dictionary   "deutsch") ; Default dictionary to use -> ispell-hunspell-dictionary-alist
 #+END_SRC
 
 ** Htmlize
