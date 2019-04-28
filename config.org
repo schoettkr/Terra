@@ -1671,8 +1671,12 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
  ;; Projects
  "p" '(:ignore t :which-key "Projects")
  "pf" '(counsel-git :which-key "Find file in git project")
+ ;; "pf" '(counsel-fzf :which-key "Find file in git project")
  "p/" '(projectile-ag :which-key "Projectile ag search [in project]")
- "pp" '(projectile-switch-project :which-key "Switch project")
+ ;; "pp" '(projectile-find-dir :which-key "Switch directory (project)")
+ "pp" '(counsel-fzf :which-key "Switch directory (project)")
+ "pb" '(projectile-switch-to-buffer :which-key "Switch project buffer")
+ "ps" '(projectile-switch-project :which-key "Switch project")
 
  ;; Windows
  "w" '(:ignore t :which-key "Windows")
