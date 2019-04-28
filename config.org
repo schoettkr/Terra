@@ -2172,3 +2172,109 @@ todo : work this in
                                         ;(telephone-line-mode 1))
 #+END_SRC
 
+Helper Functions to export nikola blog posts to hugo blog post format
+#+BEGIN_SRC emacs-lisp :tangle no
+(defun export-files-to-hugo-misc-section ()
+  (interactive)
+  (export-numbered-files-to-hugo "misc"))
+
+(defun export-files-to-hugo-db-section ()
+  (interactive)
+  (export-numbered-files-to-hugo "db"))
+
+(defun export-files-to-hugo-ds-section ()
+  (interactive)
+  (export-numbered-files-to-hugo "ds"))
+
+(defun export-files-to-hugo-algos-section ()
+  (interactive)
+  (export-numbered-files-to-hugo "algos"))
+
+(defun export-files-to-hugo-cs1-section ()
+  (interactive)
+  (export-numbered-files-to-hugo "cs1"))
+
+(defun export-numbered-files-to-hugo(subsection)
+    "Exports all numbered files in current dir to (hugo) markdown"
+    (export-files-to-hugo
+     "[0-9].*" subsection))
+
+;; (defun export-files-to-hugo (&optional regex)
+;;   "Exports all files in current dir that match 'regex' to (hugo) markdown"
+;;   (mapc 'trigger-export
+;;         (directory-files default-directory nil regex)))
+
+(defun export-files-to-hugo (&optional regex subsection)
+  "Exports all files in current dir that match 'regex' to (hugo) markdown"
+  (mapc (lambda (file)
+        (funcall #'trigger-export file subsection))
+      (directory-files default-directory nil regex)))
+  ;; (mapc 'trigger-export
+  ;;       (directory-files default-directory nil regex)))
+
+(defun trigger-export(f subsection)
+  (find-file f)
+  (nikola-to-hugo-header subsection)
+  (save-buffer)
+  (org-hugo-export-to-md)
+  (kill-buffer (current-buffer))
+  (progn (setq kill-ring nil) (garbage-collect))
+)
+
+(defun nikola-to-hugo-header(subsection)
+  (interactive)
+  (nikola-kill-title)
+  (nikola-append-kill-date)
+
+  (search-forward "#+END_COMMENT")
+  (delete-region (point-min) (point))
+  (hugo-insert-header subsection)
+  (goto-char (point-min))
+  (kill-whole-line)
+  )
+
+(defun nikola-kill-title ()
+  (goto-char (point-min))
+  (search-forward "title:")
+  (kill-line)
+  (kill-append "#+TITLE:" t))
+
+(defun nikola-append-kill-date ()
+  (goto-char (point-min))
+  (search-forward "date:")
+  (kill-append "#+DATE:" nil)
+  (append-next-kill)
+  (kill-line))
+
+(defun hugo-insert-header (subsection)
+  (setq hugo-header
+        `("#+HUGO_BASE_DIR: ../../../"
+          ,(concat "#+HUGO_SECTION: uni/" subsection)
+          "#+HUGO_DRAFT: false"
+          "#+HUGO_AUTO_SET_LASTMOD: true"
+          ""))
+
+  (hugo-insert-date-title)
+  (mapc 'insert-line hugo-header)
+  )
+
+(defun insert-line (str)
+  (open-line 1)
+  (next-line 1)
+  (insert str))
+
+(defun hugo-insert-date-title ()
+  (open-line 1)
+  (next-line 1)
+  (yank)
+  (search-backward "#")
+  (open-line 1)
+  (next-line 1))
+  
+
+
+;; (with-eval-after-load 'google-translate-tk)
+;; (setq funvar "jawollek")
+#+END_SRC
+
+
