@@ -385,7 +385,8 @@ Other functions
              )
     (split-window-below)
     (windmove-down)
-    (term "/usr/bin/zsh")
+    (eshell)
+    ;; (term "/usr/bin/zsh")
     (shrink-window 16)
     ))
 
