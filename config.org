@@ -1627,7 +1627,8 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
  ;; Buffer
  "b" '(:ignore t :which-key "Buffer")
- "bb" '(ivy-switch-buffer :which-key "Change buffer")
+ ;; "bb" '(ivy-switch-buffer :which-key "Change buffer")
+ "bb" '(counsel-ibuffer :which-key "Change buffer")
  "bd" '(kill-buffer :which-key "kill buffer")
  "bD" '(kill-some-buffers :which-key "kill some buffers")
  "bp" '(switch-to-prev-buffer :which-key "prev buffer")
