@@ -1620,8 +1620,10 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
  "ah" '(hackernews :which-key "Hackernews")
  "ar" '(ranger :which-key "Ranger")
  "at" '(open-termite :which-key "Termite")
+ "ag" '(google-translate-at-point :which-key "Google Translate")
  "ac" '(compile :which-key "compile")
  "ar" '(recompile :which-key "recompile")
+ "as" '(ispell-word :which-key "spell check")
  "ao" '(occur :which-key "occur") ;; example usage function\|var
  "ad" 'dired
 
