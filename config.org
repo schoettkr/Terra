@@ -2067,6 +2067,7 @@ todo : work this in
 (add-hook 'comint-exec-hook 
 (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 #+BEGIN_SRC emacs-lisp
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 ;;  (defface special-comment '((t (:background "#fafafa" :foreground "#fafafa"))) "Green")
 (defface extra-comment '((t (:background "#fbf8ef" :foreground "#fafafa"))) "Green")
 
