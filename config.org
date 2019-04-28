@@ -1111,10 +1111,12 @@ Todo: Write "sired" or "sidered" :D
 #+end_src
 
 ** Projectile
+Todo: Maybe look for an projectile replacement since I mostly use "pp" and "p/" and projectile is a huge package
 #+begin_src emacs-lisp
 (use-package projectile :ensure t
   :defer t
   :config
+  (setq projectile-find-dir-includes-top-level t)
   (setq projectile-mode-line " foo")
   (setq projectile-completion-system 'ivy)
   (setq projectile-file-exists-local-cache-expire (* 5 60))
