@@ -583,6 +583,10 @@ Other functions
 (use-package general :ensure t)
 #+END_SRC
 ** Org
+#+BEGIN_SRC emacs-lisp
+(setq org-export-async-init-file "~/.emacs.d/async-org-export.el")
+(setq org-export-async-debug t)
+#+END_SRC
 Part below can be used to get a more recent version of org mode
 #+begin_src emacs-lisp
   ;(unless (file-expand-wildcards (concat package-user-dir "/org-[0-9]*"))
