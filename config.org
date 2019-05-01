@@ -2422,9 +2422,11 @@ Helper Functions to export nikola blog posts to hugo blog post format
       (or (ignore-errors (format "(%s)" (vc-responsible-backend default-directory))) "")
       :background header-bg)
      (with-face "\n" :background header-bg)
-     (with-face user-login-name :foreground "#0184bc")
+     ;; (with-face user-login-name :foreground "#0184bc")
+     (with-face user-login-name :foreground "#ff4ea3")
      "@"
-     (with-face "gaia" :foreground "#d75f00")
+     (with-face "gaia" :foreground "#d18aff")
+     ;; (with-face "gaia" :foreground "#d75f00")
      (if (= (user-uid) 0)
          (with-face " #" :foreground "red")
        " $")
