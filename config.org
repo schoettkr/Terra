@@ -1162,6 +1162,7 @@ Todo: Maybe look for an projectile replacement since I mostly use "pp" and "p/" 
   (setq projectile-completion-system 'ivy)
   (setq projectile-file-exists-local-cache-expire (* 5 60))
   (setq projectile-globally-ignored-directories (append projectile-globally-ignored-directories  "__pycache__" ".cquery_cached_index"))
+  (setq projectile-git-submodule-command nil)
   (projectile-global-mode t))
 #+end_src
 
