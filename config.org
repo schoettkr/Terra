@@ -411,7 +411,7 @@ Other functions
     (windmove-down)
     (eshell)
     ;; (term "/usr/bin/zsh")
-    (shrink-window 16)
+    (shrink-window 10)
     ))
 
 (defun my/disable-scroll-bars (frame)
