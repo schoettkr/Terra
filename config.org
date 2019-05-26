@@ -547,7 +547,7 @@ Part below can be used to get a more recent version of org mode
 #+end_src
 Get back easy templates
 #+begin_src emacs-lisp
-(require 'org-tempo)
+;; (require 'org-tempo)
 #+end_src
 Disable <> auto pairing in org mode
 #+begin_src emacs-lisp
