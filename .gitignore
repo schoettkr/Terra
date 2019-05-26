@@ -38,3 +38,4 @@ config.el
 url/
 custom.el
 /recentf~
+/transient/history.el
