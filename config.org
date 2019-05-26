@@ -1289,8 +1289,10 @@ Display horizontal lines instead of ugly characters
    "M-5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
    ))
 #+end_src
+** Winum
+#+begin_src emacs-lisp
+(use-package winum :ensure t :config (winum-mode))
 #+end_src
-
 ** Pdf Tools
 #+begin_src emacs-lisp
   (use-package pdf-tools
@@ -1741,11 +1743,12 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 
  ;; Windows
  "w" '(:ignore t :which-key "Windows")
- "1" '(eyebrowse-switch-to-window-config-1 :which-key "workspace 1")
- "2" '(eyebrowse-switch-to-window-config-2 :which-key "workspace 2")
- "3" '(eyebrowse-switch-to-window-config-3 :which-key "workspace 3")
- "4" '(eyebrowse-switch-to-window-config-4 :which-key "workspace 4")
- "5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
+ "1" '(winum-select-window-1 :which-key "window 1")
+ "2" '(winum-select-window-2 :which-key "window 2")
+ "3" '(winum-select-window-3 :which-key "window 3")
+ "4" '(winum-select-window-4 :which-key "window 4")
+ "5" '(winum-select-window-5 :which-key "window 5")
+ "6" '(winum-select-window-6 :which-key "window 6")
  "ws" '(split-window-below :which-key "Horizontal split")
  "wv" '(split-window-right :which-key "Vertical split")
  "wd" '(evil-window-delete :which-key "close window")
