@@ -1274,12 +1274,21 @@ Display horizontal lines instead of ugly characters
 
 ** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
-  (use-package eyebrowse :ensure t 
+(use-package eyebrowse :ensure t
   :config (eyebrowse-mode t)
-  ;(set-face-foreground 'eyebrowse-mode-line-active "medium turquoise")
+                                        ;(set-face-foreground 'eyebrowse-mode-line-active "medium turquoise")
   (set-face-foreground 'eyebrowse-mode-line-active "purple")
   (setq eyebrowse-mode-line-separator "|")
-  (setq eyebrowse-new-workspace "*dashboard*"))
+  (setq eyebrowse-new-workspace "*dashboard*")
+  (general-define-key
+   :states '(normal emacs)
+   "M-1" '(eyebrowse-switch-to-window-config-1 :which-key "workspace 1")
+   "M-2" '(eyebrowse-switch-to-window-config-2 :which-key "workspace 2")
+   "M-3" '(eyebrowse-switch-to-window-config-3 :which-key "workspace 3")
+   "M-4" '(eyebrowse-switch-to-window-config-4 :which-key "workspace 4")
+   "M-5" '(eyebrowse-switch-to-window-config-5 :which-key "workspace 5")
+   ))
+#+end_src
 #+end_src
 
 ** Pdf Tools
