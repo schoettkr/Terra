@@ -622,15 +622,7 @@ Disable <> auto pairing in org mode
                   (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 #+end_src
 
-Add org-bullets for nice icons instead of stars
 #+begin_src emacs-lisp
-  ;  (use-package org-bullets
-  ;    :ensure t
-  ;    :defer t
-  ;    :init 
-  ;    (setq org-bullets-bullet-list
-  ;          '("◉" "◎" "⚫" "○" "►" "◇")))
-
 (setq org-edit-src-content-indentation 0)
 
     ;; org-hide-emphasis-markers t)
