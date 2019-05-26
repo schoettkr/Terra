@@ -411,8 +411,7 @@ Other functions
     ))
 #+end_src
 ** Password Generator
-#+BEGIN_SRC emacs-lisp
-  (defun* make-password (length &optional (upper t) (lower t) (number t) (symbol nil) (ambiguous nil))
+(defun* make-password (length &optional (upper t) (lower t) (number t) (symbol nil) (ambiguous nil))
     "Return a string of LENGTH random characters.  If UPPER is non-nil,
   use uppercase letters.  If lower is non-nil, use lowercase letters.
   If NUMBER is non-nil, use numbers.  If SYMBOL is non-nil, use one of
@@ -477,7 +476,7 @@ Other functions
      (y-or-n-p "Use symbols: ")
      (y-or-n-p "Use ambiguous characters: ")))
 
-  (defun* make-password-strength (length &optional (upper t) (lower t) (number t) (symbol nil) (ambiguous nil))
+(defun* make-password-strength (length &optional (upper t) (lower t) (number t) (symbol nil) (ambiguous nil))
     "Calculate the number of possible passwords that could be generated
   given the criteria of LENGTH and use of UPPER, LOWER, NUMBER, SYMBOL,
   and AMBIGUOUS characters"
@@ -488,7 +487,6 @@ Other functions
       (if (interactive-p)
     (message "number of combinations is 10^%d with a bit equivalence of %d" (round number) (round bits))
         (list bits number))))
-#+END_SRC
 
 * General Packages
 ** Evil
