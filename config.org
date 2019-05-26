@@ -1244,7 +1244,6 @@ Display horizontal lines instead of ugly characters
 #+begin_src emacs-lisp
   (use-package smooth-scroll
     :ensure t
-    :defer t
     :config
     (smooth-scroll-mode 1)
     ;; (setq smooth-scroll/vscroll-step-size 5)
