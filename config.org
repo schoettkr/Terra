@@ -825,23 +825,6 @@ Todo: Write "sired" or "sidered" :D
   (use-package popup :ensure t)
 #+end_src
 
-** Polymode
-#+begin_src emacs-lisp
-  ;; (use-package polymode
-  ;;   :ensure t
-  ;;   :defer t
-  ;;   :config
-  ;;   (setq load-path
-  ;;         (append '("~/.emacs.d/elpa/polymode-20170307"  "~/.emacs.d/elpa/polymode-20170307/")
-  ;;                 load-path))
-  ;;   (require 'poly-R)
-  ;;   (require 'poly-markdown)
-  ;;   (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
-  ;;   (autoload 'r-mode "ess-site.el" "Major mode for editing R source." t)
-  ;;   )
-
-#+end_src
-
 ** Which key
 #+begin_src emacs-lisp
 (use-package which-key
