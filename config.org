@@ -153,6 +153,7 @@ Best light theme by far (for real!):
 ;;   ;; :config (load-theme 'moe-theme)
 ;;   :config (moe-dark)
 ;; )
+(use-package base16-theme :ensure t)
 (load-theme 'base16-gruvbox-dark-medium) ;; use light-soft as a light theme
 #+END_SRC
 Insert/replace in moe dark.el:
