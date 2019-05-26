@@ -755,16 +755,6 @@ Todo: Compare with supposedly newly built-in line numbering
 ** Dired
 Todo: Write "sired" or "sidered" :D
 #+BEGIN_SRC emacs-lisp
-;; (use-package all-the-icons-dired
-;;   :ensure t)
-
-;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-;; (use-package treemacs-icons-dired
-;;   :after dired
-;;   :ensure t
-;;   :config (treemacs-icons-dired-mode))
-
 (setq auto-revert-verbose nil)
 (setq dired-dwim-target t)
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
