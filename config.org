@@ -72,23 +72,26 @@
 
 * Appearance
 ** General
-This is the font I searched that was used as default when no font was set (pretty nice)
-=(add-to-list 'default-frame-alist '(font . "SourceCodePro 10"))=
-
-
-
 Note try (setq left-margin-width 20) and (set-window-margins (selected-window) 20 20)
 Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs.InternalBorder: 40 in .Xresources
 #+begin_src emacs-lisp
-;; (setq default-frame-alist '((font . "Bront 13")))
-(setq default-frame-alist '((font . "Source Code Pro 13")))
-;; (setq default-frame-alist '((font . "Hack 11")))
 (setq whitespace-line-column 999)
 (set-face-bold-p 'bold nil)
 ;; (setq-default left-margin-width 4 right-margin-width 2) ; Set down because to much margin with built-in linums
 (setq-default left-margin-width 0 right-margin-width 0) ; Define new widths.
 (set-window-buffer nil (current-buffer)) 
 ;; (set-face-attribute 'default nil :height 120)
+;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
+;; (set-window-fringes (selected-window) 0 0 nil)
+;; (setq whitespace-style '(faces spaces indentation))
+#+end_src
+*** Font
+This is the font I searched that was used as default when no font was set (pretty nice)
+=(add-to-list 'default-frame-alist '(font . "SourceCodePro 10"))=
+#+begin_src emacs-lisp
+(setq default-frame-alist '((font . "Source Code Pro 13")))
+;; (setq default-frame-alist '((font . "Bront 13")))
+;; (setq default-frame-alist '((font . "Hack 11")))
 ;; (set-default-font "Noto Sans 12")
 ;; (set-default-font "Fira Mono 12")
 ;; (add-to-list 'default-frame-alist '(font . "Overpass Mono 11"))
@@ -102,13 +105,8 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 ;; (set-default-font "Hack 12")
 ;; (set-default-font "Inconsolata 14")
 ;; (set-default-font "Droid Sans Mono for Powerline Plus Nerd File Types Mono 13")
-;;  (set-fringe-mode 0) ;; deactivates gutters at screen edges on linebreak
-;; (set-window-fringes (selected-window) 0 0 nil)
-;; (setq whitespace-style '(faces spaces indentation))
 #+end_src
-
 ** Modeline
-*** Customization
 #+BEGIN_SRC emacs-lisp
 (defadvice vc-mode-line (after strip-backend () activate)
   (when (stringp vc-mode)
