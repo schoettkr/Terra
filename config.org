@@ -833,11 +833,11 @@ Todo: Write "sired" or "sidered" :D
 
 ** Magit
 #+begin_src emacs-lisp
-    (use-package evil-magit
-     :ensure t
-  ;   :defer t ;; will loose keybinding overwritings
-     :config 
-     ;; (add-hook 'magit-mode-hook 'visual-line-mode)
+(use-package evil-magit
+  :ensure t
+                                        ;   :defer t ;; will loose keybinding overwritings
+  :config 
+  ;; (add-hook 'magit-mode-hook 'visual-line-mode)
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 #+end_src
 
@@ -1068,6 +1068,7 @@ Todo: Maybe look for an projectile replacement since I mostly use "pp" and "p/" 
 ** Lispyville
 #+BEGIN_SRC emacs-lisp
   (use-package lispyville :ensure t
+  :defer t
   :config (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
   (add-hook 'lisp-mode-hook #'lispyville-mode)
 
@@ -1170,6 +1171,7 @@ Display horizontal lines instead of ugly characters
 ** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
 (use-package eyebrowse :ensure t
+  :defer t
   :config (eyebrowse-mode t)
                                         ;(set-face-foreground 'eyebrowse-mode-line-active "medium turquoise")
   (set-face-foreground 'eyebrowse-mode-line-active "purple")
@@ -1186,13 +1188,13 @@ Display horizontal lines instead of ugly characters
 #+end_src
 ** Winum
 #+begin_src emacs-lisp
-(use-package winum :ensure t :config (winum-mode))
+(use-package winum :ensure t :defer t :config (winum-mode))
 #+end_src
 ** Pdf Tools
 #+begin_src emacs-lisp
   (use-package pdf-tools
 ;;    :ensure t
-    :defer 1
+    :defer t
     :config
 ;;    (pdf-tools-install)
     (evil-set-initial-state 'pdf-view-mode 'normal)
@@ -1251,6 +1253,7 @@ Display horizontal lines instead of ugly characters
 #+begin_src emacs-lisp
   (use-package smooth-scroll
     :ensure t
+    :defer t
     :config
     (smooth-scroll-mode 1)
     ;; (setq smooth-scroll/vscroll-step-size 5)
@@ -1272,15 +1275,9 @@ Display horizontal lines instead of ugly characters
 
 ** Rainbow
 #+begin_src emacs-lisp
-(use-package rainbow-mode :ensure t)
+(use-package rainbow-mode :defer t :ensure t)
 #+end_src
 
-** Vs Code Icon
-#+BEGIN_SRC emacs-lisp
-(use-package vscode-icon
-  :ensure t
-  :commands (vscode-icon-for-file))
-#+END_SRC
 ** Writer Mode
 #+BEGIN_SRC emacs-lisp
 ;(use-package poet-theme
@@ -1289,119 +1286,13 @@ Display horizontal lines instead of ugly characters
   ;  :ensure t)
   (use-package writeroom-mode
     :ensure t
+    :defer t
     :config
    (setq writeroom-fullscreen-effect 'maximized))
   (defun writemode ()
     (interactive)
     (writeroom-mode)
     )
-#+END_SRC
-** Neotree
-#+BEGIN_SRC emacs-lisp
-  ;(use-package neotree :ensure t
-    ;:config 
-    ;(setq neo-window-position (quote right))
-    ;(setq neo-smart-open t)
-    ;(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-;
-    ;(evil-set-initial-state 'neotree-mode 'normal) ;; Neotree start in normal by default.
-;
-    ;;; (add-hook 'neotree-mode-hook
-    ;;;           (lambda ()
-                ;(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-quick-look)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "SPC") nil)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "+") 'neotree-create-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "F") 'neotree-create-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "Y") 'neotree-copy-filepath-to-yank-ring)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "ff") 'neotree-create-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "yy") 'neotree-copy-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "gr") 'neotree-refresh)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "dd") 'neotree-delete-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "cc") 'neotree-rename-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "L") 'neotree-change-root)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "M") 'neotree-stretch-toggle)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "m") 'neotree-stretch-toggle)
-                ;;(evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-rename-node)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "R") 'neotree-refresh)
-                ;(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-select-up-node))
-;                (evil-define-key 'normal neotree-mode-map (kbd "D") 'neotree-delete-node)
-;                (evil-define-key 'normal neotree-mode-map (kbd "X") 'neotree-delete-node))
-  ;;)
-    ;;)
-#+END_SRC
-
-** Treemacs
-#+BEGIN_SRC emacs-lisp
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-collapse-dirs                 (if (executable-find "python") 3 0)
-          treemacs-deferred-git-apply-delay      0.5
-          treemacs-display-in-side-window        t
-          treemacs-file-event-delay              5000
-          treemacs-file-follow-delay             0.2
-          treemacs-follow-after-init             t
-          treemacs-git-command-pipe              ""
-          treemacs-goto-tag-strategy             'refetch-index
-          treemacs-indentation                   2
-          treemacs-indentation-string            " "
-          treemacs-is-never-other-window         nil
-          treemacs-max-git-entries               5000
-          treemacs-no-png-images                 nil
-          treemacs-no-delete-other-windows       t
-          treemacs-project-follow-cleanup        nil
-          treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-          treemacs-recenter-distance             0.1
-          treemacs-recenter-after-file-follow    nil
-          treemacs-recenter-after-tag-follow     nil
-          treemacs-recenter-after-project-jump   'always
-          treemacs-recenter-after-project-expand 'on-distance
-          treemacs-show-cursor                   nil
-          treemacs-show-hidden-files             t
-          treemacs-silent-filewatch              nil
-          treemacs-silent-refresh                nil
-          treemacs-sorting                       'alphabetic-desc
-          treemacs-space-between-root-nodes      t
-          treemacs-tag-follow-cleanup            t
-          treemacs-tag-follow-delay              1.5
-          treemacs-width                         35)
-
-    ;; The default width and height of the icons is 22 pixels. If you are
-    ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode t)
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null (executable-find "python3"))))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple))))
-  :bind
-  (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-        
-(use-package treemacs-evil
-  :after treemacs evil
-  :ensure t)
 #+END_SRC
 ** Ispell
 #+BEGIN_SRC emacs-lisp
@@ -1443,8 +1334,7 @@ Display horizontal lines instead of ugly characters
 
 ** Goggles
 #+BEGIN_SRC emacs-lisp
-  (use-package evil-goggles :ensure t)
-
+(use-package evil-goggles :defer 1 :ensure t)
 #+END_SRC
 ** Language Server Protocol
 Generic LSP emacs implementation
@@ -1479,6 +1369,7 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 ** Helpful
 #+BEGIN_SRC emacs-lisp
 (use-package helpful :ensure t
+:defer t
 :config 
 (global-set-key (kbd "C-h f") #'helpful-callable)
 
@@ -1495,24 +1386,26 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 #+BEGIN_SRC emacs-lisp
 (use-package evil-surround
   :ensure t
+  :defer t
   :config
   (global-evil-surround-mode 1))
 #+END_SRC
 
 ** Restclient
 #+BEGIN_SRC emacs-lisp
-(use-package restclient :ensure t)
+(use-package restclient :ensure t :defer t)
 #+END_SRC
 ** Hugo
 #+BEGIN_SRC emacs-lisp
 (use-package ox-hugo
   :ensure t            ;Auto-install the package from Melpa (optional)
+  :defer t
   :after ox)
 #+END_SRC
 
 ** Fzf
 #+begin_src emacs-lisp
-(use-package "fzf" :ensure t :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f") '(add-to-list 'load-path "~/.fzf"))
+(use-package "fzf" :ensure t :defer t :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f") '(add-to-list 'load-path "~/.fzf"))
 #+end_src
 
 * Keybindings 
@@ -1915,7 +1808,7 @@ Look at this for debugging https://www.gnu.org/software/emacs/manual/html_node/e
 If it doesnt work start C# project with vs code, it will get the dependecies.
 Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 #+BEGIN_SRC emacs-lisp
-  (use-package csharp-mode :ensure t)
+  (use-package csharp-mode :ensure t :defer t)
 ;  (use-package omnisharp
 ;    :commands csharp-mode
 ;    :config
@@ -1924,6 +1817,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
   (use-package omnisharp
     :ensure t
+    :defer t
     :after company
     :config
     (setq omnisharp-company-ignore-case nil)
@@ -1958,6 +1852,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 #+BEGIN_SRC emacs-lisp
   (use-package lua-mode
     :ensure t
+    :defer t
     :config
     (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
     (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
