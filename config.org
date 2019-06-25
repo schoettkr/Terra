@@ -514,18 +514,19 @@ Other functions
 
 ** Counsel
 #+begin_src emacs-lisp
-  (use-package counsel
-    :ensure t
-    :defer t
-    :config
-    (setq recentf-max-saved-items 150)
-    ;;  (setq counsel-find-file-at-point t)
-    ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
-    (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
-    (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules"))
-  (setq ivy-initial-inputs-alist nil)
+(use-package counsel
+  :ensure t
+  :defer t
+  :config
+  (setq recentf-max-saved-items 150)
+  ;;  (setq counsel-find-file-at-point t)
+  ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
+  (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
+  (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules")
+  )
+(setq ivy-initial-inputs-alist nil)
 
-  (use-package smex :ensure t)
+(use-package smex :ensure t)
 #+end_src
 
 ** General.el 
@@ -1158,7 +1159,6 @@ Display horizontal lines instead of ugly characters
 ; "Enable yasnippet for all backends.")
 ;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 (use-package company-quickhelp :ensure t)
-
 #+end_src
 
 ** Evil Commentary
