@@ -601,7 +601,8 @@ Disable <> auto pairing in org mode
   ;  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
    (add-hook 'org-mode-hook 'display-line-numbers-mode)
 
-  (setq org-latex-caption-above '(image table))
+  ; Caption below or above images/tables
+  ;; (setq org-latex-caption-above '(image table))
                                             ; Force utf8 and then change todo symbols
     (setq locale-coding-system 'utf-8)
     (set-terminal-coding-system 'utf-8)
