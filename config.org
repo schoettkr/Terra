@@ -1186,7 +1186,7 @@ Display horizontal lines instead of ugly characters
 ** Pdf Tools
 #+begin_src emacs-lisp
   (use-package pdf-tools
-;;    :ensure t
+   :ensure t
     :defer t
     :config
 ;;    (pdf-tools-install)
@@ -1225,9 +1225,10 @@ Display horizontal lines instead of ugly characters
       )
 
       (add-hook 'pdf-view-mode-hook 'auto-revert-mode)
+      (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
 ;      (add-hook 'pdf-view-mode-hook (lambda () (linum-relative-mode -1)))
 ;      (add-hook 'pdf-view-mode-hook (lambda () (linum-mode -1)))
-      (add-hook 'pdf-view-mode-hook (lambda () (beacon-mode -1)))
+      ;; (add-hook 'pdf-view-mode-hook (lambda () (beacon-mode -1)))
       (evil-define-key 'normal pdf-occur-buffer-mode-map
         (kbd "<return>") 'pdf-occur-goto-occurrence)
     )
