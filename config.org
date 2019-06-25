@@ -1061,7 +1061,7 @@ Todo: Maybe look for an projectile replacement since I mostly use "pp" and "p/" 
 ** Lispyville
 #+BEGIN_SRC emacs-lisp
   (use-package lispyville :ensure t
-  :defer t
+  :defer 3
   :config (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
   (add-hook 'lisp-mode-hook #'lispyville-mode)
 
