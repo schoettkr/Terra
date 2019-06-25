@@ -1191,7 +1191,7 @@ Display horizontal lines instead of ugly characters
 ** Tab/Buffer/Workspace
 #+begin_src emacs-lisp
 (use-package eyebrowse :ensure t
-  :defer t
+  :defer 2
   :config (eyebrowse-mode t)
                                         ;(set-face-foreground 'eyebrowse-mode-line-active "medium turquoise")
   (set-face-foreground 'eyebrowse-mode-line-active "purple")
