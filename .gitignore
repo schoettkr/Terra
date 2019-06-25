@@ -39,3 +39,4 @@ url/
 custom.el
 /recentf~
 /transient/history.el
+/request/curl-cookie-jar
