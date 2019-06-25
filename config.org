@@ -1417,6 +1417,16 @@ Beware: there are multiple version if you =:ensure t= the use package instructio
         leetcode-language "javascript")
   )
 #+END_SRC
+** Emmet
+Uses =C-j= to expand by default
+#+BEGIN_SRC emacs-lisp
+(use-package emmet-mode
+  :ensure t
+  :config
+  (add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.)
+  )
+#+END_SRC
 * Keybindings 
 #+begin_src emacs-lisp
 ;;(global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
