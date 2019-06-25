@@ -1106,6 +1106,18 @@ Display horizontal lines instead of ugly characters
 ;;(set-display-table-slot buffer-display-table 'wrap ?\ )))
 #+end_src
 
+** YaSnippet
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :ensure t
+  :defer 1
+  :config
+  (use-package yasnippet-snippets
+    :ensure t)
+  ;; (yas-reload-all)
+  (yas-global-mode 1)
+  )
+#+END_SRC
 ** Company
 #+begin_src emacs-lisp
 (use-package company :ensure t
@@ -1117,6 +1129,18 @@ Display horizontal lines instead of ugly characters
       (add-hook 'company-mode-hook 'company-quickhelp-mode)
       (setq company-dabbrev-downcase nil)
       ;(yas-reload-all)
+      ;; (add-to-list 'company-backends 'company-yasnippet)
+      (defvar company-mode/enable-yas t
+  "Enable yasnippet for all backends.")
+
+(defun company-mode/backend-with-yas (backend)
+  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+      backend
+    (append (if (consp backend) backend (list backend))
+            '(:with company-yasnippet))))
+
+(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
 )
 (setq company-clang-executable "/usr/bin/clang")
                                         ;  :config
@@ -1128,8 +1152,8 @@ Display horizontal lines instead of ugly characters
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 ;(defvar company-mode/enable-yas t
-;  "Enable yasnippet for all backends.")
-;;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+; "Enable yasnippet for all backends.")
+;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 (use-package company-quickhelp :ensure t)
 
 #+end_src
@@ -1545,6 +1569,10 @@ Requires =yay zeal=
  ;; Help
  "h" '(:ignore t :which-key "Help")
  "hh" '(help-for-help-internal :which-key "open help")
+ 
+ ;;
+ "i" '(:ignore t :which-key "I")
+ "is" '(yas-insert-snippet :which-key "Insert snippet")
 
  ;; Projects
  "p" '(:ignore t :which-key "Projects")

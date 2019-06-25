@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Post JSON Data
+# key: fetchp
+# --
+function postData(url, data) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+}

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: CSS Reset (minimal)
+# key: reset
+# --
+*, *:before, *:after {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}

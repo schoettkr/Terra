@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Parse Request Body (node)
+# key:  parseRequestBody
+# --
+/**
+ * 
+ * @param {http.IncomingMessage} request
+ */
+function parseRequestBody(request) {
+  request.setEncoding("utf-8");
+  let data = '';
+  request.on("data", chunk => data += chunk);
+
+  return new Promise((resolve, reject) => {
+    request.on("end", () => resolve(data));
+    request.on("error", () => reject(data));
+  });
+}

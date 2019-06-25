@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: DOM Query Selector
+# key: dqs
+# --
+document.querySelector('${1:selector}')
