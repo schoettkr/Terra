@@ -1148,6 +1148,7 @@ Display horizontal lines instead of ugly characters
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-mode-map (kbd "C-SPC") #'company-complete)
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
