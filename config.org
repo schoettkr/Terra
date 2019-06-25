@@ -1401,6 +1401,22 @@ Then run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 (use-package "fzf" :ensure t :defer t :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f") '(add-to-list 'load-path "~/.fzf"))
 #+end_src
 
+** Leetcode
+Prerequisites:
+#+BEGIN_SRC emacs-lisp
+(use-package ctable :ensure t :defer t)
+(use-package names :ensure t :defer t)
+#+END_SRC
+LC-Emacs
+Beware: there are multiple version if you =:ensure t= the use package instruction it will get another version than the one from gh
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/leetcode"))
+(use-package leetcode
+  :config
+  (setq leetcode-path "~/dev/leetcode"
+        leetcode-language "javascript")
+  )
+#+END_SRC
 * Keybindings 
 #+begin_src emacs-lisp
 ;;(global-set-key (kbd "<escape>")      'keyboard-escape-quit) ;; send quit signal with escape
