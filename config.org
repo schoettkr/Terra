@@ -89,7 +89,8 @@ Note: (internal-border-width . 40) is linked with emacs.internalBorder: 40 Emacs
 This is the font I searched that was used as default when no font was set (pretty nice)
 =(add-to-list 'default-frame-alist '(font . "SourceCodePro 10"))=
 #+begin_src emacs-lisp
-(setq default-frame-alist '((font . "Source Code Pro 13")))
+;; (setq default-frame-alist '((font . "Source Code Pro 13")))
+(add-to-list 'default-frame-alist '(font . "Bront 14")) ;; love dis font omfg! gives me apple vibes on linux
 ;; (setq default-frame-alist '((font . "Bront 13")))
 ;; (setq default-frame-alist '((font . "Hack 11")))
 ;; (set-default-font "Noto Sans 12")
@@ -97,7 +98,6 @@ This is the font I searched that was used as default when no font was set (prett
 ;; (add-to-list 'default-frame-alist '(font . "Overpass Mono 11"))
 ;; DejaVuSansMono FTW!!!
 ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono 11"))
-;; (add-to-list 'default-frame-alist '(font . "Bront 13")) ;; love dis font omfg! gives me apple vibes on linux
 ;; (add-to-list 'default-frame-alist '(font . "Hack 12"))
 ;; (add-to-list 'default-frame-alist '(font . "Fira Mono 12"))
 ;; (add-to-list 'default-frame-alist '(font . "Input Mono Light"))
@@ -154,7 +154,8 @@ Best light theme by far (for real!):
 ;;   :config (moe-dark)
 ;; )
 (use-package base16-theme :ensure t)
-(load-theme 'base16-gruvbox-dark-medium) ;; use light-soft as a light theme
+;; (load-theme 'base16-gruvbox-dark-medium) ;; use light-soft as a light theme
+(load-theme 'base16-oceanicnext)
 #+END_SRC
 Insert/replace in moe dark.el:
       Terminal Dark Style: (black-1 "#636b7e") (black-2 "#4f5665") (black-2-5 "#3f4551") (black-3 "#546e7a") (black-4 "#323741") (black-5 "#282c34") (black-6 "#20232a")
