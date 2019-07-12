@@ -155,7 +155,8 @@ Best light theme by far (for real!):
 ;; )
 (use-package base16-theme :ensure t)
 ;; (load-theme 'base16-gruvbox-dark-medium) ;; use light-soft as a light theme
-(load-theme 'base16-oceanicnext)
+;; (load-theme 'base16-oceanicnext)
+ (load-theme 'base16-material-palenight)
 #+END_SRC
 Insert/replace in moe dark.el:
       Terminal Dark Style: (black-1 "#636b7e") (black-2 "#4f5665") (black-2-5 "#3f4551") (black-3 "#546e7a") (black-4 "#323741") (black-5 "#282c34") (black-6 "#20232a")
