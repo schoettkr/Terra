@@ -2036,6 +2036,10 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 (setq org-latex-listings t)
 (setq org-latex-listings-options '(("breaklines" "true")))
 #+END_SRC
+** Org Mode Epub
+#+BEGIN_SRC emacs-lisp
+(use-package ox-epub :ensure t :defer t)
+#+END_SRC
 ** Testing
 todo : work this in
 (add-hook 'comint-exec-hook 
