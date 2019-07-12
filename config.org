@@ -2030,6 +2030,12 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
 #+end_src
 * Experimental
+** Org Mode Code Listings
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'org-latex-packages-alist '("" "listings" nil))
+(setq org-latex-listings t)
+(setq org-latex-listings-options '(("breaklines" "true")))
+#+END_SRC
 ** Testing
 todo : work this in
 (add-hook 'comint-exec-hook 
