@@ -40,3 +40,4 @@ custom.el
 /recentf~
 /transient/history.el
 /request/curl-cookie-jar
+/.lsp-session-v1
