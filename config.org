@@ -991,11 +991,16 @@ Also install:
 #+END_SRC
 
 *** Javascript
+Install:
+- =npm install --global prettier=
 #+BEGIN_SRC emacs-lisp
 (use-package rjsx-mode :ensure t :config 
 (setq js-indent-level 2)
 (add-to-list 'auto-mode-alist '("\\.js" . rjsx-mode))
 )
+(use-package prettier-js :ensure t :config
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode))
 #+END_SRC
 *** Typescript
 #+BEGIN_SRC emacs-lisp
