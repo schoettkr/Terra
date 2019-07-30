@@ -1386,6 +1386,10 @@ Keybindings for outline mode:
   (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
   (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
   (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
+  (add-to-list 'auto-mode-alist '("\\.vue" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.json" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
   (general-define-key
    :states 'normal
    :keymaps 'web-mode-map
@@ -1399,9 +1403,6 @@ Keybindings for outline mode:
    "me" '(web-mode-dom-errors-show :which-key "Show DOM errors")
    )
   )
-(add-to-list 'auto-mode-alist '("\\.vue" . web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
-
 
 ;; (defun my-web-mode-hook ()
 ;;   "Hooks for Web mode."
