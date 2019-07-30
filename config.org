@@ -120,7 +120,7 @@
 ** Theme
 #+BEGIN_SRC emacs-lisp
 (use-package base16-theme :ensure t)
- (load-theme 'base16-material-palenight)
+ (load-theme 'base16-onedark)
 #+END_SRC
 Always unify these:
 #+begin_src emacs-lisp
