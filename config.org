@@ -733,6 +733,7 @@ Display horizontal lines instead of ugly characters
       (setq company-minimum-prefix-length 2)
       (setq company-idle-delay 0.2)
       (add-to-list 'company-backends 'company-tern)
+      (add-to-list 'company-backends 'company-files)
       (add-hook 'company-mode-hook 'company-quickhelp-mode)
       (setq company-dabbrev-downcase nil)
       ;(yas-reload-all)
