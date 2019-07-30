@@ -1682,3 +1682,8 @@ Helper Functions to export nikola blog posts to hugo blog post format
 (setq eshell-prompt-function 'shk-eshell-prompt)
 (setq eshell-highlight-prompt nil)
 #+end_src
+** Emacs Server
+#+BEGIN_SRC emacs-lisp
+(server-force-delete)
+(server-start)
+#+END_SRC
