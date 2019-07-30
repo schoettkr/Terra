@@ -902,7 +902,7 @@ Display horizontal lines instead of ugly characters
 #+BEGIN_SRC emacs-lisp
 (use-package evil-surround
   :ensure t
-  :defer t
+  :defer 5
   :config
   (global-evil-surround-mode 1))
 #+END_SRC
