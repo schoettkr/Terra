@@ -279,6 +279,7 @@ Other functions
 #+BEGIN_SRC emacs-lisp
 (setq org-export-async-init-file "~/.emacs.d/async-org-export.el")
 (setq org-export-async-debug t)
+(setq org-default-notes-file "~/.notes.org")
 #+END_SRC
 #+begin_src emacs-lisp
 (add-hook
@@ -1364,6 +1365,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
  "o" '(:ignore t :which-key "Org")
  "oa" '(org-agenda :which-key "agenda")
  "oc" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :which-key "config")
+ "on" '((lambda () (interactive) (find-file "~/.notes.org")) :which-key "notes (capture)")
                                         ;     "ol" '((lambda () (interactive) (find-file "~/personal/logbook.org")) :which-key "logbook")
  "oq" '(org-capture :which-key "quick capture")
  )
