@@ -907,7 +907,10 @@ Display horizontal lines instead of ugly characters
   :ensure t
   :defer 5
   :config
-  (global-evil-surround-mode 1))
+  (global-evil-surround-mode 1)
+  (define-key evil-normal-state-map "s" nil)
+  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-surround-region)
+)
 #+END_SRC
 
 *** Restclient
