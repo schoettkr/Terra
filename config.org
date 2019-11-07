@@ -1305,6 +1305,7 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
  ;; Files
  "f" '(:ignore t :which-key "Files")
  "ff" '(counsel-find-file :which-key "find file")
+ "fo" '(find-file-other-window :which-key "find file other window")
  "fr"	'(counsel-recentf   :which-key "recent files")
  "fs" '(save-buffer :which-key "save file")
  "f/" '(swiper :which-key "search in file")
