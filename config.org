@@ -265,8 +265,8 @@ Other functions
   ;;  (setq counsel-locate-cmd 'counsel-locate-cmd-mdfind)
   (define-key evil-insert-state-map (kbd "M-x") 'counsel-M-x)
   (setq counsel-find-file-ignore-regexp "\\.DS_Store\\|.git\\|node_modules")
+  (setq ivy-initial-inputs-alist nil)
   )
-(setq ivy-initial-inputs-alist nil)
 
 (use-package smex :ensure t)
 #+end_src
