@@ -737,6 +737,8 @@ Display horizontal lines instead of ugly characters
       (add-to-list 'company-backends 'company-files)
       (add-hook 'company-mode-hook 'company-quickhelp-mode)
       (setq company-dabbrev-downcase nil)
+      (define-key evil-insert-state-map (kbd "C-/") 'dabbrev-expand)
+      (define-key evil-insert-state-map (kbd "M-/") 'company-files)
       ;(yas-reload-all)
       ;; (add-to-list 'company-backends 'company-yasnippet)
       (defvar company-mode/enable-yas t
