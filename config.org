@@ -1464,6 +1464,13 @@ Keybindings for outline mode:
 (setq org-latex-listings-options '(("breaklines" "true")))
 #+END_SRC
 ** Testing
+Function to create (temporary buffers)
+#+BEGIN_SRC emacs-lisp
+(defun create-buffer(name)
+  (interactive "sEnter name for new buffer: ")
+  (switch-to-buffer
+   (find-file (concat "/tmp/" name))))
+#+END_SRC
 todo : work this in
 (add-hook 'comint-exec-hook 
 (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
