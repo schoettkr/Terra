@@ -969,6 +969,10 @@ Requires =yay zeal=
     (add-hook 'lisp-mode-hook #'parinfer-mode)))
 #+END_SRC
 
+*** Iedit
+#+BEGIN_SRC emacs-lisp
+(use-package iedit :ensure t)
+#+END_SRC
 ** Language-specific Packages
 *** LSP
 Also install:
