@@ -106,7 +106,6 @@
         mode-line-frame-identification
         mode-line-buffer-identification
         (vc-mode vc-mode)
-
         " [%l:%c] "
         ;; evil-mode-line-tag
         "%m"
