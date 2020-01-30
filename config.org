@@ -281,7 +281,7 @@ Other functions
 #+BEGIN_SRC emacs-lisp
 (setq org-export-async-init-file "~/.emacs.d/async-org-export.el")
 (setq org-export-async-debug t)
-(setq org-default-notes-file "~/.notes.org")
+;; (setq org-default-notes-file "~/.notes.org")
 #+END_SRC
 #+begin_src emacs-lisp
 (add-hook
