@@ -76,6 +76,7 @@
 *** Font
 #+begin_src emacs-lisp
 (add-to-list 'default-frame-alist '(font . "Bront 14")) ;; love dis font omfg! gives me apple vibes on linux
+;; (add-to-list 'default-frame-alist '(font . "Bront 18")) ;; love dis font omfg! gives me apple vibes on linux
 #+end_src
 
 ** Modeline
