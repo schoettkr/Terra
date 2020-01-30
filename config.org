@@ -470,7 +470,13 @@ Todo: Write "sired" or "sidered" :D
   ; Only two panes/windows instead of 3 when ediffing changes
   (setq magit-ediff-dwim-show-on-hunks t)
   ;; (add-hook 'magit-mode-hook 'visual-line-mode)
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+(define-key transient-map        (kbd "<escape>") 'transient-quit-one)
+(define-key transient-edit-map   (kbd "<escape>") 'transient-quit-one)
+(define-key transient-sticky-map (kbd "<escape>") 'transient-quit-seq)
+)
+
+
 #+end_src
 
 *** Ediff
