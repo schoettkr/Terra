@@ -1734,6 +1734,84 @@ Helper Functions to export nikola blog posts to hugo blog post format
 (server-force-delete)
 (server-start)
 #+END_SRC
+
+** EDBI
+#+BEGIN_SRC emacs-lisp
+;; (use-package edbi :ensure t)
+;; (use-package company-edbi :ensure t
+;; :config (add-to-list 'company-backends 'company-edbi)
+
+;; )
+#+END_SRC
+** SQLi
+#+BEGIN_SRC emacs-lisp
+(add-hook 'sql-interactive-mode-hook 'auto-complete-mode)
+;; (define-key sql-interactive-mode-map (kbd "<C-SPC>") 'ac-start)
+;; (define-key sql-interactive-mode-map (kbd "<C-N>") 'ac-next)
+;; (define-key sql-interactive-mode-map (kbd "<C-P>") 'ac-previous)
+
+(defun my-ac-mode-hook ()
+  (define-key sql-interactive-mode-map (kbd "C-SPC") #'ac-start)
+  (define-key sql-interactive-mode-map (kbd "C-n") #'ac-next)
+  (define-key sql-interactive-mode-map (kbd "C-p") #'ac-previous))
+
+(add-hook 'sql-interactive-mode-hook  'my-ac-mode-hook)
+
+
+;; (defun ry/company-sql-upper-lower (&rest lst)
+;;   (nconc (sort (mapcar 'upcase lst) 'string<) lst))
+
+;; (defvar ry/company-sql-alist
+;;   `(("DBASE1"               ;; Database name w/o environment suffix.
+;;      "DBASE1DM" "DBASE1UM"  ;; Database name with environment suffix.
+;;      "SCHEMA1" "SCHEMA2"
+;;      "TABLE1" "TABLE2"
+;;      "COLUMN1" "COLUMN2")
+;;     ("DBASE2"
+;;      "DBASE2DM" "DBASE2UM"
+;;      "SCHEMA1" "SCHEMA2"
+;;      "TABLE1" "TABLE2"
+;;      "COLUMN1" "COLUMN2"))
+;;     "Alist mapping sql-mode to candidates.")
+
+;; (defun ry/company-sql (command &optional arg &rest ignored)
+;;   "`company-mode' back-end for SQL mode based on database name."
+;;   (interactive (list 'interactive))
+;;   (cl-case command
+;;     (interactive (company-begin-backend 'ry/company-sql))
+;;     (prefix (and (assoc (substring (buffer-name (current-buffer)) 4 -3) ry/company-sql-alist)
+;;                  (not (company-in-string-or-comment))
+;;                  (or (company-grab-symbol) 'stop)))
+;;     (candidates
+;;      (let ((completion-ignore-case t)
+;;            (symbols (cdr (assoc (substring (buffer-name (current-buffer)) 4 -3) ry/company-sql-alist))))       
+;;        (all-completions arg (if (consp symbols)
+;;                                 symbols
+;;                               (cdr (assoc symbols company-sql-alist))))))
+;;     (sorted t)))
+
+;; (defun ry/sql-open-database (database username password)
+;;   "Open a SQLI process and name the SQL statement window with the name provided."
+;;   (interactive (list
+;;                 (read-string "Database: ")
+;;                 (read-string "Username: ")
+;;                 (read-passwd "Password: ")))
+;;   (let ((u-dbname (upcase database)))
+;;     (setq sql-set-product "mariadb")
+
+;;     (sql-mariadb u-dbname)
+;;     (sql-rename-buffer u-dbname)
+;;     (setq sql-buffer (current-buffer))
+;;     (sql-send-string (concat "CONNECT TO " database " USER " username " USING " password ";"))
+
+;;     (other-window 1)
+;;     (switch-to-buffer (concat "*DB:" u-dbname "*"))
+;;     (sql-mode)
+;;     (sql-set-product "mariadb")
+;;     (setq sql-buffer (concat "*SQL: " u-dbname "*"))))
+
+;; (add-to-list 'company-backends 'ry/company-sql) (add-to-list 'company-backends 'ry/company-sql-alist)
+#+END_SRC
 ** Keepass
 #+BEGIN_SRC emacs-lisp
 (require 'ivy)
