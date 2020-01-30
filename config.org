@@ -1346,6 +1346,12 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
  "i" '(:ignore t :which-key "I")
  "is" '(yas-insert-snippet :which-key "Insert snippet")
 
+ ;; LSP
+ "l" '(:ignore t :which-key "l")
+ "lf" '(lsp-format-buffer :which-key "LSP format")
+ "ll" '(lsp-execute-code-action :which-key "LSP code action")
+ "lr" '(lsp-rename :which-key "LSP rename")
+
  ;; Projects
  "p" '(:ignore t :which-key "Projects")
  "pf" '(counsel-git :which-key "Find file in git project")
