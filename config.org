@@ -2131,3 +2131,9 @@ Helper Functions to export nikola blog posts to hugo blog post format
   (setq ivy-posframe-width 80)
   (ivy-posframe-mode +1))
 #+END_SRC
+** Org Export CSS Styles
+#+BEGIN_SRC emacs-lisp
+;;(load-file (concat (file-name-directory buffer-file-name) "sakura-theme/sakura.el"))
+;; (load-file "~/.emacs.d/sakura-theme/sakura.el")
+(load-file (locate-user-emacs-file "sakura-theme/sakura.el"))
+#+END_SRC
