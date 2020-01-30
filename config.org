@@ -467,6 +467,8 @@ Todo: Write "sired" or "sidered" :D
   :ensure t
                                         ;   :defer t ;; will loose keybinding overwritings
   :config 
+  ; Only two panes/windows instead of 3 when ediffing changes
+  (setq magit-ediff-dwim-show-on-hunks t)
   ;; (add-hook 'magit-mode-hook 'visual-line-mode)
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
 #+end_src
