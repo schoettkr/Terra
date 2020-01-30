@@ -132,6 +132,8 @@ Always unify these:
                 :background (face-background 'default))
 (set-face-attribute 'line-number nil
                 :background (face-background 'default))
+
+(set-face-foreground 'line-number "#696969")
 #+end_src
 Function for vim-like increment/decrement
 #+BEGIN_SRC emacs-lisp
