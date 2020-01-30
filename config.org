@@ -757,7 +757,7 @@ Display horizontal lines instead of ugly characters
 (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
 )
-(setq company-clang-executable "/usr/bin/clang")
+;; (setq company-clang-executable "/usr/bin/clang")
                                         ;  :config
                                         ;  (global-company-mode t))
 (with-eval-after-load 'company
@@ -1098,8 +1098,20 @@ Rest of go settings
 #+end_src
 
 *** C/C++
-Run =lsp-cquery-enable= when in a c/c++ file (or add hook).
+C Language Server
+#+BEGIN_SRC emacs-lisp
+(use-package ccls
+  :ensure t
+  :config
+  (setq ccls-executable "ccls")
+  (setq lsp-prefer-flymake nil)
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))
+#+END_SRC
 
+Note: Switched to ccls as seen above the below might be outdated.
+# Run =lsp-cquery-enable= when in a c/c++ file (or add hook).
 Look at this for debugging https://www.gnu.org/software/emacs/manual/html_node/emacs/GDB-Graphical-Interface.html
 #+BEGIN_SRC emacs-lisp
     (add-hook 'c-mode-hook
