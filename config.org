@@ -1473,6 +1473,11 @@ Keybindings for outline mode:
 ;;   )
 
 
+(mapc ; disable bold font
+ (lambda (face)
+   (set-face-attribute face nil :weight 'normal :underline nil))
+ (face-list))
+
 #+end_src
 ** Org Mode Epub
 #+BEGIN_SRC emacs-lisp
