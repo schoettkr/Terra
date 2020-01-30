@@ -2118,3 +2118,16 @@ Helper Functions to export nikola blog posts to hugo blog post format
             :require-match t))
 
 #+END_SRC
+** Ivy Posframe
+#+BEGIN_SRC emacs-lisp
+(use-package ivy-posframe
+  :ensure t
+  :after ivy
+  :diminish
+  :config
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center))
+        ivy-posframe-height-alist '((t . 10))
+        ivy-posframe-parameters '((internal-border-width . 10)))
+  (setq ivy-posframe-width 80)
+  (ivy-posframe-mode +1))
+#+END_SRC
