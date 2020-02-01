@@ -71,7 +71,7 @@
 (set-face-bold-p 'bold nil)
 (setq-default left-margin-width 0 right-margin-width 0) ; Define new widths.
 (set-window-buffer nil (current-buffer)) 
-
+(setq frame-resize-pixelwise t)
 #+end_src
 *** Font
 #+begin_src emacs-lisp
