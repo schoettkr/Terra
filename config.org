@@ -793,16 +793,18 @@ Display horizontal lines instead of ugly characters
 #+end_src
 *** Indent Guide
 #+begin_src emacs-lisp
-  (use-package indent-guide :ensure t
-  :defer t
-  :config (set-face-background 'indent-guide-face "SkyBlue4")
-  ;(setq indent-guide-delay 0.1)
-  (setq indent-guide-char " "))
-  ; (use-package highlight-indentation :ensure t
-  ; :config
-  ;  (set-face-background 'highlight-indentation-face "#ffffff")
-  ;  (set-face-background 'highlight-indentation-current-column-face "#ff0000")
-  ;)
+;; (use-package indent-guide :ensure t
+;; :defer t
+;; :config (set-face-background 'indent-guide-face "SkyBlue4")
+;; ;(setq indent-guide-delay 0.1)
+;; (setq indent-guide-char " "))
+; (use-package highlight-indentation :ensure t
+; :config
+;  (set-face-background 'highlight-indentation-face "#ffffff")
+;  (set-face-background 'highlight-indentation-current-column-face "#ff0000")
+;)
+(use-package highlight-indent-guides :ensure t :config (setq highlight-indent-guides-method 'character))
+
 #+end_src
 
 *** Rainbow Delimiters
