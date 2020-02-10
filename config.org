@@ -622,64 +622,64 @@ Todo: Write "sired" or "sidered" :D
 #+end_src
 *** Ivy
 #+begin_src emacs-lisp
-  (use-package ivy
-    :defer t
-    :ensure t
-    :commands (ivy-switch-buffer
-               ivy-switch-buffer-other-window)
-    :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers nil)) ;; set to true to show recent files
+(use-package ivy
+  :defer t
+  :ensure t
+  :commands (ivy-switch-buffer
+             ivy-switch-buffer-other-window)
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers nil)) ;; set to true to show recent files
 
-  (use-package ivy-rich
-    :ensure t
-    :after ivy
-    ;; :custom
-    ;; (ivy-virtual-abbreviate 'full
-    ;;                         ivy-rich-switch-buffer-align-virtual-buffer t
-    ;;                         ivy-rich-path-style 'abbrev)
-    :config
-    (setq ivy-rich-path-style 'abbreviate)
-    (setq ivy-rich--display-transformers-list
-          '(ivy-switch-buffer
-            (:columns
-             ((ivy-rich-candidate (:width 30))
-              (ivy-rich-switch-buffer-size (:width 7))
-              (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-              (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
-              (ivy-rich-switch-buffer-project (:width 15 :face success))
-              (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
-             :predicate
-             (lambda (cand) (get-buffer cand)))
+(use-package ivy-rich
+  :ensure t
+  :after ivy
+  ;; :custom
+  ;; (ivy-virtual-abbreviate 'full
+  ;;                         ivy-rich-switch-buffer-align-virtual-buffer t
+  ;;                         ivy-rich-path-style 'abbrev)
+  :config
+  (setq ivy-rich-path-style 'abbreviate)
+  (setq ivy-rich--display-transformers-list
+        '(ivy-switch-buffer
+          (:columns
+           ((ivy-rich-candidate (:width 30))
+            (ivy-rich-switch-buffer-size (:width 7))
+            (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+            (ivy-rich-switch-buffer-major-mode (:width 12 :face warning))
+            (ivy-rich-switch-buffer-project (:width 15 :face success))
+            (ivy-rich-switch-buffer-path (:width (lambda (x) (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+           :predicate
+           (lambda (cand) (get-buffer cand)))
 
-            counsel-M-x
-            (:columns
-             ((counsel-M-x-transformer (:width 40))  ; thr original transfomer
-              (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))  ; return the docstring of the command
-
-
-            counsel-describe-function
-            (:columns
-             ((counsel-describe-function-transformer (:width 40))  ; the original transformer
-              (ivy-rich-counsel-function-docstring (:face font-lock-doc-face))))  ; return the docstring of the function
+          counsel-M-x
+          (:columns
+           ((counsel-M-x-transformer (:width 40))  ; thr original transfomer
+            (ivy-rich-counsel-function-docstring (:width 38 :face font-lock-doc-face))))  ; return the docstring of the command
 
 
-            counsel-describe-variable
-            (:columns
-             ((counsel-describe-variable-transformer (:width 40))  ; the original transformer
-              (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face))))  ; return the docstring of the variable
+          counsel-describe-function
+          (:columns
+           ((counsel-describe-function-transformer (:width 40))  ; the original transformer
+            (ivy-rich-counsel-function-docstring (:width 38 :face font-lock-doc-face))))  ; return the docstring of the function
 
 
-            counsel-recentf
-            (:columns
-             ((ivy-rich-candidate (:width 0.8)) ; return the candidate itself
-              (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))) ; return the last modified time of the file
+          counsel-describe-variable
+          (:columns
+           ((counsel-describe-variable-transformer (:width 40))  ; the original transformer
+            (ivy-rich-counsel-variable-docstring (width: 38 :face font-lock-doc-face))))  ; return the docstring of the variable
 
-            )
+
+          counsel-recentf
+          (:columns
+           ((ivy-rich-candidate (:width 0.33)) ; return the candidate itself
+            (ivy-rich-file-last-modified-time (:width 15 :face font-lock-comment-face)))) ; return the last modified time of the file
+
           )
+        )
 
-    (ivy-rich-mode 1)
-    )
+  (ivy-rich-mode 1)
+  )
 #+end_src
 
 *** Projectile
