@@ -996,6 +996,7 @@ Also install:
 - =npm install -g typescript-language-server=
 - =npm install --global vscode-html-languageserver-bin=
 - =npm install --global vscode-css-languageserver-bin=
+- =yay python-language-server= (prefer the MS one)
 
 
 - as an alternative to VS Code typescript integration: =npm install -g javascript-typescript-langserver=
@@ -1005,15 +1006,29 @@ Also install:
   :hook (prog-mode . lsp)
   :commands lsp
   :config
+  (setq lsp-server-install-dir "~/.emacs.d/lsp-server/")
+  (setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui (flycheck) over flymake.
+  (setq lsp-enable-semantic-highlighting nil)
   (general-define-key
    :states 'normal
    :keymaps 'lsp-mode-map
    "gd" 'lsp-find-definition
    "gD" 'lsp-find-type-definition
    "gr" 'lsp-find-references
+   "M-RET" 'lsp-execute-code-action
    )
+  (use-package lsp-ui
+    :ensure t
+    :config
+    (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)  
+    (setq lsp-ui-sideline-ignore-duplicate t)
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (setq lsp-ui-doc-enable nil)
+  (mapcar (lambda (f) (set-face-foreground f (face-foreground  font-lock-comment-face           )       ))
+          '(lsp-ui-sideline-code-action lsp-ui-sideline-current-symbol lsp-ui-sideline-symbol lsp-ui-sideline-symbol-info))
+
   )
-  
+
 (use-package company-lsp :ensure t :config (push 'company-lsp company-backends))
 #+END_SRC
 
@@ -1033,6 +1048,12 @@ Install:
 #+BEGIN_SRC emacs-lisp
 (use-package typescript-mode :ensure t)
 #+END_SRC
+*** Java
+Install java & openJDK (go for the LTS versions) before with the archlinux-java command and install maven, the rest will be installed automatically
+#+begin_src emacs-lisp
+;; (use-package lsp-java :ensure t :after lsp)
+#+end_src
+
 *** Css
 #+begin_src emacs-lisp
 (setq css-indent-offset 2) ; css-mode
@@ -1158,7 +1179,9 @@ Look at this for debugging https://www.gnu.org/software/emacs/manual/html_node/e
 #+END_SRC
 *** Python
 #+BEGIN_SRC emacs-lisp
-(use-package elpy :defer t :config (elpy-enable))
+;; (use-package elpy :defer t :config (elpy-enable))
+(add-hook 'python-mode-hook 'flycheck-mode)
+
 #+END_SRC
 
 *** C#
