@@ -1340,6 +1340,9 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
  "bp" '(switch-to-prev-buffer :which-key "prev buffer")
  "bn" '(switch-to-prev-buffer :which-key "next buffer")
 
+ "B" '(:ignore t :which-key "Bookmarks")
+ "Bl" '(list-bookmarks :which-key "List Bookmarks")
+
  "c" '(kill-this-buffer :which-key "kill current buffer")
 
 
