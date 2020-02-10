@@ -1345,14 +1345,18 @@ Most likely: OmniSharp for Linux, .Net Core Debugger, -> msbuild-stable (<--!!!)
 
  "dd"  '(kill-buffer-and-window :which-key "Kill buffer and window")
 
- ;; ;; Flymake
- ;; "m" '(:ignore t :which-key "Major Mode")
-
  ;; Flymake
- "e" '(:ignore t :which-key "Flymake")
- "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
- "en" '(flymake-goto-next-error :which-key "next error")
- "ep" '(flymake-goto-prev-error :which-key "prev error")
+ ;; "e" '(:ignore t :which-key "Flymake")
+ ;; "eh" '(flymake-popup-current-error-menu :which-key "show error msg")
+ ;; "en" '(flymake-goto-next-error :which-key "next error")
+ ;; "ep" '(flymake-goto-prev-error :which-key "prev error")
+
+ ;; Flycheck
+ "e" '(:ignore t :which-key "Flycheck")
+ "eh" '(flycheck-list-errors :which-key "show error msg")
+ "el" '(flycheck-list-errors :which-key "list errors")
+ "en" '(flycheck-next-error :which-key "next error")
+ "ep" '(flycheck-previous-error :which-key "prev error")
 
  ;; Files
  "f" '(:ignore t :which-key "Files")
